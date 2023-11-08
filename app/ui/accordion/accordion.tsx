@@ -2,9 +2,10 @@
 
 import React from "react";
 import {Accordion, AccordionItem} from "@nextui-org/react";
+import {array} from "zod";
 
 
-export default function AccordionMain({data}) {
+export default function AccordionMain({data}: { data: array}) {
 
     return (
         <Accordion disableAnimation={false}>
