@@ -72,7 +72,7 @@ export default function MainPage() {
                 </div>
 
                 <div className="mb-6 xl:mb-0 w-full xl:w-5/12 text-violet-600">
-                    <AccordionMain data={data}/>
+                    {/*<AccordionMain data={data}/>*/}
                 </div>
             </div>
 
