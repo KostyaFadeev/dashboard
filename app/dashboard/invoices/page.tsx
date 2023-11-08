@@ -8,6 +8,7 @@ import Pagination from "@/app/ui/invoices/pagination";
 import { fetchInvoicesPages } from '@/app/lib/data';
 
 import { Metadata } from 'next';
+import {Card} from "@/app/ui/dashboard/cards";
 
 export const metadata: Metadata = {
     title: 'Invoices',

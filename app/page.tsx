@@ -1,7 +1,10 @@
 import styles from '../app/ui/home.module.css';
 import { lusitana } from '@/app/ui/fonts';
-import Link from 'next/link';
-import Image from 'next/image'
+
+import {
+  Image,
+  Link,
+} from "@nextui-org/react";
 
 export default function Page() {
   return (
