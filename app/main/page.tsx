@@ -3,9 +3,7 @@ import {Image} from "@nextui-org/react";
 
 import {Metadata} from "next";
 import NextJsCarousel from "@/app/ui/carousel/carousel";
-import AccordionMain from "@/app/ui/accordion/accordion";
 import {TelegramIcon} from "@/public/icons";
-import Card from "@/app/ui/card";
 import CardItem from "@/app/ui/card";
 
 export const metadata: Metadata = {
