@@ -2,12 +2,12 @@
 
 import React, {useState} from "react";
 import {Card, CardBody, CardHeader} from "@nextui-org/card";
-import {Button, Slider, Input} from "@nextui-org/react";
+import {Button, Slider} from "@nextui-org/react";
 
 
 export default function Calculator() {
-    const [value, setValue] = useState(0);
-    const [valueWeight, setWeightValue] = useState(0);
+    const [value, setValue] = useState<number>(0); //
+    const [valueWeight, setWeightValue] = useState<number>(0); //
     const course = 13;
     const convertToRub = value * course;
     const commission = 999;
@@ -24,7 +24,11 @@ export default function Calculator() {
             </CardHeader>
             <CardBody className="overflow-visible py-2">
                 <Slider
-                    onChange={(value) => setValue(value)}
+                    onChange={(value) => {
+                        if (typeof value === 'number') {
+                            setValue(value);
+                        }
+                    }}
                     label="Выбери стоимость товара на Poizon"
                     step={50}
                     maxValue={5000}
@@ -67,7 +71,11 @@ export default function Calculator() {
                 />
 
                 <Slider
-                    onChange={(value) => setWeightValue(value)}
+                    onChange={(value) => {
+                        if (typeof value === 'number') {
+                            setWeightValue(value);
+                        }
+                    }}
                     label="Укажите примерный вес товара в KG"
                     step={0.5}
                     maxValue={10}

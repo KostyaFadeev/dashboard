@@ -15,7 +15,6 @@ interface AccordionMainProps {
 }
 
 export default function AccordionMain({ data }: AccordionMainProps) {
-
     return (
         <Accordion
             disableAnimation={false}
