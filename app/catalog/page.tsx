@@ -34,7 +34,7 @@ export default async function CatalogPage({searchParams,}: {
                     {Array(12)
                     .fill('')
                     .map((i, index) => (
-                        <CardItem key={index} isModal={true}/>
+                        <CardItem key={index}/>
                     ))}
                 </div>
             </Suspense>
