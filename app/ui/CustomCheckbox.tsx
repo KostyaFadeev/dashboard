@@ -1,6 +1,12 @@
 import React from "react";
 import {useCheckbox, Chip, VisuallyHidden, tv} from "@nextui-org/react";
 import {CheckIcon} from "@/public/icons";
+import {any} from 'prop-types';
+
+const propTypes = {
+    props: any
+};
+
 
 const checkbox = tv({
     slots: {
@@ -56,3 +62,5 @@ export const CustomCheckbox = (props) => {
         </label>
     );
 }
+
+CustomCheckbox.propTypes = propTypes;
