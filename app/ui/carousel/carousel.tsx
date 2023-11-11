@@ -4,7 +4,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from 'react-responsive-carousel';
 import {Image} from "@nextui-org/react";
 
-const NextJsCarousel = ({images}) => {
+interface NextJsCarouselProps {
+    images: Array<string>,
+}
+
+const NextJsCarousel = ({images}: NextJsCarouselProps) => {
     return (
         <Carousel slidesToShow={3} showThumbs={false} swipeable showArrows={false} showStatus={false} autoPlay
                   infiniteLoop>

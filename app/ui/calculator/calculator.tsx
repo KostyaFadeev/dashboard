@@ -6,8 +6,8 @@ import {Button, Slider} from "@nextui-org/react";
 
 
 export default function Calculator() {
-    const [value, setValue] = useState<number>(0); //
-    const [valueWeight, setWeightValue] = useState<number>(0); //
+    const [value, setValue] = useState<number>(0);
+    const [valueWeight, setWeightValue] = useState<number>(0);
     const course = 13;
     const convertToRub = value * course;
     const commission = 999;
