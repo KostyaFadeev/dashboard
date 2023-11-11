@@ -12,7 +12,7 @@ interface NextJsCarouselProps {
 const NextJsCarousel: React.FC<NextJsCarouselProps> = ({ images }) => {
 
     return (
-        <Carousel slidesToShow={3} showThumbs={false} swipeable showArrows={false} showStatus={false} autoPlay
+        <Carousel showThumbs={false} swipeable showArrows={false} showStatus={false} autoPlay
                   infiniteLoop>
             {images.map((image, index) => (
                 <div key={index} className="flex justify-center">
