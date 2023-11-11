@@ -1,58 +1,42 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-    name: "Next.js + NextUI",
-    description: "Make beautiful websites regardless of your design experience.",
+    name: "Boundary",
+    description: "Сервис по доставке товаров из-за границы.",
     navItems: [
         {
+            label: "Каталог",
+            href: "/catalog",
+        },
+        {
             label: "О нас",
-            href: "/",
+            href: "/about",
         },
         {
             label: "Доставка и оплата",
-            href: "/docs",
-        },
-        {
-            label: "Гарантия и возврат",
-            href: "/pricing",
+            href: "/delivery",
         },
         {
             label: "Рассчитать стоимость",
-            href: "/blog",
+            href: "/calculator",
         },
     ],
     navMenuItems: [
         {
-            label: "Profile",
-            href: "/profile",
+            label: "Каталок",
+            href: "/catalog",
         },
         {
-            label: "Dashboard",
-            href: "/dashboard",
+            label: "О нас",
+            href: "/about",
         },
         {
-            label: "Projects",
-            href: "/projects",
+            label: "Доставка и оплата",
+            href: "/delivery",
         },
         {
-            label: "Team",
-            href: "/team",
-        },
-        {
-            label: "Calendar",
-            href: "/calendar",
-        },
-        {
-            label: "Settings",
-            href: "/settings",
-        },
-        {
-            label: "Help & Feedback",
-            href: "/help-feedback",
-        },
-        {
-            label: "Logout",
-            href: "/logout",
+            label: "Рассчитать стоимость",
+            href: "/calculator",
         },
     ],
     links: {

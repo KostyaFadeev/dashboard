@@ -26,14 +26,10 @@ export default async function Cards() {
         <>
             {/* NOTE: comment in this code when you get to this point in the course */}
 
-            <Card title="Collected" value={totalPaidInvoices} type="collected"/>
-            <Card title="Pending" value={totalPendingInvoices} type="pending"/>
-            <Card title="Total Invoices" value={numberOfInvoices} type="invoices"/>
-            <Card
-                title="Total Customers"
-                value={numberOfCustomers}
-                type="customers"
-            />
+            <Card title="Доставлено" value={totalPaidInvoices} type="collected"/>
+            <Card title="Доставляется" value={totalPendingInvoices} type="pending"/>
+            <Card title="Всего заказов" value={numberOfInvoices} type="invoices"/>
+            <Card title="Всего Клиентов" value={numberOfCustomers} type="customers"/>
         </>
     );
 }

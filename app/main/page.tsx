@@ -5,6 +5,7 @@ import {Metadata} from "next";
 import NextJsCarousel from "@/app/ui/carousel/carousel";
 import {TelegramIcon} from "@/public/icons";
 import CardItem from "@/app/ui/card";
+import AccordionMain from "@/app/ui/accordion/accordion";
 
 export const metadata: Metadata = {
     title: 'Main',
@@ -70,7 +71,7 @@ export default function MainPage() {
                 </div>
 
                 <div className="mb-6 xl:mb-0 w-full xl:w-5/12 text-violet-600">
-                    {/*<AccordionMain data={data}/>*/}
+                    <AccordionMain data={data}/>
                 </div>
             </div>
 
