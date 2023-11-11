@@ -5,7 +5,7 @@ import {Card, CardBody, CardHeader} from "@nextui-org/card";
 import {Button, Slider, Input} from "@nextui-org/react";
 
 
-export default function Calculator({title}) {
+export default function Calculator() {
     const [value, setValue] = useState(0);
     const [valueWeight, setWeightValue] = useState(0);
     const course = 13;
@@ -20,10 +20,9 @@ export default function Calculator({title}) {
     return (
         <Card className="p-2 lg:p-4 flex">
             <CardHeader className="pb-0 pt-2 px-4 flex-col items-center mb-6 text-xl">
-                Калькулятор стоимости заказа
+                <h4 className="font-medium text-large">Калькулятор</h4>
             </CardHeader>
             <CardBody className="overflow-visible py-2">
-                <h4 className="font-bold text-large mb-2">{title}</h4>
                 <Slider
                     onChange={(value) => setValue(value)}
                     label="Выбери стоимость товара на Poizon"
