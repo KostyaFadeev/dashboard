@@ -3,6 +3,13 @@
 import React from "react";
 import {Accordion, AccordionItem} from "@nextui-org/react";
 
+interface Object {
+    Icon: any;
+    title: string;
+    description: string;
+}
+
+
 interface AccordionMainProps {
     data: Array<Object>;
 }
