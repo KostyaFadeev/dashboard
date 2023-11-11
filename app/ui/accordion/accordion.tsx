@@ -3,8 +3,11 @@
 import React from "react";
 import {Accordion, AccordionItem} from "@nextui-org/react";
 
+interface AccordionMainProps {
+    data: Array<Object>;
+}
 
-export default function AccordionMain({ data }: { data: any }) {
+export default function AccordionMain({ data }: AccordionMainProps) {
 
     return (
         <Accordion
