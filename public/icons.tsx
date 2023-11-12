@@ -1,5 +1,14 @@
 import * as React from "react";
-import { IconSvgProps } from "@/types";
+// import { IconSvgProps } from "@/types";
+
+interface IconSvgProps {
+	size?: number;
+	width?: string | number;
+	height?: string | number;
+	// Другие свойства, которые могут принимать значения для SVG
+	[key: string]: any; // Любые другие свойства, которые могут быть переданы
+}
+
 
 export const Logo: React.FC<IconSvgProps> = ({
 	size = 36,
@@ -44,7 +53,7 @@ export const DiscordIcon: React.FC<IconSvgProps> = ({
 	);
 };
 
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(113, 113, 122, 1);transform: ;msFilter:;"><path d="m13 16 5-4-5-4v3H4v2h9z"></path><path d="M20 3h-9c-1.103 0-2 .897-2 2v4h2V5h9v14h-9v-4H9v4c0 1.103.897 2 2 2h9c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2z"></path></svg>
+// <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(113, 113, 122, 1);transform: ;msFilter:;"><path d="m13 16 5-4-5-4v3H4v2h9z"></path><path d="M20 3h-9c-1.103 0-2 .897-2 2v4h2V5h9v14h-9v-4H9v4c0 1.103.897 2 2 2h9c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2z"></path></svg>
 
 export const Login: React.FC<IconSvgProps> = ({
 														size = 24,
@@ -247,7 +256,7 @@ export const SunFilledIcon = ({
 // 	</svg>
 // );
 
-export const NextIcon = ({size = 24, width, height, ...props}) => (
+export const NextIcon = ({size = 24, width, height, ...props}: IconSvgProps) => (
 	<svg
 		aria-hidden="true"
 		fill="none"
@@ -270,7 +279,7 @@ export const NextIcon = ({size = 24, width, height, ...props}) => (
 );
 
 
-export const PreviousIcon = ({size = 24, width, height, ...props}) => (
+export const PreviousIcon = ({size = 24, width, height, ...props}: IconSvgProps) => (
 	<svg
 		aria-hidden="true"
 		fill="none"
@@ -293,7 +302,7 @@ export const PreviousIcon = ({size = 24, width, height, ...props}) => (
 );
 
 
-export const RepeatOneIcon = ({size = 24, width, height, ...props}) => (
+export const RepeatOneIcon = ({size = 24, width, height, ...props}: IconSvgProps) => (
 	<svg
 		aria-hidden="true"
 		fill="none"
@@ -320,7 +329,7 @@ export const RepeatOneIcon = ({size = 24, width, height, ...props}) => (
 );
 
 
-export const AnchorIcon = (props) => (
+export const AnchorIcon = (props: any) => (
 	<svg
 		aria-hidden="true"
 		focusable="false"
@@ -341,7 +350,7 @@ export const AnchorIcon = (props) => (
 	</svg>
 );
 
-export const MoonIcon = (props) => (
+export const MoonIcon = (props: any) => (
 	<svg
 		aria-hidden="true"
 		focusable="false"
@@ -363,7 +372,7 @@ export const MoonIcon = (props) => (
 );
 
 
-export const SunIcon = (props) => (
+export const SunIcon = (props: any) => (
 	<svg
 		aria-hidden="true"
 		focusable="false"
@@ -396,7 +405,7 @@ export const SunIcon = (props) => (
 
 
 
-export const ShuffleIcon = ({size = 24, width, height, ...props}) => (
+export const ShuffleIcon = ({size = 24, width, height, ...props}: IconSvgProps) => (
 	<svg
 		aria-hidden="true"
 		fill="none"
@@ -455,7 +464,7 @@ export const SearchIcon = (props: IconSvgProps) => (
 	</svg>
 );
 
-export const CheckIcon = (props) =>
+export const CheckIcon = (props: IconSvgProps) =>
 	(
 		<svg
 			aria-hidden="true"
