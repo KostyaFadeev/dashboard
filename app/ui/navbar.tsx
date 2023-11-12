@@ -84,7 +84,7 @@ export const Navbar = () => {
                     </Link>
                     <ThemeSwitch/>
                 </NavbarItem>
-                <NavbarItem className="hidden md:flex">
+                <NavbarItem className="hidden sm:flex">
                     <Dropdown>
                         <DropdownTrigger>
                             <Button
@@ -120,7 +120,7 @@ export const Navbar = () => {
             </NavbarContent>
 
             <NavbarMenu>
-                <div className="mx-4 mt-2 flex flex-col gap-2">
+                <div className="mx-4 mt-8 flex flex-col gap-2">
                     {siteConfig.navMenuItems.map((item, index) => (
                         <NavbarMenuItem key={`${item}-${index}`}>
                             <Link
@@ -131,7 +131,7 @@ export const Navbar = () => {
                                             ? "danger"
                                             : "foreground"
                                 }
-                                href="#"
+                                href={item.href}
                                 size="lg"
                             >
                                 {item.label}
