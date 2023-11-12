@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      width: {
+        '23percent': '24%',
+      },
       gridTemplateColumns: {
         '13': 'repeat(13, minmax(0, 1fr))',
       },

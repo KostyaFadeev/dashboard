@@ -23,7 +23,7 @@ export const siteConfig = {
     ],
     navMenuItems: [
         {
-            label: "Каталок",
+            label: "Каталог",
             href: "/catalog",
         },
         {
