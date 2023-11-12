@@ -6,7 +6,6 @@ import {InvoicesTableSkeleton} from "@/app/ui/skeletons";
 import Pagination from "@/app/ui/invoices/pagination";
 import {fetchInvoicesPages} from "@/app/lib/data";
 import CardItem from "@/app/ui/card";
-import Filters from "@/app/ui/filters/filters";
 
 export const metadata: Metadata = {
     title: 'Каталог',
@@ -28,7 +27,7 @@ export default async function CatalogPage({searchParams,}: {
             <div className="mt-4 flex items-center justify-between gap-2 md:mt-8 border-gray-200 border-1 rounded-md">
                 <Search placeholder="Найти товар..."/>
             </div>
-            <Filters/>
+            {/*<Filters/>*/}
             <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton/>}>
                 <div className="flex gap-2 flex-wrap mt-6 justify-center">
                     {Array(12)
