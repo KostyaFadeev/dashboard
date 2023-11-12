@@ -1,31 +1,37 @@
 'use client'
 import React from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import {Carousel} from 'react-responsive-carousel';
 import {Image} from "@nextui-org/react";
+import {Carousel} from '@mantine/carousel';
 
-interface NextJsCarouselProps {
+interface CarouselMainProps {
     images: string[];
 }
 
 
-const NextJsCarousel: React.FC<NextJsCarouselProps> = ({ images }) => {
+const CarouselMain: React.FC<CarouselMainProps> = ({ images }: CarouselMainProps) => {
 
     return (
-        <Carousel showThumbs={false} swipeable showArrows={false} showStatus={false} autoPlay
-                  infiniteLoop>
-            {images.map((image, index) => (
-                <div key={index} className="flex justify-center">
-                    <Image
-                        width={600}
-                        height={400}
-                        alt="NextUI hero Image with delay"
-                        src={image}
-                    />
-                </div>
+        <Carousel
+            withControls={true}
+            withIndicators
+            height={265}
+            slideSize={{ base: '100%', sm: '33.333%' }}
+            slideGap={{ base: 0, sm: 'md' }}
+            loop
+            align="start"
+        >
+            {images.map((src, index) => (
+                <Carousel.Slide key={index}>
+                    <div className="mr-2">
+                        <Image
+                            alt="NextUI hero Image"
+                            src={src}
+                        />
+                    </div>
+                </Carousel.Slide>
             ))}
         </Carousel>
     );
 };
 
-export default NextJsCarousel;
+export default CarouselMain;

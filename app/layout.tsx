@@ -29,11 +29,13 @@
 
 
 import '@/app/ui/global.css';
+import '@mantine/carousel/styles.css';
 
 import {fontSans} from '@/app/ui/fonts';
 import clsx from "clsx";
 import {Navbar} from "@/app/ui/navbar";
 import React from "react";
+import {MantineProvider} from '@mantine/core';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -47,7 +49,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="relative flex flex-col h-screen">
         <Navbar/>
         <main className="container mx-auto max-w-7xl pt-6 px-6 flex-grow">
+            <MantineProvider>
           {children}
+            </MantineProvider>
         </main>
         <footer className="w-full flex items-center justify-center py-6">
           <div

@@ -17,7 +17,7 @@ export default function CardItem() {
                         alt="Card background"
                         className="object-cover rounded-xl"
                         src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-                        width={270}
+                        height={230}
                     />
                 </CardHeader>
                 <CardBody className="overflow-visible py-2">
