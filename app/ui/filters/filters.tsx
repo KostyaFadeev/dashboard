@@ -6,6 +6,11 @@ import {CustomCheckbox} from "@/app/ui/CustomCheckbox";
 export default function Filters() {
     const [groupSelected, setGroupSelected] = React.useState([]);
 
+    const handleGroupSelectedChange = (selectedValues) => {
+        setGroupSelected(selectedValues);
+    };
+
+
     return (
         <div className="mt-4 flex items-center justify-between md:mt-8">
             <div className="flex flex-col gap-1 w-5/12">
@@ -14,7 +19,7 @@ export default function Filters() {
                     label="Фильтры:"
                     orientation="horizontal"
                     value={groupSelected}
-                    onChange={setGroupSelected}
+                    onChange={handleGroupSelectedChange}
                 >
                     <CustomCheckbox value="Nike">Nike</CustomCheckbox>
                     <CustomCheckbox value="New Balance">New Balance</CustomCheckbox>
