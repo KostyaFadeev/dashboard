@@ -1,15 +1,14 @@
 'use client'
 import {Avatar, CheckboxGroup, Select, SelectItem} from "@nextui-org/react";
-import React from "react";
+import React, {useState} from 'react';
 import {CustomCheckbox} from "@/app/ui/CustomCheckbox";
 
 export default function Filters() {
-    const [groupSelected, setGroupSelected] = React.useState([]);
+    const [groupSelected, setGroupSelected] = useState<string[]>([]); // Указываем тип string для массива groupSelected
 
-    const handleGroupSelectedChange = (selectedValues) => {
+    const handleGroupSelectedChange = (selectedValues: string[]) => { // Явно указываем тип string[] для selectedValues
         setGroupSelected(selectedValues);
     };
-
 
     return (
         <div className="mt-4 flex items-center justify-between md:mt-8">

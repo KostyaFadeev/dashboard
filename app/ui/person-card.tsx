@@ -13,10 +13,6 @@ export default function PersonCard({name, description, link}) {
         router.push(link);
     }
 
-    const imageLoader = ({src, width, quality}) => {
-        return `https://example.com/${src}?w=${width}&q=${quality || 75}`
-    }
-
 
     return (
         <>
@@ -27,7 +23,6 @@ export default function PersonCard({name, description, link}) {
                         className="object-cover rounded-xl"
                         src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
                         width={270}
-                        loader={imageLoader}
                     />
                 </CardHeader>
                 <CardBody className="overflow-visible py-2">
