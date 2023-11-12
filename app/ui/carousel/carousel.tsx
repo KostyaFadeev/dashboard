@@ -5,20 +5,21 @@ import {Carousel} from '@mantine/carousel';
 
 interface CarouselMainProps {
     images: string[];
+    height: any;
+    slideSize: any;
 }
 
 
-const CarouselMain: React.FC<CarouselMainProps> = ({ images }: CarouselMainProps) => {
+const CarouselMain: React.FC<CarouselMainProps> = ({ images, ...restProps }: CarouselMainProps) => {
 
     return (
         <Carousel
             withControls={true}
             withIndicators
-            height={265}
-            slideSize={{ base: '100%', sm: '33.333%' }}
             slideGap={{ base: 0, sm: 'md' }}
             loop
             align="start"
+            {...restProps}
         >
             {images.map((src, index) => (
                 <Carousel.Slide key={index}>

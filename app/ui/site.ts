@@ -23,6 +23,14 @@ export const siteConfig = {
     ],
     navMenuItems: [
         {
+            label: "Войти",
+            href: "/login",
+        },
+        {
+            label: "Главная",
+            href: "/",
+        },
+        {
             label: "Каталог",
             href: "/catalog",
         },

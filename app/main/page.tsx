@@ -78,9 +78,9 @@ export default function MainPage() {
 
 
 
-            <div className="flex justify-center w-auto mb-20">
-                <NextJsCarousel images={images}/>
-            </div>
+            {/*<div className="flex justify-center w-auto mb-20">*/}
+            {/*    <NextJsCarousel images={images}/>*/}
+            {/*</div>*/}
 
 
 

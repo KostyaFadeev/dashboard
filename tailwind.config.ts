@@ -12,6 +12,7 @@ const config: Config = {
     extend: {
       width: {
         '23percent': '24%',
+        '32percent': '32.4%',
       },
       gridTemplateColumns: {
         '13': 'repeat(13, minmax(0, 1fr))',

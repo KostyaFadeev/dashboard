@@ -18,6 +18,7 @@
     "bcrypt": "^5.1.1",
     "canvas-confetti": "^1.9.0",
     "clsx": "^2.0.0",
+    "embla-carousel-autoplay": "^8.0.0-rc14",
     "embla-carousel-react": "^7.1.0",
     "framer-motion": "^10.16.4",
     "next": "^14.0.1",
