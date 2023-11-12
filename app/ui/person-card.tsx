@@ -5,8 +5,13 @@ import {Card, CardBody, CardHeader} from "@nextui-org/card";
 import {Image, Button} from "@nextui-org/react";
 import {useRouter} from "next/navigation";
 
+interface PersonCardProps{
+    name: string;
+    description: string;
+    link: string;
+}
 
-export default function PersonCard({name, description, link}) {
+const PersonCard: React.FC<PersonCardProps> = ({ name, description,link }) => {
     const router = useRouter();
 
     const handleClick = () => {
@@ -37,3 +42,5 @@ export default function PersonCard({name, description, link}) {
         </>
     );
 }
+
+export default PersonCard;
