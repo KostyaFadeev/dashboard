@@ -1,4 +1,6 @@
 'use client';
+import Link from 'next/link';
+import { useFormState } from 'react-dom';
 
 import { CustomerField, InvoiceForm } from '@/app/lib/definitions';
 import {
@@ -7,10 +9,8 @@ import {
   CurrencyDollarIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
-import Link from 'next/link';
 import { Button } from '@/app/ui/button';
 import { updateInvoice } from '@/app/lib/actions';
-import { useFormState } from 'react-dom';
 
 export default function EditInvoiceForm({
   invoice,
@@ -19,7 +19,7 @@ export default function EditInvoiceForm({
   invoice: InvoiceForm;
   customers: CustomerField[];
 }) {
-  const initialState = {message: null, errors: {}};
+  const initialState = { message: null, errors: {} };
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
   const [state, dispatch] = useFormState(updateInvoiceWithId, initialState);
 
@@ -42,7 +42,7 @@ export default function EditInvoiceForm({
               aria-describedby="customer-error"
             >
               <option value="" disabled>
-                Select a customer
+                Выбрать пользователя
               </option>
               {customers.map((customer) => (
                 <option key={customer.id} value={customer.id}>
@@ -53,22 +53,18 @@ export default function EditInvoiceForm({
             <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
           {state.errors?.customerId ? (
-              <div
-                  id="customer-error"
-                  aria-live="polite"
-                  className="mt-2 text-sm text-red-500"
-              >
-                {state.errors.customerId.map((error: string) => (
-                    <p key={error}>{error}</p>
-                ))}
-              </div>
+            <div id="customer-error" aria-live="polite" className="mt-2 text-sm text-red-500">
+              {state.errors.customerId.map((error: string) => (
+                <p key={error}>{error}</p>
+              ))}
+            </div>
           ) : null}
         </div>
 
         {/* Invoice Amount */}
         <div className="mb-4">
           <label htmlFor="amount" className="mb-2 block text-sm font-medium">
-            Choose an amount
+            Выберите сумму
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
@@ -85,23 +81,17 @@ export default function EditInvoiceForm({
             </div>
           </div>
           {state.errors?.amount ? (
-              <div
-                  id="customer-error"
-                  aria-live="polite"
-                  className="mt-2 text-sm text-red-500"
-              >
-                {state.errors.amount.map((error: string) => (
-                    <p key={error}>{error}</p>
-                ))}
-              </div>
+            <div id="customer-error" aria-live="polite" className="mt-2 text-sm text-red-500">
+              {state.errors.amount.map((error: string) => (
+                <p key={error}>{error}</p>
+              ))}
+            </div>
           ) : null}
         </div>
 
         {/* Invoice Status */}
         <fieldset>
-          <legend className="mb-2 block text-sm font-medium">
-            Set the invoice status
-          </legend>
+          <legend className="mb-2 block text-sm font-medium">Set the invoice status</legend>
           <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
             <div className="flex gap-4">
               <div className="flex items-center">
@@ -118,7 +108,7 @@ export default function EditInvoiceForm({
                   htmlFor="pending"
                   className="ml-2 flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600 dark:text-gray-300"
                 >
-                  Pending <ClockIcon className="h-4 w-4" />
+                  Ожидаемо <ClockIcon className="h-4 w-4" />
                 </label>
               </div>
               <div className="flex items-center">
@@ -135,20 +125,16 @@ export default function EditInvoiceForm({
                   htmlFor="paid"
                   className="ml-2 flex items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-xs font-medium text-white dark:text-gray-300"
                 >
-                  Paid <CheckIcon className="h-4 w-4" />
+                  Оплачено <CheckIcon className="h-4 w-4" />
                 </label>
               </div>
             </div>
             {state.errors?.status ? (
-                <div
-                    id="customer-error"
-                    aria-live="polite"
-                    className="mt-2 text-sm text-red-500"
-                >
-                  {state.errors.status.map((error: string) => (
-                      <p key={error}>{error}</p>
-                  ))}
-                </div>
+              <div id="customer-error" aria-live="polite" className="mt-2 text-sm text-red-500">
+                {state.errors.status.map((error: string) => (
+                  <p key={error}>{error}</p>
+                ))}
+              </div>
             ) : null}
           </div>
         </fieldset>
@@ -158,9 +144,9 @@ export default function EditInvoiceForm({
           href="/dashboard/invoices"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
         >
-          Cancel
+          Отменить
         </Link>
-        <Button type="submit">Edit Invoice</Button>
+        <Button type="submit">Редактировать счет-фактуру</Button>
       </div>
     </form>
   );

@@ -1,62 +1,53 @@
-import {
-    BanknotesIcon,
-    ClockIcon,
-    UserGroupIcon,
-    InboxIcon,
-} from '@heroicons/react/24/outline';
-import {lusitana} from '@/app/ui/fonts';
-import {fetchCardData} from "@/app/lib/data";
+import { BanknotesIcon, ClockIcon, UserGroupIcon, InboxIcon } from '@heroicons/react/24/outline';
+import { lusitana } from '@/app/ui/fonts';
+import { fetchCardData } from '@/app/lib/data';
 
 const iconMap = {
-    collected: BanknotesIcon,
-    customers: UserGroupIcon,
-    pending: ClockIcon,
-    invoices: InboxIcon,
+  collected: BanknotesIcon,
+  customers: UserGroupIcon,
+  pending: ClockIcon,
+  invoices: InboxIcon,
 };
 
 export default async function Cards() {
-    const {
-        numberOfCustomers,
-        numberOfInvoices,
-        totalPaidInvoices,
-        totalPendingInvoices,
-    } = await fetchCardData();
+  const { numberOfCustomers, numberOfInvoices, totalPaidInvoices, totalPendingInvoices } =
+    await fetchCardData();
 
-    return (
-        <>
-            {/* NOTE: comment in this code when you get to this point in the course */}
+  return (
+    <>
+      {/* NOTE: comment in this code when you get to this point in the course */}
 
-            <Card title="Доставлено" value={totalPaidInvoices} type="collected"/>
-            <Card title="Доставляется" value={totalPendingInvoices} type="pending"/>
-            <Card title="Всего заказов" value={numberOfInvoices} type="invoices"/>
-            <Card title="Всего Клиентов" value={numberOfCustomers} type="customers"/>
-        </>
-    );
+      <Card title="Доставлено" value={totalPaidInvoices} type="collected" />
+      <Card title="Доставляется" value={totalPendingInvoices} type="pending" />
+      <Card title="Всего заказов" value={numberOfInvoices} type="invoices" />
+      <Card title="Всего Клиентов" value={numberOfCustomers} type="customers" />
+    </>
+  );
 }
 
 export function Card({
-                         title,
-                         value,
-                         type,
-                     }: {
-    title: string;
-    value: number | string;
-    type: 'invoices' | 'customers' | 'pending' | 'collected';
+  title,
+  value,
+  type,
+}: {
+  title: string;
+  value: number | string;
+  type: 'invoices' | 'customers' | 'pending' | 'collected';
 }) {
-    const Icon = iconMap[type];
+  const Icon = iconMap[type];
 
-    return (
-        <div className="rounded-xl bg-gray-50 p-2 shadow-sm">
-            <div className="flex p-4">
-                {Icon ? <Icon className="h-5 w-5 text-gray-700"/> : null}
-                <h3 className="ml-2 text-sm font-medium">{title}</h3>
-            </div>
-            <p
-                className={`${lusitana.className}
+  return (
+    <div className="rounded-xl bg-gray-50 p-2 shadow-sm">
+      <div className="flex p-4">
+        {Icon ? <Icon className="h-5 w-5 text-gray-700" /> : null}
+        <h3 className="ml-2 text-sm font-medium">{title}</h3>
+      </div>
+      <p
+        className={`${lusitana.className}
           truncate rounded-xl bg-white px-4 py-8 text-center text-2xl`}
-            >
-                {value}
-            </p>
-        </div>
-    );
+      >
+        {value}
+      </p>
+    </div>
+  );
 }
