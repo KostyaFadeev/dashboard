@@ -20,7 +20,7 @@ const CarouselCard = () => {
           .fill('')
           .map((i, index) => (
             <Carousel.Slide key={index}>
-              <div className="p-4">
+              <div className="p-2">
                 <CardItem />
               </div>
             </Carousel.Slide>

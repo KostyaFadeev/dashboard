@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <body className={clsx('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
         <div className="relative flex flex-col h-screen">
           <Navbar />
-          <main className="container mx-auto max-w-7xl pt-6 px-6 flex-grow">
+          <main className="container mx-auto max-w-7xl pt-2 px-2 flex-grow">
             <MantineProvider>{children}</MantineProvider>
           </main>
           <footer className="w-full flex items-center justify-center py-6">

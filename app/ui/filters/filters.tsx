@@ -8,8 +8,8 @@ export default function Filters() {
   const [groupSelected, setGroupSelected] = useState<string[]>([]);
 
   return (
-    <div className="mt-4 flex items-center justify-between md:mt-8">
-      <div className="flex flex-col gap-1 w-5/12">
+    <div className="mt-4 flex flex-col md:flex-row items-center justify-between md:mt-8">
+      <div className="flex flex-col gap-1 w-full md:w-5/12">
         <CheckboxGroup
           className="gap-1"
           label="Фильтры:"
@@ -28,8 +28,8 @@ export default function Filters() {
         </CheckboxGroup>
         <p className="mt-4 ml-1 text-default-500">{groupSelected.join(', ')}</p>
       </div>
-      <div className="w-3/12">
-        <Select className="max-w-xs" label="Выбери категорию">
+      <div className="w-full md:w-3/12">
+        <Select className="max-w-full md:max-w-sm" label="Выбери категорию">
           <SelectItem
             key="argentina"
             startContent={

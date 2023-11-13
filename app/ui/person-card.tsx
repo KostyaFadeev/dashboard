@@ -19,13 +19,13 @@ const PersonCard: React.FC<PersonCardProps> = ({ name, description, link }) => {
 
   return (
     <>
-      <Card className="py-4 flex">
-        <CardHeader className="pb-0 pt-2 px-4 flex-col items-start mb-6">
+      <Card className="py-4 flex w-full">
+        <CardHeader className="pb-0 pt-2 px-4 flex-col items-center mb-6">
           <Image
             alt="Card background"
             className="object-cover rounded-xl"
             src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-            width={270}
+            height={200}
           />
         </CardHeader>
         <CardBody className="overflow-visible py-2">

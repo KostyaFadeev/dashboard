@@ -16,9 +16,6 @@ export default function InfoPage() {
     <div className="flex flex-col justify-center items-center">
       <h2 className="text-center text-xl lg:text-3xl font-bold mb-10">Как сделать заказ ?</h2>
       <div className="flex flex-wrap w-full flex-col justify-center mb-20">
-        <h3 className="text-start text-xl font-semibold lg:text-2xl mb-6 text-indigo-500">
-          КАК ПОЛЬЗОВАТЬСЯ POIZON?
-        </h3>
         <div className="flex flex-col items-center justify-center lg:flex-row lg:justify-between">
           <div className="lg:w-6/12 mb-6 xl:mb-0 text-lg font-normal">
             <p className="mb-2">
@@ -44,16 +41,21 @@ export default function InfoPage() {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap flex-col items-center justify-center gap-10 md:flex-row md:justify-start mb-16">
+      <div className="mr-auto">
+        <h3 className="text-start text-2xl font-semibold lg:text-3xl mb-6 text-indigo-500">
+          КАК ПОЛЬЗОВАТЬСЯ POIZON?
+        </h3>
+      </div>
+      <div className="flex flex-wrap flex-col items-center justify-center gap-4 md:gap-10 md:flex-row md:justify-start mb-16">
         <Image
           width={450}
           height={450}
           alt="NextUI hero Image with delay"
           src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
         />
-        <div className="md:w-5/12 mb-6 xl:mb-0">
+        <div className="md:w-5/12 xl:mb-0">
           <h2 className="text-start text-2xl font-semibold mb-2 text-indigo-800">
-            1. СКАЧАЙТЕ ПРИЛОЖЕНИЕ
+            1. СКАЧАЙ ПРИЛОЖЕНИЕ
           </h2>
           <div className="text-lg font-normal mb-4">
             iOS: Официальное приложение POIZON в App Store - введите в поиске dewu
@@ -77,16 +79,16 @@ export default function InfoPage() {
         </div>
       </div>
 
-      <div className="flex flex-wrap flex-col items-center justify-center gap-10 md:flex-row md:justify-start mb-16">
+      <div className="flex flex-wrap flex-col items-center justify-center gap-4 md:gap-10 md:flex-row md:justify-start mb-16">
         <Image
           width={450}
           height={450}
           alt="NextUI hero Image with delay"
           src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
         />
-        <div className="md:w-5/12 mb-6 xl:mb-0">
+        <div className="md:w-5/12 xl:mb-0">
           <h2 className="text-start text-2xl font-semibold mb-2 text-indigo-800">
-            2. ЗАРЕГИСТРИРУЙТЕСЬ
+            2. ЗАРЕГИСТРИРУЙСЯ
           </h2>
           <div className="text-lg font-normal mb-4">
             Регистрируемся. Для этого указываем номер телефона, на который затем приходит код
@@ -99,16 +101,16 @@ export default function InfoPage() {
         </div>
       </div>
 
-      <div className="flex flex-wrap flex-col items-center justify-center gap-10 md:flex-row md:justify-start mb-16">
+      <div className="flex flex-wrap flex-col items-center justify-center gap-4 md:gap-10 md:flex-row md:justify-start mb-16">
         <Image
           width={450}
           height={450}
           alt="NextUI hero Image with delay"
           src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
         />
-        <div className="md:w-5/12 mb-6 xl:mb-0">
+        <div className="md:w-5/12 xl:mb-0">
           <h2 className="text-start text-2xl font-semibold mb-2 text-indigo-800 uppercase">
-            3. Ищем товары, о которых давно мечтали.
+            3. Найди товары, о которых давно мечтал.
           </h2>
           <div className="text-lg font-normal mb-4">
             Делать это можно через поиск (в верхнем правом углу значок лупы). К сожалению,
@@ -118,36 +120,40 @@ export default function InfoPage() {
         </div>
       </div>
 
-      <div className="w-full flex flex-wrap flex-col items-center justify-center gap-10 md:flex-row md:justify-start mb-16">
+      <div className="w-full flex flex-wrap flex-col items-center justify-center gap-4 md:gap-10 md:flex-row md:justify-start mb-16">
         <Image
           width={450}
           height={450}
           alt="NextUI hero Image with delay"
           src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
         />
-        <div className="md:w-5/12 mb-6 xl:mb-0">
+        <div className="md:w-5/12 xl:mb-0">
           <h2 className="text-start text-2xl font-semibold mb-2 text-indigo-800 uppercase">
-            4. Заказываем.
+            4. Сделай заказ.
           </h2>
           <div className="text-lg font-normal mb-4">
             Нужно скопировать ссылку на товар и отправить его нашему менеджеру.
           </div>
           <Button
             radius="full"
-            className="text-xl px-20 w-2/6 bg-gradient-to-tr from-pink-500 to-blue-500 text-white shadow-lg"
+            className="text-xl px-20 py-6 w-full sm:w-3/6 bg-gradient-to-tr from-pink-500 to-blue-500 text-white shadow-lg"
           >
             Сделать заказ!
           </Button>
         </div>
       </div>
-      <div className="mb-10">
+      <div className="w-full mb-10">
         <h3 className="px-2 text-2xl font-semibold text-indigo-800 mb-6 text-center">
           Остались вопросы ? Спроси любого из наших менеджеров!
         </h3>
-        <div className="flex justify-center w-auto gap-6 flex-wrap">
+        <div className="flex justify-center gap-6 flex-wrap">
           {siteConfig.personsData.map((item, index) => {
             const { name, description, link } = item;
-            return <PersonCard key={index} name={name} description={description} link={link} />;
+            return (
+              <div key={index} className="w-full sm:w-60">
+                <PersonCard name={name} description={description} link={link} />
+              </div>
+            );
           })}
         </div>
       </div>

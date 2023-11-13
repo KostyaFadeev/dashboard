@@ -32,11 +32,11 @@ export default async function CatalogPage({
       </div>
       <Filters />
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
-        <div className="flex gap-2 flex-wrap mt-6 justify-center">
+        <div className="w-full flex gap-2 flex-wrap mt-6 justify-center">
           {Array(10)
             .fill('')
             .map((i, index) => (
-              <div className="w-full md:w-60" key={index}>
+              <div className="w-full sm:w-32percent lg:w-23percent" key={index}>
                 <CardItem />
               </div>
             ))}

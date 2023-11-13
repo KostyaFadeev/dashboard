@@ -77,7 +77,7 @@ export default function Page() {
         />
       </div>
 
-      <div className="flex flex-wrap flex-row justify-center my-40 gap-4 md:gap-20">
+      <div className="flex flex-wrap flex-row justify-center my-20 md:my-40 gap-4 md:gap-20">
         <div className="text-center flex items-center text-xl font-bold lg:text-2xl">
           КАК ПОЛЬЗОВАТЬСЯ POIZON?
         </div>
@@ -118,7 +118,7 @@ export default function Page() {
         </div>
         <Button
           radius="full"
-          className="mx-auto px-20 w-2/6 bg-gradient-to-tr from-pink-500 to-blue-500 text-white shadow-lg"
+          className="mx-auto py-6 text-xl px-22 md:w-2/6 sm:w-3/6 w-4/6 bg-gradient-to-tr from-pink-500 to-blue-500 text-white shadow-lg"
         >
           Сделать заказ
         </Button>
