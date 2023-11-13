@@ -5,7 +5,13 @@ import CarouselMain from '@/app/ui/carousel/carousel-main';
 import CarouselCard from '@/app/ui/CarouselCard';
 import { Button } from '@nextui-org/react';
 import { siteConfig } from '@/app/ui/site';
-import {CheckBadgeIcon, ClipboardDocumentCheckIcon, ClockIcon, CreditCardIcon} from '@heroicons/react/24/outline';
+import {
+  CheckBadgeIcon,
+  ClipboardDocumentCheckIcon,
+  ClockIcon,
+  CreditCardIcon,
+  QuestionMarkCircleIcon
+} from '@heroicons/react/24/outline';
 
 export const metadata: Metadata = {
   title: 'Boundary',
@@ -14,14 +20,17 @@ export const metadata: Metadata = {
 export default function Page() {
   const howIsWorkData = [
     {
-      icon: <ClipboardDocumentCheckIcon/>,
+
+      // icon: <ClipboardDocumentCheckIcon/>,
+      icon: <QuestionMarkCircleIcon width={35}/>,
       title: 'ЛЕГКОЕ ОФОРМЛЕНИЕ ЗАКАЗА',
       description:
         'Выбирай в каталоге нужный товар, добавляй его в корзину и переходи к детальному\n' +
         '                            оформлению.',
     },
     {
-      icon: <CreditCardIcon/>,
+      // icon: <CreditCardIcon/>,
+      icon: <QuestionMarkCircleIcon/>,
       title: 'ОПЛАТА РОССИЙСКОЙ БАНКОВСКОЙ КАРТОЙ',
       description: 'У нас удобно — оплата в рублях и не нужно лишних манипуляций с деньгами.',
     },
