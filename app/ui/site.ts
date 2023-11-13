@@ -17,8 +17,12 @@ export const siteConfig = {
       href: '/delivery',
     },
     {
-      label: 'Рассчитать стоимость',
+      label: 'Калькулятор доставки',
       href: '/calculator',
+    },
+    {
+      label: 'Как заказать ?',
+      href: '/info',
     },
   ],
   navMenuItems: [
@@ -46,35 +50,19 @@ export const siteConfig = {
       label: 'Рассчитать стоимость',
       href: '/calculator',
     },
+    {
+      label: 'Как заказать ?',
+      href: '/info',
+    },
   ],
   links: {
     github: 'https://github.com/nextui-org/nextui',
     telegram: 'https://t.me/boundary_dostavka',
   },
   mainImages: [
-    'https://nextui-docs-v2.vercel.app/images/fruit-4.jpeg',
     'https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg',
     'https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg',
     'https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg',
-  ],
-  guaranteesData: [
-    {
-      number: 1,
-      title: 'ГАРАНТИЯ ВОЗВРАТА ДЕНЕГ',
-      description: 'Мы гарантируем возврат денежных средств, если товар бракованный.',
-    },
-    {
-      number: 2,
-      title: 'ГАРАНТИЯ ОРИГИНАЛЬНОСТИ ПРОДУКЦИИ',
-      description:
-        'Мы тщательно отобрали партнеров, поэтому готовы подтвердить оригинальность продукции, которую везем.',
-    },
-    {
-      number: 3,
-      title: 'ГАРАНТИЯ ОТ МАГАЗИНА',
-      description:
-        'Мы предоставляем бесплатную гарантию на 3 месяца от Brandly на всю электронику и бытовую технику.',
-    },
   ],
   mainDropdownData: [
     {
