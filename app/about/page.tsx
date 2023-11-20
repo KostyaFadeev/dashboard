@@ -44,7 +44,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div>
+    <main>
       <div className="flex flex-col items-center justify-center xl:flex-row xl:justify-between mb-16">
         <div className="xl:w-5/12 mb-6 xl:mb-0">
           <h2 className="text-center text-4xl font-semibold mb-2">О нас</h2>
@@ -94,6 +94,6 @@ export default function AboutPage() {
           })}
         </div>
       </div>
-    </div>
+    </main>
   );
 }

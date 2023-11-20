@@ -98,6 +98,108 @@ export default function DashboardSkeleton() {
   );
 }
 
+export function MainPageSkeleton() {
+  return (
+    <>
+      <div className="flex gap-2 flex-col md:flex-row">
+        <div
+          className={`${shimmer} w-auto md:w-1/2 h-80 relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+        />
+        <div
+          className={`${shimmer} hidden md:block md:w-1/2 h-80 relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+        />
+      </div>
+      <div className="flex justify-center mt-40">
+        <div
+          className={`${shimmer} w-full md:w-2/4 h-20 relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+        />
+      </div>
+    </>
+  );
+}
+
+export function CatalogPageSkeleton() {
+  return (
+    <div className="w-full">
+      <div
+        className={`${shimmer} w-60 h-10 relative overflow-hidden rounded-md bg-gray-100 p-2 shadow-sm mb-10`}
+      />
+      <div
+        className={`${shimmer} w-full h-10 relative overflow-hidden rounded-md bg-gray-100 p-2 shadow-sm mb-10`}
+      />
+      <div
+        className={`${shimmer} w-40 h-4 relative overflow-hidden rounded-md bg-gray-100 p-2 shadow-sm mb-2`}
+      />
+      <div className="flex justify-between flex-wrap mb-20">
+        <div
+          className={`${shimmer} w-full sm:w-80 h-10 relative overflow-hidden rounded-md bg-gray-100 p-2 shadow-sm mb-8 sm:mb-0`}
+        />
+        <div
+          className={`${shimmer} w-full sm:w-80 h-10 relative overflow-hidden rounded-md bg-gray-100 p-2 shadow-sm`}
+        />
+      </div>
+
+      <div className="w-full flex gap-2 flex-wrap mt-6 justify-center">
+        <div
+          className={`${shimmer} w-full sm:w-32percent lg:w-23percent h-80 relative overflow-hidden rounded-md bg-gray-100 p-2 shadow-sm`}
+        />
+        <div
+          className={`${shimmer} w-full sm:w-32percent lg:w-23percent h-80 relative overflow-hidden rounded-md bg-gray-100 p-2 shadow-sm`}
+        />
+        <div
+          className={`${shimmer} w-full sm:w-32percent lg:w-23percent h-80 relative overflow-hidden rounded-md bg-gray-100 p-2 shadow-sm`}
+        />
+        <div
+          className={`${shimmer} w-full sm:w-32percent lg:w-23percent h-80 relative overflow-hidden rounded-md bg-gray-100 p-2 shadow-sm`}
+        />
+      </div>
+    </div>
+  );
+}
+
+export function AboutPageSkeleton() {
+  return (
+    <>
+      <div className="flex gap-2 flex-col xl:flex-row mb-20">
+        <div className="flex items-center gap-2 flex-col w-auto xl:w-1/2 mb-4 xl:mb-0">
+          <div
+            className={`${shimmer} w-40 xl:w-2/4 h-10 relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm mb-2`}
+          />
+          <div
+            className={`${shimmer} w-full h-40 xl:h-full relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+          />
+        </div>
+        <div
+          className={`${shimmer} xl:w-1/2 h-80 relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+        />
+      </div>
+      <div className="flex justify-center mb-6">
+        <div
+          className={`${shimmer} w-full xl:w-2/4 h-10 relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+        />
+      </div>
+      <div
+        className={`${shimmer} w-full h-60 relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+      />
+    </>
+  );
+}
+
+export function DeliveryPageSkeleton() {
+  return (
+    <>
+      <div className="flex items-center justify-center flex-col">
+        <div
+          className={`${shimmer} w-80 h-12 relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm mb-20`}
+        />
+        <div
+          className={`${shimmer} w-full h-60 relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+        />
+      </div>
+    </>
+  );
+}
+
 export function TableRowSkeleton() {
   return (
     <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">

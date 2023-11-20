@@ -59,11 +59,7 @@ export const siteConfig = {
     github: 'https://github.com/nextui-org/nextui',
     telegram: 'https://t.me/boundary_dostavka',
   },
-  mainImages: [
-    'https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg',
-    'https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg',
-    'https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg',
-  ],
+  mainImages: ['/test3.jpg', '/test5.jpg', '/test6.jpg'],
   mainDropdownData: [
     {
       key: 'new',
@@ -93,12 +89,6 @@ export const siteConfig = {
       name: 'Алексеева Вероника',
       description: 'Тут будет краткая информация о сотруднике',
       link: 'https://t.me/nikitosa22',
-    },
-    {
-      img: '',
-      name: 'Ланцов Егор',
-      description: 'Тут будет краткая информация о сотруднике',
-      link: 'https://t.me/mortymo',
     },
   ],
 

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: 'Boundary',
 };
 
-export default function Page() {
+export default async function Page() {
   const howIsWorkData = [
     {
       icon: <ClipboardDocumentCheckIcon width={40} />,
@@ -68,7 +68,7 @@ export default function Page() {
   ];
 
   return (
-    <div>
+    <main>
       <div className="flex justify-center w-auto mb-20">
         <CarouselMain
           slideSize={{ base: '100%', sm: '50%' }}
@@ -145,6 +145,6 @@ export default function Page() {
           })}
         </div>
       </div>
-    </div>
+    </main>
   );
 }
