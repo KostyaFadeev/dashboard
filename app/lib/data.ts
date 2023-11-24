@@ -6,8 +6,8 @@ import {
   InvoiceForm,
   InvoicesTable,
   LatestInvoiceRaw,
-  User,
   Revenue,
+  User,
 } from './definitions';
 import { formatCurrency } from './utils';
 
@@ -226,5 +226,44 @@ export async function getUser(email: string) {
   } catch (error) {
     console.error('Failed to fetch user:', error);
     throw new Error('Failed to fetch user.');
+  }
+}
+
+export async function fetchDataCards() {
+  noStore();
+
+  try {
+    return [
+      {
+        id: 1,
+        img: '/test5.jpg',
+        title: 'Nike air max',
+        description: 'Тут будет описание',
+        price: '9999',
+      },
+      {
+        id: 2,
+        img: '/test5.jpg',
+        title: 'Nike air max',
+        description: 'Тут будет описание',
+        price: '9999',
+      },
+      {
+        id: 3,
+        img: '/test5.jpg',
+        title: 'Nike air max',
+        description: 'Тут будет описание',
+        price: '9999',
+      },
+      {
+        id: 4,
+        img: '/test5.jpg',
+        title: 'Nike air max',
+        description: 'Тут будет описание',
+        price: '9999',
+      },
+    ];
+  } catch (error) {
+    throw new Error('Failed to fetch revenue data.');
   }
 }
