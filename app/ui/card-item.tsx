@@ -43,14 +43,16 @@ export default function CardItem({ id, title, description, img, price }: CardIte
             <Radio value="san-francisco">10 US</Radio>
           </RadioGroup>
           <small className="text-default-500 text-md mb-2">{description}</small>
-          <div className="font-bold text-xl mb-4">{price} руб</div>
-          <Button
-            onClick={onOpen}
-            radius="full"
-            className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-          >
-            Заказать
-          </Button>
+          <div className="flex align-center justify-between mt-6">
+            <div className="font-medium text-2xl mb-4">{price} ₽</div>
+            <Button
+              onClick={onOpen}
+              radius="sm"
+              className="w-40 bg-green-500 text-lg text-white shadow-lg"
+            >
+              Заказать
+            </Button>
+          </div>
         </CardBody>
       </Card>
 

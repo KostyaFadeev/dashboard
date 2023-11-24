@@ -239,28 +239,28 @@ export async function fetchDataCards() {
         img: '/test5.jpg',
         title: 'Nike air max',
         description: 'Тут будет описание',
-        price: '9999',
+        price: '9 999',
       },
       {
         id: 2,
         img: '/test5.jpg',
         title: 'Nike air max',
         description: 'Тут будет описание',
-        price: '9999',
+        price: '9 999',
       },
       {
         id: 3,
         img: '/test5.jpg',
         title: 'Nike air max',
         description: 'Тут будет описание',
-        price: '9999',
+        price: '9 999',
       },
       {
         id: 4,
         img: '/test5.jpg',
         title: 'Nike air max',
         description: 'Тут будет описание',
-        price: '9999',
+        price: '9 999',
       },
     ];
   } catch (error) {

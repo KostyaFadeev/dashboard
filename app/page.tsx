@@ -60,23 +60,23 @@ export default async function Page() {
           <CustomTabs data={siteConfig.MainPage.tabsData} />
         </div>
       </div>
+      <div className="flex flex-wrap flex-row justify-center my-10 md:my-20 gap-4 md:gap-20">
+        <div className="text-center flex items-center text-xl font-bold lg:text-2xl">
+          КАК ПОЛЬЗОВАТЬСЯ POIZON?
+        </div>
+        <NextLink
+            href={'/info'}
+            className="flex justify-center items-center py-2 rounded-xl text-xl px-20 w-1/6 bg-gradient-to-tr from-pink-500 to-blue-500 text-white shadow-lg"
+        >
+          Узнать!
+        </NextLink>
+      </div>
 
       <div className="flex flex-col justify-center w-auto mb-20">
         <h2 className="text-center text-2xl font-bold lg:text-5xl lg:font-extrabold mb-4">
           Подборка популярных товаров
         </h2>
         <CarouselCard />
-      </div>
-      <div className="flex flex-wrap flex-row justify-center my-20 md:my-40 gap-4 md:gap-20">
-        <div className="text-center flex items-center text-xl font-bold lg:text-2xl">
-          КАК ПОЛЬЗОВАТЬСЯ POIZON?
-        </div>
-        <NextLink
-          href={'/info'}
-          className="flex justify-center items-center py-2 rounded-xl text-xl px-20 w-1/6 bg-gradient-to-tr from-pink-500 to-blue-500 text-white shadow-lg"
-        >
-          Узнать!
-        </NextLink>
       </div>
       <div className="flex flex-col justify-center w-auto mb-20">
         <h2 className="text-center text-2xl font-bold lg:text-5xl lg:font-extrabold mb-8">
@@ -91,7 +91,7 @@ export default async function Page() {
                 key={index}
                 className="relative px-4 pt-20 pb-4 drop-shadow-sm border-1 rounded-lg w-full xl:w-23percent"
               >
-                <div className="flex justify-center items-center absolute w-14 p-2 text-3xl font-bold rounded-full bg-indigo-600 text-center text-white mb-4 top-3 left-3">
+                <div className="absolute w-14 p-2 rounded-full bg-indigo-600 text-center text-white mb-4 top-3 left-3">
                   {Icon ? <Icon /> : null}
                 </div>
                 <h3 className="font-extrabold text-xl uppercase mb-2">{title}</h3>
