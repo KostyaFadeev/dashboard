@@ -1,9 +1,9 @@
-import { fontSans } from '@/app/ui/fonts';
+import { inter } from '@/app/ui/fonts';
 
 export default function BoundaryLogo() {
   return (
-    <div className={`${fontSans.className} flex flex-row items-center leading-none text-white`}>
-      <p className="text-[44px]">Boundary</p>
+    <div className={`${inter.className} flex flex-row items-center text-white`}>
+      <p className="text-5xl font-medium">Boundary</p>
     </div>
   );
 }

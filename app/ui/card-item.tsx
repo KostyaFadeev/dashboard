@@ -56,23 +56,11 @@ export default function CardItem({ id, title, description, img, price }: CardIte
         </CardBody>
       </Card>
 
-      <Modal className="w-full" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal className="w-full" isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
         <ModalContent className="px-2 pt-2">
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col">
-                {/*<Image*/}
-                {/*  alt="Card background"*/}
-                {/*  className="object-cover rounded-xl mb-2"*/}
-                {/*  src={img}*/}
-                {/*  height={230}*/}
-                {/*/>*/}
-                {/*<CarouselMain*/}
-                {/*  // slideSize={{ base: '100%', sm: '50%' }}*/}
-                {/*  images={siteConfig.mainImages}*/}
-                {/*  height={230}*/}
-                {/*/>*/}
-
                 <Carousel withControls={true} withIndicators loop align="center">
                   {siteConfig.MainPage.mainImages.map((src, index) => (
                     <Carousel.Slide key={index}>
