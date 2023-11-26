@@ -15,8 +15,6 @@ export default async function Cards() {
 
   return (
     <>
-      {/* NOTE: comment in this code when you get to this point in the course */}
-
       <Card title="Доставлено" value={totalPaidInvoices} type="collected" />
       <Card title="Доставляется" value={totalPendingInvoices} type="pending" />
       <Card title="Всего заказов" value={numberOfInvoices} type="invoices" />

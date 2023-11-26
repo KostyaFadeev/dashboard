@@ -6,8 +6,11 @@ import { CustomerField } from '@/app/lib/definitions';
 import {
   CheckIcon,
   ClockIcon,
+  ClipboardDocumentListIcon,
   CurrencyDollarIcon,
   UserCircleIcon,
+  TruckIcon,
+  CheckCircleIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
 import { createInvoice } from '@/app/lib/actions';
@@ -18,7 +21,6 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
   return (
     <form action={dispatch}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
-        {/* Customer Name */}
         <div className="mb-4">
           <label htmlFor="customer" className="mb-2 block text-sm font-medium">
             Выберите клиента
@@ -54,7 +56,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
         {/* Invoice Amount */}
         <div className="mb-4">
           <label htmlFor="amount" className="mb-2 block text-sm font-medium">
-            Choose an amount
+            Введите сумму заказа
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
@@ -63,7 +65,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                 name="amount"
                 type="number"
                 step="0.01"
-                placeholder="Enter USD amount"
+                placeholder="Введите сумму в USD"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                 aria-describedby="customer-error"
               />
@@ -97,7 +99,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                   htmlFor="pending"
                   className="ml-2 flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600 dark:text-gray-300"
                 >
-                  Pending <ClockIcon className="h-4 w-4" />
+                  Ожидает оплаты <ClockIcon className="h-4 w-4" />
                 </label>
               </div>
               <div className="flex items-center">
@@ -112,7 +114,67 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                   htmlFor="paid"
                   className="ml-2 flex items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-xs font-medium text-white dark:text-gray-300"
                 >
-                  Paid <CheckIcon className="h-4 w-4" />
+                  Оплачено <CheckIcon className="h-4 w-4" />
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="collect"
+                  name="status"
+                  type="radio"
+                  value="collect"
+                  className="h-4 w-4 border-gray-300 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
+                />
+                <label
+                  htmlFor="collect"
+                  className="ml-2 flex items-center gap-1.5 rounded-full bg-cyan-500 px-3 py-1.5 text-xs font-medium text-white dark:text-gray-300"
+                >
+                  В сборке <ClipboardDocumentListIcon className="h-4 w-4" />
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="deliveryToRussia"
+                  name="status"
+                  type="radio"
+                  value="deliveryToRussia"
+                  className="h-4 w-4 border-gray-300 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
+                />
+                <label
+                  htmlFor="deliveryToRussia"
+                  className="ml-2 flex items-center gap-1.5 rounded-full bg-indigo-400 px-3 py-1.5 text-xs font-medium text-white dark:text-gray-300"
+                >
+                  Отправлено в Россию <TruckIcon className="h-4 w-4" />
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="deliveryInRussia"
+                  name="status"
+                  type="radio"
+                  value="deliveryInRussia"
+                  className="h-4 w-4 border-gray-300 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
+                />
+                <label
+                  htmlFor="deliveryInRussia"
+                  className="ml-2 flex items-center gap-1.5 rounded-full bg-teal-400 px-3 py-1.5 text-xs font-medium text-white dark:text-gray-300"
+                >
+                  Отправлено по РФ <TruckIcon className="h-4 w-4" />
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="deliveryOk"
+                  name="status"
+                  type="radio"
+                  value="deliveryOk"
+                  className="h-4 w-4 border-gray-300 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
+                />
+                <label
+                  htmlFor="deliveryOk"
+                  className="ml-2 flex items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-xs font-medium text-white dark:text-gray-300"
+                >
+                  Доставлено <CheckCircleIcon className="h-4 w-4" />
                 </label>
               </div>
             </div>
@@ -131,7 +193,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
           href="/dashboard/invoices"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
         >
-          Cancel
+          Отмена
         </Link>
         <Button type="submit">Создать заявку</Button>
       </div>

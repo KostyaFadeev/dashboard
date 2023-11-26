@@ -4,9 +4,12 @@ import { useFormState } from 'react-dom';
 
 import { CustomerField, InvoiceForm } from '@/app/lib/definitions';
 import {
+  CheckCircleIcon,
   CheckIcon,
+  ClipboardDocumentListIcon,
   ClockIcon,
   CurrencyDollarIcon,
+  TruckIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
@@ -31,7 +34,7 @@ export default function EditInvoiceForm({
         {/* Customer Name */}
         <div className="mb-4">
           <label htmlFor="customer" className="mb-2 block text-sm font-medium">
-            Choose customer
+            Выберите пользователя
           </label>
           <div className="relative">
             <select
@@ -91,7 +94,7 @@ export default function EditInvoiceForm({
 
         {/* Invoice Status */}
         <fieldset>
-          <legend className="mb-2 block text-sm font-medium">Set the invoice status</legend>
+          <legend className="mb-2 block text-sm font-medium">Статусы заказа</legend>
           <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
             <div className="flex gap-4">
               <div className="flex items-center">
@@ -100,15 +103,14 @@ export default function EditInvoiceForm({
                   name="status"
                   type="radio"
                   value="pending"
-                  defaultChecked={invoice.status === 'pending'}
-                  aria-describedby="customer-error"
                   className="h-4 w-4 border-gray-300 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
+                  aria-describedby="customer-error"
                 />
                 <label
                   htmlFor="pending"
                   className="ml-2 flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600 dark:text-gray-300"
                 >
-                  Ожидаемо <ClockIcon className="h-4 w-4" />
+                  Ожидает оплаты <ClockIcon className="h-4 w-4" />
                 </label>
               </div>
               <div className="flex items-center">
@@ -117,8 +119,6 @@ export default function EditInvoiceForm({
                   name="status"
                   type="radio"
                   value="paid"
-                  defaultChecked={invoice.status === 'paid'}
-                  aria-describedby="customer-error"
                   className="h-4 w-4 border-gray-300 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
                 />
                 <label
@@ -126,6 +126,66 @@ export default function EditInvoiceForm({
                   className="ml-2 flex items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-xs font-medium text-white dark:text-gray-300"
                 >
                   Оплачено <CheckIcon className="h-4 w-4" />
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="collect"
+                  name="status"
+                  type="radio"
+                  value="collect"
+                  className="h-4 w-4 border-gray-300 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
+                />
+                <label
+                  htmlFor="collect"
+                  className="ml-2 flex items-center gap-1.5 rounded-full bg-cyan-500 px-3 py-1.5 text-xs font-medium text-white dark:text-gray-300"
+                >
+                  В сборке <ClipboardDocumentListIcon className="h-4 w-4" />
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="deliveryToRussia"
+                  name="status"
+                  type="radio"
+                  value="deliveryToRussia"
+                  className="h-4 w-4 border-gray-300 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
+                />
+                <label
+                  htmlFor="deliveryToRussia"
+                  className="ml-2 flex items-center gap-1.5 rounded-full bg-indigo-400 px-3 py-1.5 text-xs font-medium text-white dark:text-gray-300"
+                >
+                  Отправлено в Россию <TruckIcon className="h-4 w-4" />
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="deliveryInRussia"
+                  name="status"
+                  type="radio"
+                  value="deliveryInRussia"
+                  className="h-4 w-4 border-gray-300 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
+                />
+                <label
+                  htmlFor="deliveryInRussia"
+                  className="ml-2 flex items-center gap-1.5 rounded-full bg-teal-400 px-3 py-1.5 text-xs font-medium text-white dark:text-gray-300"
+                >
+                  Отправлено по РФ <TruckIcon className="h-4 w-4" />
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="deliveryOk"
+                  name="status"
+                  type="radio"
+                  value="deliveryOk"
+                  className="h-4 w-4 border-gray-300 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-gray-600"
+                />
+                <label
+                  htmlFor="deliveryOk"
+                  className="ml-2 flex items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-xs font-medium text-white dark:text-gray-300"
+                >
+                  Доставлено <CheckCircleIcon className="h-4 w-4" />
                 </label>
               </div>
             </div>
@@ -146,7 +206,7 @@ export default function EditInvoiceForm({
         >
           Отменить
         </Link>
-        <Button type="submit">Редактировать счет-фактуру</Button>
+        <Button type="submit">Редактировать заказ</Button>
       </div>
     </form>
   );
