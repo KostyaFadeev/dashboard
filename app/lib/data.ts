@@ -236,21 +236,21 @@ export async function fetchDataCards() {
     return [
       {
         id: 1,
-        img: '/test5.jpg',
-        title: 'Nike air max',
+        img: '/test8.jpg',
+        title: 'New Balance 550',
         description: 'Тут будет описание',
         price: '9 999',
       },
       {
         id: 2,
-        img: '/test5.jpg',
-        title: 'Nike air max',
+        img: '/test7.jpg',
+        title: 'IPHONE 14 PRO MAX',
         description: 'Тут будет описание',
-        price: '9 999',
+        price: '196 990',
       },
       {
         id: 3,
-        img: '/test5.jpg',
+        img: '/test6.jpg',
         title: 'Nike air max',
         description: 'Тут будет описание',
         price: '9 999',

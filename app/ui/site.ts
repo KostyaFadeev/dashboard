@@ -100,7 +100,7 @@ export const siteConfig = {
     },
   ],
   MainPage: {
-    mainImages: ['/test3.jpg', '/test5.jpg', '/test6.jpg'],
+    mainImages: ['/test3.jpg', '/test8.jpg', '/test6.jpg', '/test7.jpg', '/test5.jpg'],
     tabsData: [
       {
         id: 'delivery',
