@@ -4,6 +4,8 @@ import InvoiceStatus from '@/app/ui/invoices/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
 
+import { UserIcon } from '@heroicons/react/24/outline';
+
 export default async function InvoicesTable({
   query,
   currentPage,
@@ -20,16 +22,20 @@ export default async function InvoicesTable({
           <div className="md:hidden">
             {invoices?.map((invoice) => (
               <div key={invoice.id} className="mb-2 w-full rounded-md bg-white p-4">
-                <div className="flex items-center justify-between border-b pb-4">
+                <div className="flex gap-2 flex-wrap items-center justify-between border-b pb-4">
                   <div>
                     <div className="mb-2 flex items-center">
-                      <Image
-                        src={invoice.image_url}
-                        className="mr-2 rounded-full"
-                        width={28}
-                        height={28}
-                        alt={`${invoice.name}'s profile picture`}
-                      />
+                      {!invoice.image_url.length ? (
+                        <Image
+                          src={invoice.image_url}
+                          className="mr-2 rounded-full"
+                          width={28}
+                          height={28}
+                          alt={`${invoice.name}'s profile picture`}
+                        />
+                      ) : (
+                        <UserIcon width={28} height={28} className="mr-2 rounded-full" />
+                      )}
                       <p>{invoice.name}</p>
                     </div>
                     <p className="text-sm text-gray-500">{invoice.email}</p>

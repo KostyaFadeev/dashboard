@@ -8,8 +8,8 @@ import { signIn } from '@/auth';
 
 const InvoiceSchema = z.object({
   id: z.string(),
-  customerId: z.string({ invalid_type_error: 'Please select a customer.' }),
-  amount: z.coerce.number().gt(0, { message: 'Please enter an amount greater than $0.' }),
+  customerId: z.string({ invalid_type_error: 'Пожалуйста укажите пользователя.' }),
+  amount: z.coerce.number().gt(0, { message: 'Пожалуйста укажите стоимость заказа в $' }),
   status: z.enum([
     'pending',
     'paid',
@@ -18,7 +18,7 @@ const InvoiceSchema = z.object({
     'deliveryInRussia',
     'deliveryOk',
   ]),
-  date: z.string({ invalid_type_error: 'Please select an invoice status.' }),
+  date: z.string({ invalid_type_error: 'Выберите статус заказа' }),
 });
 
 const CreateInvoice = InvoiceSchema.omit({ id: true, date: true });

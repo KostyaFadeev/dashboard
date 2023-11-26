@@ -83,10 +83,10 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
 
         {/* Invoice Status */}
         <fieldset>
-          <legend className="mb-2 block text-sm font-medium">Set the invoice status</legend>
+          <legend className="mb-2 block text-sm font-medium">Статусы заказа</legend>
           <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
-            <div className="flex gap-4">
-              <div className="flex items-center">
+            <div className="flex flex-wrap gap-4">
+              <div className="flex w-full md:w-auto items-center">
                 <input
                   id="pending"
                   name="status"
@@ -102,7 +102,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                   Ожидает оплаты <ClockIcon className="h-4 w-4" />
                 </label>
               </div>
-              <div className="flex items-center">
+              <div className="flex w-full md:w-auto items-center">
                 <input
                   id="paid"
                   name="status"
@@ -117,7 +117,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                   Оплачено <CheckIcon className="h-4 w-4" />
                 </label>
               </div>
-              <div className="flex items-center">
+              <div className="flex w-full md:w-auto items-center">
                 <input
                   id="collect"
                   name="status"
@@ -132,7 +132,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                   В сборке <ClipboardDocumentListIcon className="h-4 w-4" />
                 </label>
               </div>
-              <div className="flex items-center">
+              <div className="flex w-full md:w-auto items-center">
                 <input
                   id="deliveryToRussia"
                   name="status"
@@ -147,7 +147,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                   Отправлено в Россию <TruckIcon className="h-4 w-4" />
                 </label>
               </div>
-              <div className="flex items-center">
+              <div className="flex w-full md:w-auto items-center">
                 <input
                   id="deliveryInRussia"
                   name="status"
@@ -162,7 +162,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                   Отправлено по РФ <TruckIcon className="h-4 w-4" />
                 </label>
               </div>
-              <div className="flex items-center">
+              <div className="flex w-full md:w-auto items-center">
                 <input
                   id="deliveryOk"
                   name="status"
