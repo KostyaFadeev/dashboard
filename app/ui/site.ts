@@ -1,12 +1,3 @@
-import {
-  BanknotesIcon,
-  CheckBadgeIcon,
-  ClipboardDocumentCheckIcon,
-  CreditCardIcon,
-  ShieldCheckIcon,
-} from '@heroicons/react/24/outline';
-import React from 'react';
-
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
@@ -28,10 +19,6 @@ export const siteConfig = {
     {
       label: 'Калькулятор доставки',
       href: '/calculator',
-    },
-    {
-      label: 'Как заказать ?',
-      href: '/info',
     },
   ],
   navMenuItems: [
@@ -85,6 +72,23 @@ export const siteConfig = {
       href: '/login',
     },
   ],
+  mainDropdownCourses: [
+    {
+      key: 'usd',
+      label: 'Доллар',
+      value: '90 ₽',
+    },
+    {
+      key: 'cny',
+      label: 'Юань',
+      value: '13.5 ₽',
+    },
+    {
+      key: 'eur',
+      label: 'Евро',
+      value: '97 ₽',
+    },
+  ],
   personsData: [
     {
       img: '',
@@ -100,7 +104,38 @@ export const siteConfig = {
     },
   ],
   MainPage: {
-    mainImages: ['/test3.jpg', '/test8.jpg', '/test6.jpg', '/test7.jpg', '/test5.jpg'],
+    mainImages: [
+      {
+        src: '/test3.jpg',
+        alt: 'Описание фото',
+        link: '/catalog',
+      },
+      {
+        src: '/test8.jpg',
+        alt: 'Описание фото',
+        link: '/catalog',
+      },
+      {
+        src: '/test9.jpg',
+        alt: 'Описание фото',
+        link: '/catalog',
+      },
+      {
+        src: '/test6.jpg',
+        alt: 'Описание фото',
+        link: '/catalog',
+      },
+      {
+        src: '/test7.jpg',
+        alt: 'Описание фото',
+        link: '/catalog',
+      },
+      {
+        src: '/test5.jpg',
+        alt: 'Описание фото',
+        link: '/catalog',
+      },
+    ],
     tabsData: [
       {
         id: 'delivery',

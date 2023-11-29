@@ -236,31 +236,55 @@ export async function fetchDataCards() {
     return [
       {
         id: 1,
-        img: '/test8.jpg',
+        images: ['/nb551.jpg', '/nb551.jpg', '/nb551.jpg'],
         title: 'New Balance 550',
-        description: 'Тут будет описание',
+        description: 'Описание.',
         price: '9 999',
+        variants: [
+          {
+            label: 'Выберите размер',
+            values: ['38 RUS', '39 RUS', '39 RUS'],
+          },
+        ],
       },
       {
         id: 2,
-        img: '/test7.jpg',
-        title: 'IPHONE 14 PRO MAX',
+        images: ['/iphone15.jpg'],
+        title: 'Iphone 15 ',
         description: 'Тут будет описание',
-        price: '196 990',
+        price: '88 999',
+        variants: [
+          {
+            label: 'Выберите объем памяти',
+            values: ['128 ГБ', '256 ГБ', '512 ГБ'],
+          },
+        ],
       },
       {
         id: 3,
-        img: '/test6.jpg',
+        images: ['/nb551.jpg', '/nb551.jpg', '/nb551.jpg'],
         title: 'Nike air max',
         description: 'Тут будет описание',
         price: '9 999',
+        variants: [
+          {
+            label: 'Выберите размер',
+            values: ['38 RUS', '39 RUS', '39 RUS'],
+          },
+        ],
       },
       {
         id: 4,
-        img: '/test5.jpg',
+        images: ['/nb551.jpg', '/nb551.jpg', '/nb551.jpg'],
         title: 'Nike air max',
         description: 'Тут будет описание',
         price: '9 999',
+        variants: [
+          {
+            label: 'Выберите размер',
+            values: ['7', '8', '9'],
+          },
+        ],
       },
     ];
   } catch (error) {

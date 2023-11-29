@@ -13,35 +13,59 @@ import {
   Button,
   useDisclosure,
 } from '@nextui-org/react';
-import { siteConfig } from '@/app/ui/site';
 import { Carousel } from '@mantine/carousel';
+
+interface Variant {
+  label: string;
+  values: string[];
+}
 
 interface CardItemProps {
   id: number;
   title: string;
   description: string;
-  img: string;
+  images: Array<string>;
+  variants: Array<Variant>;
   price: string;
 }
 
-export default function CardItem({ id, title, description, img, price }: CardItemProps) {
+export default function CardItem({
+  id,
+  title,
+  description,
+  images,
+  price,
+  variants,
+}: CardItemProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
-      <Card className="py-4 flex" key={id}>
+      <Card className="py-4 flex h-max" key={id}>
         <CardHeader className="pb-0 pt-2 px-4 flex-col items-start mb-6">
-          <Image alt="Card background" className="object-cover rounded-xl" src={img} height={230} />
+          <Image
+            alt="Card background"
+            className="object-cover rounded-xl"
+            src={images[0]}
+            height={230}
+          />
         </CardHeader>
         <CardBody className="overflow-visible py-2">
           <div className="font-bold text-large mb-2 cursor-pointer hover:text-orange-600">
             {title}
           </div>
-          <RadioGroup label="Выбери размер" orientation="horizontal" className="mb-2">
-            <Radio value="buenos-aires">8 US</Radio>
-            <Radio value="sydney">9 US</Radio>
-            <Radio value="san-francisco">10 US</Radio>
-          </RadioGroup>
+          {variants?.map((item, index) => {
+            const { label, values } = item;
+            return (
+              <RadioGroup key={index} label={label} orientation="horizontal" className="mb-2">
+                {values.map((item, index) => (
+                  <Radio key={index} value={item}>
+                    {item}
+                  </Radio>
+                ))}
+              </RadioGroup>
+            );
+          })}
           <small className="text-default-500 text-md mb-2">{description}</small>
           <div className="flex align-center justify-between mt-6">
             <div className="font-medium text-2xl mb-4">{price} ₽</div>
@@ -62,7 +86,7 @@ export default function CardItem({ id, title, description, img, price }: CardIte
             <>
               <ModalHeader className="flex flex-col">
                 <Carousel withControls={true} withIndicators loop align="center">
-                  {siteConfig.MainPage.mainImages.map((src, index) => (
+                  {images.map((src, index) => (
                     <Carousel.Slide key={index}>
                       <Image alt="NextUI hero Image" src={src} />
                     </Carousel.Slide>
@@ -73,11 +97,18 @@ export default function CardItem({ id, title, description, img, price }: CardIte
               </ModalHeader>
               <ModalBody className="flex flex-col">
                 <p>{description}</p>
-                <RadioGroup label="Выбери размер" orientation="horizontal" className="mb-2">
-                  <Radio value="buenos-aires">8 US</Radio>
-                  <Radio value="sydney">9 US</Radio>
-                  <Radio value="san-francisco">10 US</Radio>
-                </RadioGroup>
+                {variants.map((item, index) => {
+                  const { label, values } = item;
+                  return (
+                    <RadioGroup key={index} label={label} orientation="horizontal" className="mb-2">
+                      {values.map((item, index) => (
+                        <Radio key={index} value={item}>
+                          {item}
+                        </Radio>
+                      ))}
+                    </RadioGroup>
+                  );
+                })}
                 <Button className="text-sm">Таблица размеров</Button>
               </ModalBody>
               <ModalFooter>

@@ -9,6 +9,7 @@ import {
   CreditCardIcon,
   ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
+import DeliveryComponent from '@/app/ui/frontpage/delivery-component';
 
 interface Object {
   id: string;
@@ -26,6 +27,10 @@ const iconMap = {
   warranty: ShieldCheckIcon,
 };
 
+const componentMap = {
+  delivery: DeliveryComponent,
+};
+
 export default function CustomTabs({ data }: CustomTabsProps) {
   return (
     <div className="flex w-full flex-col">
@@ -34,6 +39,7 @@ export default function CustomTabs({ data }: CustomTabsProps) {
           <Tabs aria-label="Dynamic tabs" items={data}>
             {(data) => {
               const Icon = iconMap[data.id as keyof typeof iconMap];
+              const Component = componentMap[data.id as keyof typeof componentMap];
               return (
                 <Tab
                   key={data.id}
@@ -41,13 +47,12 @@ export default function CustomTabs({ data }: CustomTabsProps) {
                   title={
                     <div className="flex items-center space-x-2">
                       {Icon ? <Icon width={20} /> : null}
-                      {/*<BanknotesIcon width={20} />*/}
                       <span>{data.label}</span>
                     </div>
                   }
                 >
                   <Card>
-                    <CardBody className="text-lg p-6">{data.content}</CardBody>
+                    <CardBody className="text-lg p-2">{Component ? <Component /> : null}</CardBody>
                   </Card>
                 </Tab>
               );

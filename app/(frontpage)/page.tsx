@@ -13,14 +13,14 @@ import {
 
 import CarouselMain from '@/app/ui/carousel/carousel-main';
 import CarouselCard from '@/app/ui/CarouselCard';
-import { Button } from '@nextui-org/react';
+import { Button, Link } from '@nextui-org/react';
 import { siteConfig } from '@/app/ui/site';
 import CustomTabs from '@/app/ui/custom-tabs';
+import { AtSymbolIcon, ExclamationCircleIcon, LinkIcon } from '@heroicons/react/24/solid';
 
 export const metadata: Metadata = {
   title: 'Boundary',
 };
-
 
 export default async function Page() {
   const iconMap = {
@@ -42,34 +42,82 @@ export default async function Page() {
           height={400}
         />
       </div>
-
-      <div className="flex flex-wrap xl:flex-nowrap gap-4 xl:gap-0 flex-row justify-start items-start my-10 md:my-20">
-        <div className="text-xl ml-2 font-medium w-full xl:w-1/2 text-xl">
-          <span className="text-2xl font-bold text-indigo-800 uppercase items-center">
-            Boundary
-          </span>
-          <span className="mx-4">-</span> это сервис доставки товаров от известных зарубежных
-          брендов по честным и прозрачным ценам.
+      <div className="flex flex-wrap xl:flex-nowrap flex-col justify-center items-center my-10 md:my-12">
+        <span className="text-4xl mb-4 md:text-6xl font-bold text-indigo-800 uppercase items-center text-center">
+          Boundary
+        </span>
+        <div className="text-lg w-4/5 text-center">
+          Это сервис доставки товаров от известных зарубежных брендов по честным и прозрачным ценам.
           <p>
             Наша задача - упростить и улучшить вашу жизнь, ведь всю основную волокиту с оформлением,
             оплатой, отгрузкой и доставкой товаров мы берем на себя!
           </p>
         </div>
+      </div>
 
-        <div className="font-medium w-full xl:w-1/2">
+      <div className="flex flex-wrap xl:flex-nowrap gap-4 xl:gap-0 flex-row justify-start items-start my-10 md:my-20">
+        <div className="font-medium w-full xl:w-2/3">
           <CustomTabs data={siteConfig.MainPage.tabsData} />
         </div>
-      </div>
-      <div className="flex flex-wrap flex-row justify-center my-10 md:my-20 gap-4 md:gap-20">
-        <div className="text-center flex items-center text-xl font-bold lg:text-2xl">
-          КАК ПОЛЬЗОВАТЬСЯ POIZON?
+        <div className="mt-12 text-xl ml-2 font-medium w-full xl:w-1/3 text-xl">
+          <div className="p-4 drop-shadow-sm border-1 rounded-xl">
+            <p className="text-center mb-2">Уже нашли подходящий товар ?</p>
+            <form className="flex flex-col gap-6">
+              <div className="w-full">
+                <div>
+                  <label
+                    className="mb-3 mt-2 block text-sm font-medium text-gray-900"
+                    htmlFor="email"
+                  >
+                    Email
+                  </label>
+                  <div className="relative">
+                    <input
+                      className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                      id="email"
+                      type="email"
+                      name="email"
+                      placeholder="Введите email адрес"
+                      required
+                      autoComplete="username"
+                    />
+                    <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                  </div>
+                </div>
+                <div className="mt-2">
+                  <label
+                    className="mb-3 mt-5 block text-sm font-medium text-gray-900"
+                    htmlFor="link"
+                  >
+                    Ссылка
+                  </label>
+                  <div className="relative">
+                    <input
+                      className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                      id="link"
+                      type="text"
+                      name="link"
+                      placeholder="Введите ссылку"
+                      required
+                      minLength={6}
+                    />
+                    <LinkIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                  </div>
+                </div>
+              </div>
+              <div className="flex mb-4 gap-2 items-center justify-center flex-col">
+                <Button
+                  color="primary"
+                  variant="shadow"
+                  radius="full"
+                  className="text-white shadow-lg w-60"
+                >
+                  Отправить!
+                </Button>
+              </div>
+            </form>
+          </div>
         </div>
-        <NextLink
-            href={'/info'}
-            className="flex justify-center items-center py-2 rounded-xl text-xl px-20 w-1/6 bg-gradient-to-tr from-pink-500 to-blue-500 text-white shadow-lg"
-        >
-          Узнать!
-        </NextLink>
       </div>
 
       <div className="flex flex-col justify-center w-auto mb-20">

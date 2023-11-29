@@ -15,18 +15,24 @@ export default async function CarouselCard() {
       <Carousel
         withControls={true}
         withIndicators
-        height={450}
         slideSize={{ base: '100%', sm: '33.333%' }}
         slideGap={{ base: 0, sm: 'md' }}
         loop
         align="start"
       >
         {dataCardList.map((item, index) => {
-          const { id, title, description, img, price } = item;
+          const { id, title, description, images, price, variants } = item;
           return (
             <Carousel.Slide key={index}>
               <div className="p-2">
-                <CardItem id={id} title={title} description={description} img={img} price={price} />
+                <CardItem
+                  id={id}
+                  title={title}
+                  description={description}
+                  images={images}
+                  price={price}
+                  variants={variants}
+                />
               </div>
             </Carousel.Slide>
           );

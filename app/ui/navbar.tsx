@@ -21,6 +21,14 @@ import { Login, TelegramIcon } from '@/public/icons';
 import { Logo } from '@/public/icons';
 import { siteConfig } from '@/app/ui/site';
 import { ThemeSwitch } from '@/app/ui/theme-switch';
+import { CurrencyDollarIcon, CurrencyEuroIcon, CurrencyYenIcon } from '@heroicons/react/24/outline';
+import React from 'react';
+
+const iconMap = {
+  usd: CurrencyDollarIcon,
+  cny: CurrencyYenIcon,
+  eur: CurrencyEuroIcon,
+};
 
 export const Navbar = () => {
   return (
@@ -29,7 +37,7 @@ export const Navbar = () => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Logo />
-            <p className="font-bold text-inherit">BOUNDARY</p>
+            <p className="font-bold text-inherit text-xl">BOUNDARY</p>
           </NextLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-10 justify-start ml-2">
@@ -49,6 +57,31 @@ export const Navbar = () => {
           ))}
         </ul>
       </NavbarContent>
+      <Dropdown>
+        <DropdownTrigger>
+          <Button variant="light" className="px-auto hidden xl:flex">
+            Курсы валют
+            <CurrencyDollarIcon color={'rgba(113, 113, 120, 1)'} width={24} height={24} />
+          </Button>
+        </DropdownTrigger>
+        <DropdownMenu aria-label="Dynamic Actions" items={siteConfig.mainDropdownCourses}>
+          {(item) => {
+            const Icon = iconMap[item.key as keyof typeof iconMap];
+            return (
+              <DropdownItem
+                key={item.key}
+                color={'default'}
+                startContent={Icon ? <Icon width={20} /> : null}
+              >
+                <div className="flex justify-between">
+                  <div>{item.label}</div>
+                  <div>{item.value}</div>
+                </div>
+              </DropdownItem>
+            );
+          }}
+        </DropdownMenu>
+      </Dropdown>
       <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
         <NavbarItem className="hidden lg:flex gap-2">
           <Link isExternal href={siteConfig.links.telegram} aria-label="Telegram">

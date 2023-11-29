@@ -2,9 +2,16 @@
 import React from 'react';
 import { Image } from '@nextui-org/react';
 import { Carousel } from '@mantine/carousel';
+import NextLink from 'next/link';
+
+interface Data {
+  src: string;
+  alt: string;
+  link: string;
+}
 
 interface CarouselMainProps {
-  images: string[];
+  images: Array<Data>;
 
   [key: string]: any;
 }
@@ -19,13 +26,16 @@ const CarouselMain: React.FC<CarouselMainProps> = ({ images, ...restProps }: Car
       align="start"
       {...restProps}
     >
-      {images.map((src, index) => (
-        <Carousel.Slide key={index}>
-          <div className="mr-2">
-            <Image alt="NextUI hero Image" src={src} />
-          </div>
-        </Carousel.Slide>
-      ))}
+      {images.map((item, index) => {
+        const { src, alt, link } = item;
+        return (
+          <Carousel.Slide key={index}>
+            <NextLink className="flex mr-2" href={link}>
+              <Image alt={alt} src={src} />
+            </NextLink>
+          </Carousel.Slide>
+        );
+      })}
     </Carousel>
   );
 };

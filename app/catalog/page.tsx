@@ -35,7 +35,7 @@ export default async function CatalogPage({
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <div className="w-full flex gap-2 flex-wrap mt-6 justify-center">
           {dataCardList.map((item, index) => {
-            const { id, title, description, img, price } = item;
+            const { id, title, description, images, price, variants } = item;
             return (
               <div className="w-full sm:w-32percent lg:w-23percent" key={index}>
                 <CardItem
@@ -43,8 +43,9 @@ export default async function CatalogPage({
                   id={id}
                   title={title}
                   description={description}
-                  img={img}
+                  images={images}
                   price={price}
+                  variants={variants}
                 />
               </div>
             );
