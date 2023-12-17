@@ -10,6 +10,8 @@ import {
   ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
 import DeliveryComponent from '@/app/ui/frontpage/delivery-component';
+import PaymentComponent from '@/app/ui/frontpage/payment-component';
+import WarrantyComponent from '@/app/ui/frontpage/warranty-component';
 
 interface Object {
   id: string;
@@ -29,6 +31,8 @@ const iconMap = {
 
 const componentMap = {
   delivery: DeliveryComponent,
+  payment: PaymentComponent,
+  warranty: WarrantyComponent,
 };
 
 export default function CustomTabs({ data }: CustomTabsProps) {
@@ -43,7 +47,7 @@ export default function CustomTabs({ data }: CustomTabsProps) {
               return (
                 <Tab
                   key={data.id}
-                  className="text-xl"
+                  className="text-lg lg:text-xl"
                   title={
                     <div className="flex items-center space-x-2">
                       {Icon ? <Icon width={20} /> : null}
@@ -52,7 +56,7 @@ export default function CustomTabs({ data }: CustomTabsProps) {
                   }
                 >
                   <Card>
-                    <CardBody className="text-lg p-2">{Component ? <Component /> : null}</CardBody>
+                    <CardBody className="text-md lg:text-lg p-2">{Component ? <Component /> : null}</CardBody>
                   </Card>
                 </Tab>
               );

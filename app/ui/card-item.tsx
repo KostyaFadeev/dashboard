@@ -38,6 +38,7 @@ export default function CardItem({
   variants,
 }: CardItemProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  // const { isOpen2, onOpen2, onOpenChange2 } = useDisclosure();
 
   return (
     <>
@@ -51,7 +52,7 @@ export default function CardItem({
           />
         </CardHeader>
         <CardBody className="overflow-visible py-2">
-          <div className="font-bold text-large mb-2 cursor-pointer hover:text-orange-600">
+          <div className="uppercase font-bold text-large mb-2 cursor-pointer hover:text-orange-600">
             {title}
           </div>
           {variants?.map((item, index) => {
@@ -66,13 +67,16 @@ export default function CardItem({
               </RadioGroup>
             );
           })}
-          <small className="text-default-500 text-md mb-2">{description}</small>
+          {/*<small className="text-default-500 text-md mb-2">{description}</small>*/}
           <div className="flex align-center justify-between mt-6">
-            <div className="font-medium text-2xl mb-4">{price} ₽</div>
+            <div className="flex flex-col">
+              <div className="font-medium text-lg opacity-50"><s>{price} ₽</s></div>
+              <div className="font-medium text-2xl">{price} ₽</div>
+            </div>
             <Button
               onClick={onOpen}
               radius="sm"
-              className="w-40 bg-green-500 text-lg text-white shadow-lg"
+              className="mt-auto w-40 bg-green-500 text-lg text-white shadow-lg"
             >
               Заказать
             </Button>
