@@ -70,7 +70,6 @@ export default function CardItem({
               </RadioGroup>
             );
           })}
-          {/*<small className="text-default-500 text-md mb-2">{description}</small>*/}
           <div className="flex align-center justify-between mt-6">
             <div className="flex flex-col">
               <div className="font-medium text-lg opacity-50"><s>{price} ₽</s></div>
@@ -87,7 +86,7 @@ export default function CardItem({
         </CardBody>
       </Card>
 
-      <Modal className="w-full" size="2xl" isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
+      <Modal className="w-full" size="3xl" isOpen={isOpen} onOpenChange={onOpenChange} placement="top">
         <ModalContent className="px-2 pt-2">
           {(onClose) => (
             <div className="flex flex-col md:flex-row">

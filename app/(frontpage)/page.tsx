@@ -61,7 +61,7 @@ export default async function Page() {
       <div className="flex flex-wrap lg:flex-nowrap justify-start items-stretch w-auto gap-4 mb-4">
         <div className="p-4 w-full lg:w-1/3 border-4 border-sky-500 rounded-lg">
           <div className="flex items-center justify-start">
-            <div className="flex w-12 h-12 mr-4 p-2 rounded-full bg-blue-500 text-center text-white">
+            <div className="flex w-14 mr-4 p-2 rounded-full bg-blue-500 text-center text-white">
               <BanknotesIcon />
             </div>
             <div className="text-2xl uppercase font-bold leading-6">Удобная оплата</div>
@@ -72,7 +72,7 @@ export default async function Page() {
         </div>
         <div className="p-4  w-full lg:w-1/3 border-4 border-green-500 rounded-lg">
           <div className="flex items-center justify-start">
-            <div className="flex w-12 h-12 mr-4 p-2 rounded-full bg-green-500 text-center text-white">
+            <div className="flex w-14 mr-4 p-2 rounded-full bg-green-500 text-center text-white">
               <ArrowTrendingDownIcon />
             </div>
             <div className="text-2xl uppercase font-bold leading-6">Низкие цены</div>
@@ -83,7 +83,7 @@ export default async function Page() {
         </div>
         <div className="p-4  w-full lg:w-1/3 border-4 border-violet-700 rounded-lg">
           <div className="flex items-center justify-start">
-            <div className="flex w-12 h-12 mr-4 p-2 rounded-full bg-violet-700 text-center text-white">
+            <div className="flex w-14 mr-4 p-2 rounded-full bg-violet-700 text-center text-white">
               <CalendarDaysIcon />
             </div>
             <div className="text-2xl uppercase font-bold leading-6">3-4 недели</div>
@@ -94,7 +94,7 @@ export default async function Page() {
       <div className="flex flex-wrap lg:flex-nowrap justify-start items-stretch w-auto gap-4 mb-20">
         <div className="p-4 w-full lg:w-1/2 border-4 border-orange-500 rounded-lg">
           <div className="flex items-center justify-start">
-            <div className="flex w-12 h-12 mr-4 p-2 rounded-full bg-orange-500 text-center text-white">
+            <div className="flex w-14 mr-4 p-2 rounded-full bg-orange-500 text-center text-white">
               <HeartIcon />
             </div>
             <div className="text-2xl uppercase font-bold leading-6">Легкое оформление заказа</div>
@@ -105,7 +105,7 @@ export default async function Page() {
         </div>
         <div className="p-4  w-full lg:w-1/2 border-4 border-green-500 rounded-lg">
           <div className="flex items-center justify-start">
-            <div className="flex w-12 h-12 mr-4 p-2 rounded-full bg-green-500 text-center text-white">
+            <div className="flex w-14 mr-4 p-2 rounded-full bg-green-500 text-center text-white">
               <CheckCircleIcon />
             </div>
             <div className="text-2xl uppercase font-bold leading-6">ОРИГИНАЛЬНЫЕ БРЕНДЫ</div>
