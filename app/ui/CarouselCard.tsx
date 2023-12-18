@@ -21,7 +21,7 @@ export default async function CarouselCard() {
         align="start"
       >
         {dataCardList.map((item, index) => {
-          const { id, title, description, images, price, variants } = item;
+          const { id, title, description, images, price, variants, tableSize } = item;
           return (
             <Carousel.Slide key={index}>
               <div className="p-2">
@@ -32,6 +32,7 @@ export default async function CarouselCard() {
                   images={images}
                   price={price}
                   variants={variants}
+                  tableSize={tableSize}
                 />
               </div>
             </Carousel.Slide>

@@ -238,12 +238,13 @@ export async function fetchDataCards() {
         id: 1,
         images: ['/nb551.jpg', '/nb551.jpg', '/nb551.jpg'],
         title: 'New Balance 550',
-        description: 'Описание.',
+        tableSize: '1',
+        description: 'Стильные и комфортные кроссовки, идеальный выбор для активного образа жизни. Они объединяют в себе классический дизайн и высокую функциональность. Верхняя часть кроссовок выполнена из прочных материалов, которые обеспечивают хорошую вентиляцию и комфорт при носке.\n',
         price: '9 999',
         variants: [
           {
             label: 'Выберите размер',
-            values: ['38 RUS', '39 RUS', '39 RUS'],
+            values: ['38 RUS', '39 RUS', '40 RUS'],
           },
         ],
       },
@@ -251,7 +252,7 @@ export async function fetchDataCards() {
         id: 2,
         images: ['/iphone15.jpg'],
         title: 'Iphone 15 ',
-        description: 'Тут будет описание',
+        description: 'Iphone 15 - это новейшая модель смартфона от компании Apple. Он обладает мощным процессором, высококачественным дисплеем и продвинутой камерой, которая позволяет делать невероятные фотографии и видео. Кроме того, Iphone 15 имеет большой объем внутренней памяти, что позволяет хранить большое количество данных и приложений. Этот смартфон станет надежным и стильным спутником в повседневной жизни.',
         price: '88 999',
         variants: [
           {
@@ -264,12 +265,13 @@ export async function fetchDataCards() {
         id: 3,
         images: ['/nb551.jpg', '/nb551.jpg', '/nb551.jpg'],
         title: 'Nike air max',
+        tableSize: '1',
         description: 'Тут будет описание',
         price: '9 999',
         variants: [
           {
             label: 'Выберите размер',
-            values: ['38 RUS', '39 RUS', '39 RUS'],
+            values: ['38 RUS', '39 RUS', '40 RUS'],
           },
         ],
       },
@@ -277,6 +279,7 @@ export async function fetchDataCards() {
         id: 4,
         images: ['/nb551.jpg', '/nb551.jpg', '/nb551.jpg'],
         title: 'Nike air max',
+        tableSize: '1',
         description: 'Тут будет описание',
         price: '9 999',
         variants: [

@@ -11,9 +11,11 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  useDisclosure,
+  useDisclosure, cn, ScrollShadow, Link,
 } from '@nextui-org/react';
 import { Carousel } from '@mantine/carousel';
+import {TelegramIcon} from "@/public/icons";
+import {siteConfig} from "@/app/ui/site";
 
 interface Variant {
   label: string;
@@ -27,6 +29,7 @@ interface CardItemProps {
   images: Array<string>;
   variants: Array<Variant>;
   price: string;
+  tableSize: string,
 }
 
 export default function CardItem({
@@ -36,9 +39,9 @@ export default function CardItem({
   images,
   price,
   variants,
+                                   tableSize,
 }: CardItemProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  // const { isOpen2, onOpen2, onOpenChange2 } = useDisclosure();
 
   return (
     <>
@@ -52,7 +55,7 @@ export default function CardItem({
           />
         </CardHeader>
         <CardBody className="overflow-visible py-2">
-          <div className="uppercase font-bold text-large mb-2 cursor-pointer hover:text-orange-600">
+          <div onClick={onOpen} className="uppercase font-bold text-large mb-2 cursor-pointer hover:text-orange-600">
             {title}
           </div>
           {variants?.map((item, index) => {
@@ -84,11 +87,11 @@ export default function CardItem({
         </CardBody>
       </Card>
 
-      <Modal className="w-full" isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
+      <Modal className="w-full" size="2xl" isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
         <ModalContent className="px-2 pt-2">
           {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col">
+            <div className="flex flex-col md:flex-row">
+              <ModalHeader className="flex flex-col px-2">
                 <Carousel withControls={true} withIndicators loop align="center">
                   {images.map((src, index) => (
                     <Carousel.Slide key={index}>
@@ -96,37 +99,83 @@ export default function CardItem({
                     </Carousel.Slide>
                   ))}
                 </Carousel>
-
-                <h3 className="text-2xl text-center">{title}</h3>
+                <h3 className="text-xl text-center mb-2 uppercase">{title}</h3>
+                <ScrollShadow className="w-full h-[150px]">
+                  <p className="text-sm font-normal">{description}</p>
+                </ScrollShadow>
+                <div className="flex flex-row gap-2 py-2 mb-2">
+                  <div className="font-medium text-2xl">{price} ₽</div>
+                  <div className="font-medium text-lg opacity-50"><s>{price} ₽</s></div>
+                </div>
               </ModalHeader>
-              <ModalBody className="flex flex-col">
-                <p>{description}</p>
+              <ModalBody className="flex flex-col mt-2 px-2 min-w-[41%]">
                 {variants.map((item, index) => {
                   const { label, values } = item;
                   return (
-                    <RadioGroup key={index} label={label} orientation="horizontal" className="mb-2">
-                      {values.map((item, index) => (
-                        <Radio key={index} value={item}>
-                          {item}
-                        </Radio>
-                      ))}
-                    </RadioGroup>
+                      <RadioGroup key={index} label={label} orientation="horizontal" className="mb-2">
+                        {values.map((item, index) => (
+                            <CustomRadio className="p-2" key={index} value={item}>
+                              {item}
+                            </CustomRadio>
+                        ))}
+                      </RadioGroup>
                   );
                 })}
-                <Button className="text-sm">Таблица размеров</Button>
+                {!!tableSize && (
+                    <Button color="primary" variant="bordered" className="text-sm">Таблица размеров</Button>
+                )}
+                <RadioGroup label="Доставка" defaultValue="free" description="">
+                  <CustomRadio description="В пункт выдачи" value="free">
+                    Бесплатно
+                  </CustomRadio>
+                  <CustomRadio description="Курьером" value="pro">
+                    От 350₽
+                  </CustomRadio>
+                </RadioGroup>
+                {/*<div className="flex gap-4">*/}
+                {/*  <Tooltip placement= "bottom-end" color="primary" content="Boundary гарантирует 100% оригинальность товаров" delay={1000}>*/}
+                {/*    <CheckCircleIcon  className="cursor-pointer" width={28}/>*/}
+                {/*  </Tooltip>*/}
+                {/*  <Tooltip placement= "bottom-end" color="primary" content="Подробную информацию о доставка уточняйте у менеджера или в личном кабинете" delay={1000}>*/}
+                {/*      <InformationCircleIcon className="cursor-pointer" width={28}/>*/}
+                {/*  </Tooltip>*/}
+                {/*</div>*/}
+                <ModalFooter className="mt-auto px-0">
+                  <Link isExternal href={siteConfig.links.telegram} aria-label="Telegram">
+                  <Button color="primary" variant="light">
+                    Заказать
+                    <TelegramIcon/>
+                  </Button>
+                  </Link>
+                  <Button className="bg-green-500" color="primary" onPress={onClose}>
+                    В корзину
+                  </Button>
+                </ModalFooter>
               </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Закрыть
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Заказать
-                </Button>
-              </ModalFooter>
-            </>
+            </div>
           )}
         </ModalContent>
       </Modal>
     </>
   );
 }
+
+
+export const CustomRadio = (props) => {
+  const {children, ...otherProps} = props;
+
+  return (
+      <Radio
+          {...otherProps}
+          classNames={{
+            base: cn(
+                " inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between",
+                "flex-row-reverse max-w-[300px] cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent",
+                "data-[selected=true]:border-primary"
+            ),
+          }}
+      >
+        {children}
+      </Radio>
+  );
+};
