@@ -29,7 +29,7 @@ interface CardItemProps {
   images: Array<string>;
   variants: Array<Variant>;
   price: string;
-  tableSize: string,
+  tableSize: string | undefined,
 }
 
 export default function CardItem({
@@ -161,7 +161,7 @@ export default function CardItem({
 }
 
 
-export const CustomRadio = (props) => {
+export const CustomRadio = (props:any) => {
   const {children, ...otherProps} = props;
 
   return (
