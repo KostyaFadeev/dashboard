@@ -236,15 +236,15 @@ export async function fetchDataCards() {
     return [
       {
         id: 1,
-        images: ['/nb551.jpg', '/nb551.jpg', '/nb551.jpg'],
+        images: ['/nb550_1.jpg', '/nb550_2.jpg', '/nb550_3.jpg', '/nb550_4.jpg', '/nb550_5.jpg'],
         title: 'New Balance 550',
         tableSize: '1',
         description: 'Стильные и комфортные кроссовки, идеальный выбор для активного образа жизни. Они объединяют в себе классический дизайн и высокую функциональность. Верхняя часть кроссовок выполнена из прочных материалов, которые обеспечивают хорошую вентиляцию и комфорт при носке.\n',
-        price: '9 999',
+        price: '11 999',
         variants: [
           {
             label: 'Выберите размер',
-            values: ['38 RUS', '39 RUS', '40 RUS'],
+            values: ['36 RUS', '37 RUS', '37.5 RUS', '38 RUS','38.5 RUS', '39.5 RUS', '40 RUS', '40.5 RUS', '41.5 RUS', '42 RUS', '42.5 RUS', '43 RUS', '44 RUS', '44.5 RUS', '45 RUS', '45.5 RUS', '46.5 RUS'],
           },
         ],
       },
@@ -263,29 +263,29 @@ export async function fetchDataCards() {
       },
       {
         id: 3,
-        images: ['/nb551.jpg', '/nb551.jpg', '/nb551.jpg'],
-        title: 'Nike air max',
+        images: ['/Nike Air Max Verona Sail_1.jpg', '/Nike Air Max Verona Sail_2.jpg', '/Nike Air Max Verona Sail_3.jpg', '/Nike Air Max Verona Sail_4.jpg', '/Nike Air Max Verona Sail_5.jpg'],
+        title: 'Nike Air Max Verona Sail Ghost Green',
         tableSize: '1',
-        description: 'Тут будет описание',
-        price: '9 999',
+        description: 'Кроссовки Nike Air Max Verona Sail Ghost Green — это элегантные и стильные женские кроссовки, сочетающие в себе комфорт и модный дизайн. Их ультрасовременный дизайн, вдохновленный классическими моделями Air Max, предлагает высокий комфорт и исключительную поддержку, делая их отличным выбором для повседневной носки.\n',
+        price: '9 499',
         variants: [
           {
             label: 'Выберите размер',
-            values: ['38 RUS', '39 RUS', '40 RUS'],
+            values: ['35.5 RUS', '36 RUS', '36.5 RUS', '37.5 RUS','38 RUS','38.5 RUS','39 RUS','40 RUS', '40.5 RUS', '41 RUS', '42 RUS'],
           },
         ],
       },
       {
         id: 4,
-        images: ['/nb551.jpg', '/nb551.jpg', '/nb551.jpg'],
-        title: 'Nike air max',
+        images: ['/nb550white_1.jpg', '/nb550white_2.jpg', '/nb550white_3.jpg', '/nb550white_4.jpg'],
+        title: 'New Balance NB 550 Vintage',
         tableSize: '1',
-        description: 'Тут будет описание',
-        price: '9 999',
+        description: 'Стильные и комфортные кроссовки, идеальный выбор для активного образа жизни. Они объединяют в себе классический дизайн и высокую функциональность. Верхняя часть кроссовок выполнена из прочных материалов, которые обеспечивают хорошую вентиляцию и комфорт при носке.\n',
+        price: '11 999',
         variants: [
           {
             label: 'Выберите размер',
-            values: ['7', '8', '9'],
+            values: ['36 RUS', '37 RUS', '37.5 RUS', '38 RUS','38.5 RUS', '39.5 RUS', '40 RUS', '40.5 RUS', '41.5 RUS', '42 RUS', '42.5 RUS', '43 RUS', '44 RUS', '44.5 RUS', '45 RUS', '45.5 RUS', '46.5 RUS'],
           },
         ],
       },

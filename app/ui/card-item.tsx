@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, {useState} from 'react';
 
 import { Card, CardBody, CardHeader } from '@nextui-org/card';
 import { Radio, RadioGroup } from '@nextui-org/radio';
@@ -16,6 +16,7 @@ import {
 import { Carousel } from '@mantine/carousel';
 import {TelegramIcon} from "@/public/icons";
 import {siteConfig} from "@/app/ui/site";
+import SizeModal from "@/app/ui/size-modal/size-modal";
 
 interface Variant {
   label: string;
@@ -42,6 +43,15 @@ export default function CardItem({
                                    tableSize,
 }: CardItemProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [isOpenSizeModal, setIsOpenSizeModal] = useState(false);
+
+  const handleClick = () => {
+    setIsOpenSizeModal(true);
+  }
+
+  const onChangeHandle = () => {
+    setIsOpenSizeModal(false);
+  }
 
   return (
     <>
@@ -58,6 +68,7 @@ export default function CardItem({
           <div onClick={onOpen} className="uppercase font-bold text-large mb-2 cursor-pointer hover:text-orange-600">
             {title}
           </div>
+          <ScrollShadow orientation="horizontal" className="max-w-[800px] max-h-[60px]">
           {variants?.map((item, index) => {
             const { label, values } = item;
             return (
@@ -70,6 +81,7 @@ export default function CardItem({
               </RadioGroup>
             );
           })}
+          </ScrollShadow>
           <div className="flex align-center justify-between mt-6">
             <div className="flex flex-col">
               <div className="font-medium text-lg opacity-50"><s>{price} ₽</s></div>
@@ -108,21 +120,24 @@ export default function CardItem({
                 </div>
               </ModalHeader>
               <ModalBody className="flex flex-col mt-2 px-2 min-w-[41%]">
-                {variants.map((item, index) => {
-                  const { label, values } = item;
-                  return (
-                      <RadioGroup key={index} label={label} orientation="horizontal" className="mb-2">
-                        {values.map((item, index) => (
-                            <CustomRadio className="p-2" key={index} value={item}>
-                              {item}
-                            </CustomRadio>
-                        ))}
-                      </RadioGroup>
-                  );
-                })}
+                <ScrollShadow orientation="horizontal" className="max-w-[400px] max-h-[300px]">
+                  {variants.map((item, index) => {
+                    const { label, values } = item;
+                    return (
+                        <RadioGroup key={index} label={label} orientation="horizontal"  className="w-[800px] mb-2">
+                          {values.map((item, index) => (
+                              <CustomRadio className="p-2" key={index} value={item}>
+                                {item}
+                              </CustomRadio>
+                          ))}
+                        </RadioGroup>
+                    );
+                  })}
+                </ScrollShadow>
                 {!!tableSize && (
-                    <Button color="primary" variant="bordered" className="text-sm">Таблица размеров</Button>
+                    <Button onClick={handleClick} color="primary" variant="bordered" className="text-sm">Таблица размеров</Button>
                 )}
+                <SizeModal isOpen={isOpenSizeModal} onChangeHandle={onChangeHandle}/>
                 <RadioGroup label="Доставка" defaultValue="free" description="">
                   <CustomRadio description="В пункт выдачи" value="free">
                     Бесплатно

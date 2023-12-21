@@ -46,11 +46,11 @@ export default async function Page() {
           height={400}
         />
       </div>
-      <div className="flex flex-wrap xl:flex-nowrap flex-col justify-center items-center my-10 md:my-12">
-        <span className="text-4xl mb-4 md:text-6xl font-bold text-indigo-800 uppercase items-center text-center">
+      <div className="rounded-xl py-2 md:py-8 px-4 shadow-md flex flex-nowrap flex-col md:flex-row justify-between items-center my-4 md:my-8 md:my-12">
+        <span className="text-3xl mr-4 md:text-5xl font-bold text-indigo-800 uppercase items-center text-center">
           Boundary
         </span>
-        <div className="text-lg w-4/5 text-center">
+        <div className="text-lg text-start">
           Это сервис доставки товаров от известных зарубежных брендов по честным и прозрачным ценам.
           <p>
             Наша задача - упростить и улучшить вашу жизнь, ведь всю основную волокиту с оформлением,
@@ -197,7 +197,7 @@ export default async function Page() {
             return (
               <div
                 key={index}
-                className="relative px-4 pt-20 pb-4 drop-shadow-sm border-1 rounded-lg w-full xl:w-23percent"
+                className="hover:drop-shadow-xl border-blue-500 relative px-4 pt-20 pb-4 drop-shadow-sm border-3 rounded-xl w-full xl:w-23percent"
               >
                 <div className="absolute w-14 p-2 rounded-full bg-indigo-600 text-center text-white mb-4 top-3 left-3">
                   {Icon ? <Icon /> : null}
@@ -211,7 +211,7 @@ export default async function Page() {
         <NextLink href="../delivery" className="flex">
           <Button
               radius="full"
-              className="mx-auto py-6 text-xl px-22 md:w-2/6 sm:w-3/6 w-4/6 bg-blue-500 text-white shadow-lg"
+              className="mx-auto py-6 text-md px-22 md:w-2/6 sm:w-3/6 w-4/6 bg-blue-500 text-white shadow-lg"
           >
             Узнать подробнее
           </Button>
