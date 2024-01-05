@@ -21,7 +21,7 @@ import { Login, TelegramIcon } from '@/public/icons';
 import { Logo } from '@/public/icons';
 import { siteConfig } from '@/app/ui/site';
 import { ThemeSwitch } from '@/app/ui/theme-switch';
-import { CurrencyDollarIcon, CurrencyEuroIcon, CurrencyYenIcon } from '@heroicons/react/24/outline';
+import { CurrencyDollarIcon, CurrencyEuroIcon, CurrencyYenIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 
 const iconMap = {
@@ -84,10 +84,9 @@ export const Navbar = () => {
       </Dropdown>
       <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
         <NavbarItem className="hidden lg:flex gap-2">
-          <Link isExternal href={siteConfig.links.telegram} aria-label="Telegram">
-            <TelegramIcon className="text-default-500" />
-          </Link>
-          <ThemeSwitch />
+          <Button variant="light" className="px-0 hidden lg:flex">
+            <ShoppingCartIcon color={'rgba(113, 113, 120, 1)'} width={24} height={24} />
+          </Button>
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
           <Dropdown>
@@ -113,10 +112,9 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
-        <Link isExternal href={siteConfig.links.telegram} aria-label="Telegram">
-          <TelegramIcon className="text-default-500" />
-        </Link>
-        <ThemeSwitch />
+        <Button variant="light" className="px-0 flex xl:hidden">
+          <ShoppingCartIcon color={'rgba(113, 113, 120, 1)'} width={24} height={24} />
+        </Button>
         <NavbarMenuToggle />
       </NavbarContent>
 
@@ -124,7 +122,7 @@ export const Navbar = () => {
         <div className="mx-4 mt-8 flex flex-col gap-8">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link color={index === 2 ? 'primary' : 'foreground'} href={item.href} size="lg">
+              <Link color={'foreground'} href={item.href} size="lg">
                 {item.label}
               </Link>
             </NavbarMenuItem>

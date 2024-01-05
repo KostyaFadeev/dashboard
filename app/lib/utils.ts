@@ -1,5 +1,8 @@
 import { Revenue } from './definitions';
 
+const axios = require('axios');
+const fetch = require('node-fetch');
+
 export const formatCurrency = (amount: number) => {
   return (amount / 100).toLocaleString('en-US', {
     style: 'currency',
@@ -56,3 +59,53 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
   // another ellipsis, and the last page.
   return [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
 };
+
+export const getCNYRate = async () => {
+  const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
+  const data = await response.json();
+  return data.Valute.CNY.Value * 1.085;
+};
+
+// export async function getDeliveryCost(weight, cost, originCity, destinationCity) {
+//   const apiUrl = 'https://otpravka.pochta.ru/api/1.0/tariff';
+//   const token = '3o8LHOOpdITpO_MgyDblhgfRZzostLu7'; // необходимо заменить на ваш действительный токен
+//
+//   const requestData = {
+//     object: "package",
+//     method: "getPochtaRuDeliveryRate",
+//     weight: weight,
+//     amount: cost,
+//     to: destinationCity,
+//     from: originCity
+//   };
+//
+//   try {
+//     const response = await axios.post(apiUrl, requestData, {
+//       headers: {
+//         'Authorization': `Bearer ${token}`,
+//         'Content-Type': 'application/json'
+//       }
+//     });
+//
+//     // Обработка ответа
+//     const deliveryCost = response.data;
+//     return deliveryCost;
+//   } catch (error) {
+//     console.error('Ошибка получения стоимости доставки:', error);
+//     return null;
+//   }
+// }
+//
+
+// export const calculateShippingCost = async () => {
+//   const url = 'https://www.pochta.ru/tariff-calculator-api?type=EMS&weight=1500&from=101000&to=630099';
+//
+//   try {
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     return data.price;
+//   } catch (error) {
+//     console.error('Error:', error);
+//     return null;
+//   }
+// };

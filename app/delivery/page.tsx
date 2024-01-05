@@ -1,8 +1,10 @@
 import React from 'react';
 import { Metadata } from 'next';
+import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 
-import CustomTabs from '@/app/ui/custom-tabs';
+import DeliveryAccordion from '@/app/ui/DeliveryAccordion';
 import { siteConfig } from '@/app/ui/site';
+import AccordionMain from '@/app/ui/accordion/accordion';
 
 export const metadata: Metadata = {
   title: 'Доставка и оплата',
@@ -10,12 +12,35 @@ export const metadata: Metadata = {
 };
 
 export default function DeliveryPage() {
+  const accordionData = [
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'КАКОЙ КАРТОЙ Я СМОГУ ОПЛАТИТЬ ЗАКАЗ ?',
+      description:
+        'На нашем сервисе доступна оплата в рублях картами российских банков или через Систему быстрых платежей (СБП) в приложении банка.',
+    },
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'МОЖНО ЛИ МНЕ ОПЛАТИТЬ ЗАКАЗ ПРИ ПОЛУЧЕНИИ ?',
+      description:
+        'К сожалению, нет. Заказ можно оплатить только во время оформления на нашем сервисе.',
+    },
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'ВОЗМОЖНА ЛИ ОПЛАТА ЗАКАЗА ДРУГИМИ СПОСОБАМИ ?',
+      description:
+        'На нашем сервисе доступна оплата только картами российских банков или через Систему быстрых платежей (СБП) в приложении банка.',
+    },
+  ];
+
   return (
-    <div className="flex flex-col justify-center items-center">
-      <h2 className="text-center text-xl lg:text-3xl font-semibold mb-10">
+    <div className="flex flex-col justify-center items-start">
+      <h2 className="text-start text-xl lg:text-3xl font-semibold mb-8">
         {siteConfig.DeliveryPage.title}
       </h2>
-      <CustomTabs data={siteConfig.DeliveryPage.tabsData} />
+      <DeliveryAccordion />
+      <h2 className="text-start text-xl lg:text-3xl font-semibold mt-8 mb-8">Вопросы - Ответы</h2>
+      <AccordionMain data={accordionData} />
     </div>
   );
 }

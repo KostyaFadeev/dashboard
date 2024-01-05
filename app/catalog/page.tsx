@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import { lusitana } from '@/app/ui/fonts';
+
 import Search from '@/app/ui/search';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import Pagination from '@/app/ui/invoices/pagination';
@@ -35,7 +36,7 @@ export default async function CatalogPage({
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <div className="w-full flex gap-2 flex-wrap mt-6 justify-center">
           {dataCardList.map((item, index) => {
-            const { id, title, description, images, price, variants, tableSize } = item;
+            const { id, title, description, images, price, weight, variants, tableSize } = item;
             return (
               <div className="w-full sm:w-32percent lg:w-23percent" key={index}>
                 <CardItem
@@ -45,6 +46,7 @@ export default async function CatalogPage({
                   description={description}
                   images={images}
                   price={price}
+                  weight={weight}
                   variants={variants}
                   tableSize={tableSize}
                 />

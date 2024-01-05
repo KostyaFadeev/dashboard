@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
 import { Carousel } from '@mantine/carousel';
+import { Button } from '@nextui-org/react';
+import NextLink from 'next/link';
 
 import CardItem from '@/app/ui/card-item';
 import { fetchDataCards } from '@/app/lib/data';
-import { Button } from '@nextui-org/react';
-import NextLink from 'next/link';
 
 export default async function CarouselCard() {
   const dataCardList = await fetchDataCards();
@@ -21,7 +21,7 @@ export default async function CarouselCard() {
         align="start"
       >
         {dataCardList.map((item, index) => {
-          const { id, title, description, images, price, variants, tableSize } = item;
+          const { id, title, description, images, price, weight, variants, tableSize } = item;
           return (
             <Carousel.Slide key={index}>
               <div className="p-2">
@@ -31,6 +31,7 @@ export default async function CarouselCard() {
                   description={description}
                   images={images}
                   price={price}
+                  weight={weight}
                   variants={variants}
                   tableSize={tableSize}
                 />

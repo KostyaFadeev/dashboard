@@ -1,6 +1,5 @@
 'use client';
-import React, {useState} from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { Card, CardBody, CardHeader } from '@nextui-org/card';
 import { Radio, RadioGroup } from '@nextui-org/radio';
 import {
@@ -11,12 +10,17 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  useDisclosure, cn, ScrollShadow, Link,
+  useDisclosure,
+  cn,
+  ScrollShadow,
+  Link,
 } from '@nextui-org/react';
 import { Carousel } from '@mantine/carousel';
-import {TelegramIcon} from "@/public/icons";
-import {siteConfig} from "@/app/ui/site";
-import SizeModal from "@/app/ui/size-modal/size-modal";
+
+import { siteConfig } from '@/app/ui/site';
+import { TelegramIcon } from '@/public/icons';
+import SizeModal from '@/app/ui/size-modal/size-modal';
+import { getCNYRate } from '@/app/lib/utils';
 
 interface Variant {
   label: string;
@@ -30,7 +34,8 @@ interface CardItemProps {
   images: Array<string>;
   variants: Array<Variant>;
   price: string;
-  tableSize: string | undefined,
+  weight: any;
+  tableSize: string | undefined;
 }
 
 export default function CardItem({
@@ -39,19 +44,36 @@ export default function CardItem({
   description,
   images,
   price,
+  weight,
   variants,
-                                   tableSize,
+  tableSize,
 }: CardItemProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [isOpenSizeModal, setIsOpenSizeModal] = useState(false);
+  const [correctPrice, setCorrectPrice] = useState('');
 
   const handleClick = () => {
     setIsOpenSizeModal(true);
-  }
-
+  };
   const onChangeHandle = () => {
     setIsOpenSizeModal(false);
-  }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const priceInKG = 640;
+      const servicePrice = 1000;
+      const course = await getCNYRate();
+      const currentPrice = parseInt(price.replace(/ /g, ''));
+      let priceOfDeliveryInRussia = weight * priceInKG;
+      let multiplied = parseInt(
+        String(currentPrice + currentPrice * course + priceOfDeliveryInRussia + servicePrice)
+      );
+      let result = multiplied.toLocaleString(); // цена товара в рублях по курсу ЦБ
+      setCorrectPrice(result);
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -65,27 +87,32 @@ export default function CardItem({
           />
         </CardHeader>
         <CardBody className="overflow-visible py-2">
-          <div onClick={onOpen} className="uppercase font-bold text-large mb-2 cursor-pointer hover:text-orange-600">
+          <div
+            onClick={onOpen}
+            className="uppercase font-bold text-large mb-2 cursor-pointer hover:text-orange-600"
+          >
             {title}
           </div>
           <ScrollShadow orientation="horizontal" className="max-w-[800px] max-h-[60px]">
-          {variants?.map((item, index) => {
-            const { label, values } = item;
-            return (
-              <RadioGroup key={index} label={label} orientation="horizontal" className="mb-2">
-                {values.map((item, index) => (
-                  <Radio key={index} value={item}>
-                    {item}
-                  </Radio>
-                ))}
-              </RadioGroup>
-            );
-          })}
+            {variants?.map((item, index) => {
+              const { label, values } = item;
+              return (
+                <RadioGroup key={index} label={label} orientation="horizontal" className="mb-2">
+                  {values.map((item, index) => (
+                    <Radio key={index} value={item}>
+                      {item}
+                    </Radio>
+                  ))}
+                </RadioGroup>
+              );
+            })}
           </ScrollShadow>
           <div className="flex align-center justify-between mt-6">
             <div className="flex flex-col">
-              <div className="font-medium text-lg opacity-50"><s>{price} ₽</s></div>
-              <div className="font-medium text-2xl">{price} ₽</div>
+              <div className="font-medium text-lg opacity-50">
+                <s>{correctPrice} ₽</s>
+              </div>
+              <div className="font-medium text-2xl">{correctPrice} ₽</div>
             </div>
             <Button
               onClick={onOpen}
@@ -98,7 +125,13 @@ export default function CardItem({
         </CardBody>
       </Card>
 
-      <Modal className="w-full" size="3xl" isOpen={isOpen} onOpenChange={onOpenChange} placement="top">
+      <Modal
+        className="w-full"
+        size="3xl"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        placement="top"
+      >
         <ModalContent className="px-2 pt-2">
           {(onClose) => (
             <div className="flex flex-col md:flex-row">
@@ -115,8 +148,10 @@ export default function CardItem({
                   <p className="text-sm font-normal">{description}</p>
                 </ScrollShadow>
                 <div className="flex flex-row gap-2 py-2 mb-2">
-                  <div className="font-medium text-2xl">{price} ₽</div>
-                  <div className="font-medium text-lg opacity-50"><s>{price} ₽</s></div>
+                  <div className="font-medium text-2xl">{correctPrice} ₽</div>
+                  <div className="font-medium text-lg opacity-50">
+                    <s>{correctPrice} ₽</s>
+                  </div>
                 </div>
               </ModalHeader>
               <ModalBody className="flex flex-col mt-2 px-2 min-w-[41%]">
@@ -124,20 +159,32 @@ export default function CardItem({
                   {variants.map((item, index) => {
                     const { label, values } = item;
                     return (
-                        <RadioGroup key={index} label={label} orientation="horizontal"  className="w-[800px] mb-2">
-                          {values.map((item, index) => (
-                              <CustomRadio className="p-2" key={index} value={item}>
-                                {item}
-                              </CustomRadio>
-                          ))}
-                        </RadioGroup>
+                      <RadioGroup
+                        key={index}
+                        label={label}
+                        orientation="horizontal"
+                        className="w-[800px] mb-2"
+                      >
+                        {values.map((item, index) => (
+                          <CustomRadio className="p-2" key={index} value={item}>
+                            {item}
+                          </CustomRadio>
+                        ))}
+                      </RadioGroup>
                     );
                   })}
                 </ScrollShadow>
                 {!!tableSize && (
-                    <Button onClick={handleClick} color="primary" variant="bordered" className="text-sm">Таблица размеров</Button>
+                  <Button
+                    onClick={handleClick}
+                    color="primary"
+                    variant="bordered"
+                    className="text-sm"
+                  >
+                    Таблица размеров
+                  </Button>
                 )}
-                <SizeModal isOpen={isOpenSizeModal} onChangeHandle={onChangeHandle}/>
+                <SizeModal isOpen={isOpenSizeModal} onChangeHandle={onChangeHandle} />
                 <RadioGroup label="Доставка" defaultValue="free" description="">
                   <CustomRadio description="В пункт выдачи" value="free">
                     Бесплатно
@@ -156,10 +203,10 @@ export default function CardItem({
                 {/*</div>*/}
                 <ModalFooter className="mt-auto px-0">
                   <Link isExternal href={siteConfig.links.telegram} aria-label="Telegram">
-                  <Button color="primary" variant="light">
-                    Заказать
-                    <TelegramIcon/>
-                  </Button>
+                    <Button color="primary" variant="light">
+                      Заказать
+                      <TelegramIcon />
+                    </Button>
                   </Link>
                   <Button className="bg-green-500" color="primary" onPress={onClose}>
                     В корзину
@@ -174,22 +221,21 @@ export default function CardItem({
   );
 }
 
-
-export const CustomRadio = (props:any) => {
-  const {children, ...otherProps} = props;
+export const CustomRadio = (props: any) => {
+  const { children, ...otherProps } = props;
 
   return (
-      <Radio
-          {...otherProps}
-          classNames={{
-            base: cn(
-                " inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between",
-                "flex-row-reverse max-w-[300px] cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent",
-                "data-[selected=true]:border-primary"
-            ),
-          }}
-      >
-        {children}
-      </Radio>
+    <Radio
+      {...otherProps}
+      classNames={{
+        base: cn(
+          ' inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between',
+          'flex-row-reverse max-w-[300px] cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent',
+          'data-[selected=true]:border-primary'
+        ),
+      }}
+    >
+      {children}
+    </Radio>
   );
 };

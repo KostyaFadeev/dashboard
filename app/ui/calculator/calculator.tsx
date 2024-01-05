@@ -1,8 +1,10 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Card, CardBody, CardHeader } from '@nextui-org/card';
-import { Button, Slider } from '@nextui-org/react';
+import { Button, Chip, Slider } from '@nextui-org/react';
+import { getCNYRate } from '@/app/lib/utils';
+import { BanknotesIcon } from '@heroicons/react/20/solid';
 
 /**
  * @description Калькулятор подсчета стоимости заказа
@@ -11,19 +13,32 @@ import { Button, Slider } from '@nextui-org/react';
 export default function Calculator() {
   const [value, setValue] = useState<number>(0);
   const [valueWeight, setWeightValue] = useState<number>(0);
-  const course = 13;
-  const convertToRub = value * course;
+  const [currentCourse, setCurrentCourse] = useState(0);
+  const convertToRub = parseInt(String(value * currentCourse));
   const commission = 999;
   const shippingCostInterKG = 750;
   const shippingCostInRussiaKG = 700;
   const priceDeliveryToRussia = shippingCostInterKG * valueWeight;
   const priceDeliveryInRussia = shippingCostInRussiaKG * valueWeight;
-  const totalPrice = convertToRub + commission + priceDeliveryToRussia + priceDeliveryInRussia;
+  const totalPrice = parseInt(
+    String(convertToRub + commission + priceDeliveryToRussia + priceDeliveryInRussia)
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const course = await getCNYRate();
+      setCurrentCourse(course);
+    };
+    fetchData();
+  }, []);
 
   return (
     <Card className="p-2 lg:p-4 flex">
-      <CardHeader className="pb-0 pt-2 px-4 flex-col items-center mb-6 text-xl">
+      <CardHeader className="pb-0 pt-2 px-4 flex flex-row gap-4 justify-center items-center mb-2 text-xl">
         <h4 className="font-medium text-large">Калькулятор</h4>
+        <Chip color="primary" variant="bordered">
+          <p>Курс {currentCourse?.toFixed(2)}</p>
+        </Chip>
       </CardHeader>
       <CardBody className="overflow-visible py-2">
         <Slider
@@ -136,13 +151,10 @@ export default function Calculator() {
           Стоимость доставки по России:{' '}
           <span className="text-indigo-800">{priceDeliveryInRussia} ₽</span>
         </p>
-        <div className="font-bold drop-shadow-lg text-indigo-500 text-xl mb-12">
+        <div className="font-semibold drop-shadow-lg text-blue-500 text-xl mb-12">
           Итого: {totalPrice} ₽
         </div>
-        <Button
-          radius="full"
-          className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-        >
+        <Button radius="full" className="bg-blue-500 text-white shadow-lg">
           Сделать заказ!
         </Button>
       </CardBody>

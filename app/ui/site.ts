@@ -253,7 +253,7 @@ export const siteConfig = {
           '\n',
       },
       {
-        id: 'Payment',
+        id: 'payment',
         label: 'Оплата',
         content:
           'Способы оплаты:\n' +

@@ -17,6 +17,7 @@ interface CarouselMainProps {
 }
 
 const CarouselMain: React.FC<CarouselMainProps> = ({ images, ...restProps }: CarouselMainProps) => {
+
   return (
     <Carousel
       withControls={true}

@@ -29,7 +29,7 @@ export default function Filters() {
         <p className="mt-4 ml-1 text-default-500">{groupSelected.join(', ')}</p>
       </div>
       <div className="w-full md:w-3/12">
-        <Select className="max-w-full md:max-w-sm" label="Выбери категорию">
+        <Select className="max-w-full md:max-w-sm" label="Выберите категорию">
           <SelectItem
             key="argentina"
             startContent={
