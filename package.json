@@ -10,10 +10,13 @@
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@mantine/carousel": "^7.2.2",
+    "@mantine/core": "^7.4.0",
+    "@mantine/hooks": "^7.4.0",
     "@nextui-org/react": "^2.2.4",
     "@tailwindcss/forms": "^0.5.6",
     "@types/node": "20.5.7",
     "@vercel/postgres": "^0.5.0",
+    "@vkontakte/icons": "^2.90.0",
     "autoprefixer": "10.4.15",
     "axios": "^1.6.3",
     "bcrypt": "^5.1.1",

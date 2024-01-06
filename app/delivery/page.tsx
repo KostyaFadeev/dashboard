@@ -5,6 +5,7 @@ import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import DeliveryAccordion from '@/app/ui/DeliveryAccordion';
 import { siteConfig } from '@/app/ui/site';
 import AccordionMain from '@/app/ui/accordion/accordion';
+import CarouselMain from '@/app/ui/carousel/carousel-main';
 
 export const metadata: Metadata = {
   title: 'Доставка и оплата',
@@ -34,13 +35,20 @@ export default function DeliveryPage() {
   ];
 
   return (
-    <div className="flex flex-col justify-center items-start">
+    <main className="flex flex-col justify-center items-start">
       <h2 className="text-start text-xl lg:text-3xl font-semibold mb-8">
         {siteConfig.DeliveryPage.title}
       </h2>
       <DeliveryAccordion />
       <h2 className="text-start text-xl lg:text-3xl font-semibold mt-8 mb-8">Вопросы - Ответы</h2>
       <AccordionMain data={accordionData} />
-    </div>
+      <div className="flex justify-center w-auto mt-10 mb-20">
+        <CarouselMain
+          slideSize={{ base: '50%', sm: '25%' }}
+          images={siteConfig.DeliveryPage.mainImages}
+          height={300}
+        />
+      </div>
+    </main>
   );
 }

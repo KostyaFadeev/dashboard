@@ -1,12 +1,18 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { Image } from '@nextui-org/react';
+import NextLink from 'next/link';
 
 import AccordionMain from '@/app/ui/accordion/accordion';
-import PersonCard from '@/app/ui/person-card';
-import { siteConfig } from '@/app/ui/site';
 
-import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
+import {
+  QuestionMarkCircleIcon,
+  GiftIcon,
+  SparklesIcon,
+  EnvelopeIcon,
+  DevicePhoneMobileIcon,
+} from '@heroicons/react/24/outline';
+import { TelegramIcon } from '@/public/icons';
 
 export const metadata: Metadata = {
   title: 'О нас',
@@ -14,85 +20,197 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const accordionData = [
+  const accordionDataDelivery = [
     {
       Icon: <QuestionMarkCircleIcon width={35} />,
-      title: 'Вы делаете заказ на нашем сайте',
-      description: 'Обработка заказа до 24 часов',
-    },
-    {
-      Icon: <QuestionMarkCircleIcon width={35} />,
-      title: 'Выкуп товара за границей, оформление на международном складе',
-      description: '3-5 дней',
-    },
-    {
-      Icon: <QuestionMarkCircleIcon width={35} />,
-      title: 'Упаковка и отправка товара на склад в России',
-      description: '3-5 дней',
-    },
-    {
-      Icon: <QuestionMarkCircleIcon width={35} />,
-      title: 'Доставка по России',
-      description: '7-9 дней',
-    },
-    {
-      Icon: <QuestionMarkCircleIcon width={35} />,
-      title: 'УРА! Товар у вас дома!',
+      title: 'Какое количкство одинаковых товаров я могу добавить в один заказ?',
       description:
-        'Оставить отзыв о компании и посоветовать близким, а в замен получить скидку на следующий заказ :)',
+        'В одном заказе может быть определенное количество одинаковых товаров.<p><br>Сколько именно, зависит от его категории:</p>\n' +
+        '\n' +
+        '<p>«Бытовая техника», «Электроника» — не более двух единиц с одним артикулом;</p>\n' +
+        '<p>«Одежда и обувь» — не более четырех одинаковых вещей с одним артикулом.</p><br>\n' +
+        'Важно соблюдать данное правило, так как при оформлении большего количества одинаковых товаров таможенные органы могут признать посылку коммерческой партией. А такие заказы уже не подлежат таможенному оформлению, и нам придется их отменить.',
+    },
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'До какого момента я могу отменить уже офомленный заказ?',
+      description:
+        'Заказ можно отменить до тех пор, пока менеджер не подтвердил наличие выбранного вами товара, и его статус не сменился на "Подтвержден" в личном кабинете.',
+    },
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'Где я могу отследить свой заказ?',
+      description:
+        'Вся необходимая информация о передвижении вашей посылки будет в личном кабинете, а также в любой момент можно спросить нашего менеджера о статусе заказа',
+    },
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'Обязательно ли мне отправлять свои паспортные данные?',
+      description:
+        'Нам необходимы ваши паспортные данные для заполнения таможенной декларации. Так как все посылки доставляются из-за рубежа, они проходят таможенное оформление согласно Таможенному Кодексу.',
+    },
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'Что делать, если мою посылку потеряла транспортная компания?',
+      description:
+        'Мы несем ответственность за вашу посылку в течение всего ее пути до финальной передачи вам в руки. В случае потери заказа мы вернем вам денежные средства.',
+    },
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'Что делать, если мне пришла посылка в поврежденной упаковке?',
+      description:
+        '<p>Если вы получили заказ в поврежденной упаковке, то запишите на видео ее вскрытие в присутствии курьера или менеджера пункта выдачи. Если товар внутри поврежден или сломан, то нужно составить акт совместно с курьером или сотрудником ПВЗ. После чего мы оформим возврат денежных средств.</p><br>\n' +
+        '\n' +
+        'Обратите Внимание! Мы рекомендуем снимать распаковку посылки на видео. Это поможет быстрее разобраться в ситуации и решить возникшие проблемы.',
+    },
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'Я получил посылку, в ней поврежденный товар, что делать?',
+      description:
+        '<p>В таком случае ваши действия следующие:</p>' +
+        '<p> 1. Если вы получили заказ в поврежденной упаковке, то запишите на видео ее вскрытие в присутствии курьера или менеджера пункта выдачи. Если товар внутри поврежден или сломан, то вам будет необходимо составить акт совместно с курьером или сотрудником ПВЗ. После чего, оформить возврат в личном кабинете.\n</p>' +
+        '<p> 2. Если при получении товара упаковка целая, то ее вскрытие производится самостоятельно, но все также с видеофиксацией. Если товар внутри поврежден или сломан, оформите возврат в личном кабинете.\n</p><br>' +
+        '<p>В случае если у вас нет видеозаписи распаковки, мы рассмотрим возврат в индивидуальном порядке.</p>' +
+        '<p>Обратите Внимание! Мы рекомендуем снимать вскрытие посылки на видео. Это поможет быстрее разобраться в ситуации и решить возникшие проблемы.</p>',
+    },
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'Я думаю, что мне пришла подделка, что делать?',
+      description:
+        '<p>Мы привозим товар только от надежных поставщиков, кто может предоставить сертификаты соответствия на каждое изделие. В случае, если у вас возникли сомнения, напишите нам в Telegram или на электронную почту, мы разберемся в ситуации.</p><br>' +
+        '<p>Обратите Внимание! Мы рекомендуем снимать вскрытие посылки на видео. Это поможет быстрее разобраться в ситуации и решить возникшие проблемы.</p>',
+    },
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'Какие есть способы доставки?',
+      description:
+        '<p>Для получения посылки доступны следующие способы доставки:</p>' +
+        '<p> 1. Курьером\n</p>' +
+        '<p> 2. Самовывоз из ПВЗ транспортной компании.\n</p><br>',
+    },
+  ];
+  const accordionDataExchange = [
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'Как я могу вернуть бракованный товар?',
+      description:
+        'Для оформления возврата товара ненадлежащего качества (брак) заполните заявку в личном кабинете или свяжитесь с нашем менеджером в течение 14 дней* с момента получения посылки. Затем мы свяжемся с вами и подскажем, что делать дальше. Возможно, для подтверждения наличия заводского брака понадобится проверка качества, по ее итогам будет принято решение о возврате денежных средств.',
+    },
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'Как я могу вернуть товар, который не подошел?',
+      description:
+        'Возврату подлежат только товары с заводским браком. Вернуть товар, потому что он не подошел, к сожалению, будет невозможно. Чтобы совершить возврат бракованного товара оформите заявку в личном кабинете в течение 14 дней с момента получения посылки.',
+    },
+  ];
+  const accordionDataWarranty = [
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'У вас продается только оригинальная продукция? Почему такая низкая цена?',
+      description:
+        '<p>У нас продаются только оригинальные товары, и мы внимательно проверяем всех наших поставщиков. Нам удается держать цены ниже, чем в других магазинах за счет следующих действий:</p><br>' +
+        '<p> 1. Мы разделяем цены товара и доставки. Что это значит? Многие магазины включают стоимость международной доставки в стоимость товара, отдельно рассчитывая для пользователя только цену доставки по России. Покупателю выгоднее, когда доставка расcчитывается отдельно. В таком случае в расчете таможенной пошлины учитывается только чистая цена товара. Если цена доставки заранее включена в стоимость товара, то и пошлину придется оплатить с полной суммы.</p>' +
+        '<p> 2. Мы ввозим товары в РФ для конкретного покупателя. Индивидуальные посылки облагаются меньшим таможенным сбором, чем коммерческие грузы.</p>' +
+        '<p> 3. Мы объединяем посылки покупателей на наших международных складах, тем самым снижая стоимость доставки за счет большего размера партии.</p>' +
+        '<p> 4. Мы даем возможность покупаеть товар на заграничных рынках, где уровень конкуренции выше, а цены ниже. Потому и закупочная цена товара становится ниже.</p>' +
+        '<p> 5. Мы внимательно отслеживаем скидки и распродажи на зарубежных рынках и рассказываем о них на нашем сайте.</p> ',
+    },
+    {
+      Icon: <QuestionMarkCircleIcon width={35} />,
+      title: 'Предоставляется ли сервисная гарантия на товары?',
+      description:
+        'К сожалению, у нас нет сервисной гарантии на товары, так как мы сервис по помощи в покупке и организации доставки товаров из-за границы.',
     },
   ];
 
   return (
     <main>
+      <div className="flex justify-center mb-24">
+        <Image width={900} alt="NextUI hero Image with delay" src="/About_banner.png" />
+      </div>
       <div className="flex flex-col items-center justify-center xl:flex-row xl:justify-between mb-16">
-        <div className="xl:w-5/12 mb-6 xl:mb-0">
-          <h2 className="text-center text-4xl font-semibold mb-2">О нас</h2>
-          <div className="text-lg font-normal">
-            Привет! Мы - <span className="text-xl font-bold text-indigo-800">Boundary.</span> Мы
-            занимаемся поставкой в Россию лучших брендов со всего мира. Мы гарантируем, что все
-            продукты являются подлинными, и если товар, по каким-либо причинам окажется
-            некачественным, мы вернем ваши деньги. Кроме того, мы предоставляем бесплатную гарантию.
-            Мы осуществляем трансграничную торговлю, которая включает в себя множество сложных
-            процессов. Однако мы взяли на себя эту сложную работу, чтобы сделать процесс покупки для
-            вас максимально простым. Вы можете сделать заказ, оплатить его в рублях, отслеживать
-            посылку и ждать доставки прямо к вам домой.
+        <div className="xl:w-7/12 mb-6 xl:mb-0">
+          <h2 className="text-start text-4xl font-semibold mb-2">О нас</h2>
+          <div className="text-lg font-normal mb-14">
+            Привет! Мы - <span className="text-xl font-bold text-indigo-800">Boundary.</span>
+            <p>Наш сервис поставляет в Россию лучшие бренды со всего мира.</p>
+            <p>
+              Наша задача - упростить и улучшить вашу жизнь, ведь всю основную волокиту с
+              оформлением, оплатой, отгрузкой и доставкой товаров мы берем на себя!
+            </p>
+            <p>
+              Сделайте заказ, оплатите его в рублях, отслеживайте посылку и ждите доставки прямо к
+              вам домой.
+            </p>
+          </div>
+          <h2 className="text-start text-4xl font-semibold mb-2">Контакты</h2>
+          <div className="text-lg font-normal mb-2">
+            <div>Наш Telegram канал с полезной информацией о актуальных новинках:</div>
+            <NextLink
+              target="_blank"
+              className="block flex gap-4 font-semibold text-indigo-800 hover:text-orange-500"
+              href={'https://t.me/Boundary_dostavka'}
+            >
+              <TelegramIcon width={24} />
+              @Boundary_dostavka
+            </NextLink>
+          </div>
+          <div className="text-lg font-normal mb-2">
+            <div>Корпоративная почта:</div>
+            <NextLink
+              className="block flex gap-4 font-semibold text-indigo-800 hover:text-orange-500"
+              href={''}
+            >
+              <EnvelopeIcon color={'#707078'} width={24} />
+              boundary-delivery@mail.ru
+            </NextLink>
+          </div>
+          <div className="text-lg font-normal mb-2">
+            <div>Наш сервис в Telegram:</div>
+            <NextLink
+              target="_blank"
+              className="block flex gap-4 font-semibold text-indigo-800 hover:text-orange-500"
+              href={'https://t.me/Boundary_shop_bot'}
+            >
+              <DevicePhoneMobileIcon color={'#707078'} width={24} />
+              @Boundary_shop_bot
+            </NextLink>
+          </div>
+          <div className="text-lg font-normal mb-2">
+            <div>Сообщество в ВК:</div>
+            <NextLink
+              target="_blank"
+              className="block flex gap-4 font-semibold text-indigo-800 hover:text-orange-500"
+              href={'https://vk.com/boundary_delivery'}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path
+                  fill="#707078"
+                  d="M15.073 2H8.938C3.332 2 2 3.333 2 8.927v6.136C2 20.667 3.323 22 8.927 22h6.136C20.667 22 22 20.677 22 15.073V8.938C22 3.332 20.677 2 15.073 2m3.073 14.27h-1.459c-.552 0-.718-.447-1.708-1.437c-.864-.833-1.229-.937-1.448-.937c-.302 0-.385.083-.385.5v1.312c0 .355-.115.563-1.042.563a5.692 5.692 0 0 1-4.448-2.667a11.626 11.626 0 0 1-2.302-4.833c0-.219.083-.417.5-.417h1.459c.375 0 .51.167.656.552c.708 2.084 1.916 3.896 2.406 3.896c.188 0 .27-.083.27-.552v-2.146c-.062-.979-.582-1.062-.582-1.416a.36.36 0 0 1 .374-.334h2.292c.313 0 .417.156.417.531v2.896c0 .313.135.417.229.417c.188 0 .333-.104.677-.448a11.999 11.999 0 0 0 1.792-2.98a.628.628 0 0 1 .635-.416h1.459c.437 0 .53.219.437.531a18.205 18.205 0 0 1-1.958 3.365c-.157.24-.22.365 0 .646c.145.219.656.646 1 1.052a6.486 6.486 0 0 1 1.229 1.708c.125.406-.084.615-.5.615"
+                />
+              </svg>
+              Boundary. Сервис доставки товаров
+            </NextLink>
           </div>
         </div>
-        <Image
-          width={600}
-          height={400}
-          alt="NextUI hero Image with delay"
-          src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-        />
-      </div>
-      <h2 className="text-center text-3xl font-semibold mb-2">Часто задаваемые вопросы</h2>
-      <div className="mb-10">
-        <h3 className="px-2 text-2xl font-semibold text-indigo-600">Доставка</h3>
-        <AccordionMain data={accordionData} />
-      </div>
-      <div className="mb-10">
-        <h3 className="px-2 text-2xl font-semibold text-yellow-400">Оплата</h3>
-        <AccordionMain data={accordionData} />
-      </div>
-      <div className="mb-10">
-        <h3 className="px-2 text-2xl font-semibold text-green-500">Обмен и возврат</h3>
-        <AccordionMain data={accordionData} />
-      </div>
-      <div className="mb-10">
-        <h3 className="px-2 text-2xl font-semibold text-amber-600">Гарантия</h3>
-        <AccordionMain data={accordionData} />
-      </div>
-      <div className="mb-10">
-        <h3 className="px-2 text-2xl font-semibold text-indigo-800 mb-6 text-center">
-          Остались вопросы ? Спроси любого из наших менеджеров!
-        </h3>
-        <div className="flex justify-center w-auto gap-6 flex-wrap">
-          {siteConfig.personsData.map((item, index) => {
-            const { name, description, link } = item;
-            return <PersonCard key={index} name={name} description={description} link={link} />;
-          })}
+        <div className=" mb-6 xl:mb-0 md:text-6xl text-4xl uppercase font-bold">
+          <div className="ml-20 mb-2 flex items-center gap-6">
+            Только <GiftIcon color={'#dba3fa'} height={50} />
+          </div>
+          <div className="ml-10 mb-2">оригинальные</div>
+          <div className="ml-0 mb-2 flex items-center gap-6">
+            бренды <SparklesIcon color={'#ebcf3d'} height={50} />
+          </div>
         </div>
+      </div>
+      <h2 className="text-start text-4xl font-semibold mb-4">Вопросы - Ответы</h2>
+      <div className="mb-10">
+        <h3 className="text-start text-2xl font-semibold mb-2 uppercase">Доставка</h3>
+        <AccordionMain data={accordionDataDelivery} />
+        <h3 className="text-start text-2xl font-semibold mt-6 mb-2 uppercase">Обмен и возврат</h3>
+        <AccordionMain data={accordionDataExchange} />
+        <h3 className="text-start text-2xl font-semibold mt-6 mb-2 uppercase">Гарантия</h3>
+        <AccordionMain data={accordionDataWarranty} />
       </div>
     </main>
   );

@@ -240,6 +240,38 @@ export const siteConfig = {
   },
   DeliveryPage: {
     title: 'Условия доставки и оплаты',
+    mainImages: [
+      {
+        src: '/nike_banner1.jpg',
+        alt: 'Описание фото',
+        link: '/catalog',
+      },
+      {
+        src: '/nike_banner1.jpg',
+        alt: 'Описание фото',
+        link: '/catalog',
+      },
+      {
+        src: '/nike_banner1.jpg',
+        alt: 'Описание фото',
+        link: '/catalog',
+      },
+      {
+        src: '/nike_banner1.jpg',
+        alt: 'Описание фото',
+        link: '/catalog',
+      },
+      {
+        src: '/nike_banner1.jpg',
+        alt: 'Описание фото',
+        link: '/catalog',
+      },
+      {
+        src: '/nike_banner1.jpg',
+        alt: 'Описание фото',
+        link: '/catalog',
+      },
+    ],
     tabsData: [
       {
         id: 'delivery',
