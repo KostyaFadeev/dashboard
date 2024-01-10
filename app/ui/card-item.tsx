@@ -21,6 +21,8 @@ import { siteConfig } from '@/app/ui/site';
 import { TelegramIcon } from '@/public/icons';
 import SizeModal from '@/app/ui/size-modal/size-modal';
 import { getCNYRate } from '@/app/lib/utils';
+import { addItem } from '../lib/cookies';
+
 
 interface Variant {
   label: string;
@@ -55,6 +57,8 @@ export default function CardItem({
   const handleClick = () => {
     setIsOpenSizeModal(true);
   };
+
+  
   const onChangeHandle = () => {
     setIsOpenSizeModal(false);
   };
@@ -208,7 +212,7 @@ export default function CardItem({
                       <TelegramIcon />
                     </Button>
                   </Link>
-                  <Button className="bg-green-500" color="primary" onPress={onClose}>
+                  <Button className="bg-green-500" color="primary" onPress={() => {onClose; addItem(id)}}>
                     В корзину
                   </Button>
                 </ModalFooter>
@@ -220,6 +224,8 @@ export default function CardItem({
     </>
   );
 }
+
+
 
 export const CustomRadio = (props: any) => {
   const { children, ...otherProps } = props;
