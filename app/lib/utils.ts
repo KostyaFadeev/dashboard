@@ -63,7 +63,10 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
 export const getCNYRate = async () => {
   const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
   const data = await response.json();
-  return data.Valute.CNY.Value * 1.085;
+  const cny = data.Valute.CNY.Value * 1.085;
+  const usd = data.Valute.USD.Value * 1.05;
+  const eur = data.Valute.EUR.Value * 1.05;
+  return [cny, usd, eur];
 };
 
 // export async function getDeliveryCost(weight, cost, originCity, destinationCity) {

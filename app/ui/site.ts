@@ -72,23 +72,6 @@ export const siteConfig = {
       href: '/login',
     },
   ],
-  mainDropdownCourses: [
-    {
-      key: 'usd',
-      label: 'Доллар',
-      value: '90 ₽',
-    },
-    {
-      key: 'cny',
-      label: 'Юань',
-      value: '13.5 ₽',
-    },
-    {
-      key: 'eur',
-      label: 'Евро',
-      value: '97 ₽',
-    },
-  ],
   personsData: [
     {
       img: '',

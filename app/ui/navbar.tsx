@@ -1,4 +1,3 @@
-'use client';
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -8,27 +7,18 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from '@nextui-org/navbar';
-import { Button } from '@nextui-org/button';
 import { Link } from '@nextui-org/link';
-import { Dropdown, DropdownItem, DropdownMenu } from '@nextui-org/dropdown';
-import { DropdownTrigger } from '@nextui-org/react';
 import { link as linkStyles } from '@nextui-org/theme';
 import NextLink from 'next/link';
 import clsx from 'clsx';
 
-import { Login, TelegramIcon } from '@/public/icons';
-
 import { Logo } from '@/public/icons';
 import { siteConfig } from '@/app/ui/site';
-import { ThemeSwitch } from '@/app/ui/theme-switch';
-import { CurrencyDollarIcon, CurrencyEuroIcon, CurrencyYenIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
-import React from 'react';
-
-const iconMap = {
-  usd: CurrencyDollarIcon,
-  cny: CurrencyYenIcon,
-  eur: CurrencyEuroIcon,
-};
+import React, {Suspense} from 'react';
+import {CartNavItem} from "@/app/ui/CardNavItem";
+import {MobileMenu} from "@/app/ui/MobileMenu";
+import {CurrencyMenu} from "@/app/ui/CurrencyMenu";
+import {Button} from "@nextui-org/react";
 
 export const Navbar = () => {
   return (
@@ -57,64 +47,23 @@ export const Navbar = () => {
           ))}
         </ul>
       </NavbarContent>
-      <Dropdown>
-        <DropdownTrigger>
-          <Button variant="light" className="px-auto hidden xl:flex">
-            Курсы валют
-            <CurrencyDollarIcon color={'rgba(113, 113, 120, 1)'} width={24} height={24} />
-          </Button>
-        </DropdownTrigger>
-        <DropdownMenu aria-label="Dynamic Actions" items={siteConfig.mainDropdownCourses}>
-          {(item) => {
-            const Icon = iconMap[item.key as keyof typeof iconMap];
-            return (
-              <DropdownItem
-                key={item.key}
-                color={'default'}
-                startContent={Icon ? <Icon width={20} /> : null}
-              >
-                <div className="flex justify-between">
-                  <div>{item.label}</div>
-                  <div>{item.value}</div>
-                </div>
-              </DropdownItem>
-            );
-          }}
-        </DropdownMenu>
-      </Dropdown>
+      <CurrencyMenu />
       <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
-        <NavbarItem className="hidden lg:flex gap-2">
-          <Button variant="light" className="px-0 hidden lg:flex">
-            <ShoppingCartIcon color={'rgba(113, 113, 120, 1)'} width={24} height={24} />
-          </Button>
-        </NavbarItem>
-        <NavbarItem className="hidden lg:flex">
-          <Dropdown>
-            <DropdownTrigger>
-              <Button variant="bordered" startContent={<Login />}>
-                Меню
+          <Suspense fallback={<div className="w-6" />}>
+              <Button variant="light" className="px-0 hidden lg:flex">
+                <CartNavItem />
               </Button>
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Dynamic Actions" items={siteConfig.mainDropdownData}>
-              {(item) => (
-                <DropdownItem
-                  key={item.key}
-                  color={item.key === 'delete' ? 'danger' : 'default'}
-                  className={item.key === 'delete' ? 'text-danger' : ''}
-                  href={item.href}
-                >
-                  {item.label}
-                </DropdownItem>
-              )}
-            </DropdownMenu>
-          </Dropdown>
+          </Suspense>
+        <NavbarItem className="hidden lg:flex">
+            <MobileMenu data={siteConfig.mainDropdownData}/>
         </NavbarItem>
       </NavbarContent>
-
       <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
-        <Button variant="light" className="px-0 flex xl:hidden">
-          <ShoppingCartIcon color={'rgba(113, 113, 120, 1)'} width={24} height={24} />
-        </Button>
+          <Suspense fallback={<div className="w-6" />}>
+              <Button variant="light" className="px-0 hidden lg:flex">
+                <CartNavItem />
+              </Button>
+          </Suspense>
         <NavbarMenuToggle />
       </NavbarContent>
 
