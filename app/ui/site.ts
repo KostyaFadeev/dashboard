@@ -225,32 +225,27 @@ export const siteConfig = {
     title: 'Условия доставки и оплаты',
     mainImages: [
       {
-        src: '/nike_banner1.jpg',
+        src: '/nike_prev.jpg',
         alt: 'Описание фото',
         link: '/catalog',
       },
       {
-        src: '/nike_banner1.jpg',
+        src: '/nb_prew.jpg',
         alt: 'Описание фото',
         link: '/catalog',
       },
       {
-        src: '/nike_banner1.jpg',
+        src: '/adidas_prev.jpg',
         alt: 'Описание фото',
         link: '/catalog',
       },
       {
-        src: '/nike_banner1.jpg',
+        src: '/reebok_prev.jpg',
         alt: 'Описание фото',
         link: '/catalog',
       },
       {
-        src: '/nike_banner1.jpg',
-        alt: 'Описание фото',
-        link: '/catalog',
-      },
-      {
-        src: '/nike_banner1.jpg',
+        src: '/nb2_prev.jpg',
         alt: 'Описание фото',
         link: '/catalog',
       },

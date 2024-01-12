@@ -143,7 +143,7 @@ export default function AboutPage() {
               вам домой.
             </p>
           </div>
-          <h2 className="text-start text-4xl font-semibold mb-2">Контакты</h2>
+          <h2 id={'contacts'} className="text-start text-4xl font-semibold mb-2">Контакты</h2>
           <div className="text-lg font-normal mb-2">
             <div>Наш Telegram канал с полезной информацией о актуальных новинках:</div>
             <NextLink

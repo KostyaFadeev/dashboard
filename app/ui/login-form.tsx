@@ -100,7 +100,7 @@ export default function LoginForm() {
                 </div>
               </form>
             </Tab>
-            <Tab key="sign-up" title="Зарегестрироваться">
+            <Tab key="sign-up" title="Зарегистрироваться">
               <form className="flex flex-col gap-6">
                 <div className="w-full">
                   <div>

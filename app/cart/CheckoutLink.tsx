@@ -23,7 +23,7 @@ export const CheckoutLink = ({disabled, checkoutId, className = ""}: Props) => {
                 radius="sm"
                 className="mt-auto h-12 w-80 bg-green-500 text-xl text-white shadow-lg"
             >
-                Оплатить
+                К оплате
             </Button>
         </NextLink>
     );

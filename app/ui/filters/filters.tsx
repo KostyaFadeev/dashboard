@@ -31,36 +31,19 @@ export default function Filters() {
       <div className="w-full md:w-3/12">
         <Select className="max-w-full md:max-w-sm" label="Выберите категорию">
           <SelectItem
-            key="argentina"
-            startContent={
-              <Avatar alt="Argentina" className="w-6 h-6" src="https://flagcdn.com/us.svg" />
-            }
+            key="shoes"
           >
             Обувь
           </SelectItem>
           <SelectItem
-            key="venezuela"
-            startContent={
-              <Avatar alt="Venezuela" className="w-6 h-6" src="https://flagcdn.com/ve.svg" />
-            }
+            key="wear"
           >
             Одежда
           </SelectItem>
           <SelectItem
-            key="brazil"
-            startContent={
-              <Avatar alt="Brazil" className="w-6 h-6" src="https://flagcdn.com/br.svg" />
-            }
+            key="electronic"
           >
-            Техника
-          </SelectItem>
-          <SelectItem
-            key="germany"
-            startContent={
-              <Avatar alt="Germany" className="w-6 h-6" src="https://flagcdn.com/us.svg" />
-            }
-          >
-            Apple
+            Электроника
           </SelectItem>
         </Select>
       </div>
