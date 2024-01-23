@@ -47,7 +47,7 @@ export const Navbar = () => {
           ))}
         </ul>
       </NavbarContent>
-      <CurrencyMenu />
+      {/*<CurrencyMenu />*/}
       <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
           <Suspense fallback={<div className="w-6" />}>
               <Button variant="light" className="px-0 hidden lg:flex">

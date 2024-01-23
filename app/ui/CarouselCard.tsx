@@ -5,10 +5,11 @@ import { Button } from '@nextui-org/react';
 import NextLink from 'next/link';
 
 import CardItem from '@/app/ui/card-item';
-import { fetchDataCards } from '@/app/lib/data';
+import {fetchDataCards, getCurrency} from '@/app/lib/data';
 
 export default async function CarouselCard() {
   const dataCardList = await fetchDataCards();
+  const currency = await getCurrency();
 
   return (
     <div className="flex justify-center flex-col gap-6">
@@ -21,11 +22,13 @@ export default async function CarouselCard() {
         align="start"
       >
         {dataCardList.map((item, index) => {
-          const { id, title, description, images, price, weight, variants, tableSize } = item;
+          const { id, title, description, images, price, weight, variants, tableSize, currentSize } = item;
           return (
             <Carousel.Slide key={index}>
               <div className="p-2">
                 <CardItem
+                    currentSize={currentSize}
+                  currency={currency}
                   id={id}
                   title={title}
                   description={description}

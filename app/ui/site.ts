@@ -57,18 +57,13 @@ export const siteConfig = {
   },
   mainDropdownData: [
     {
-      key: 'new',
-      label: 'Войти',
+      key: 'profile',
+      label: 'Профиль',
       href: '/login',
     },
     {
-      key: 'copy',
-      label: 'Зарегистрироваться',
-      href: '/login',
-    },
-    {
-      key: 'delete',
-      label: 'Выйти',
+      key: 'favorite',
+      label: 'Избранное',
       href: '/login',
     },
   ],

@@ -14,14 +14,13 @@ import {
   useDisclosure,
   cn,
   ScrollShadow,
-  Link,
+  Link, Tooltip,
 } from '@nextui-org/react';
 import { Carousel } from '@mantine/carousel';
 
 import { siteConfig } from '@/app/ui/site';
 import { TelegramIcon } from '@/public/icons';
 import SizeModal from '@/app/ui/size-modal/size-modal';
-import { getCNYRate } from '@/app/lib/utils';
 import { addItem } from '../lib/cookies';
 import { EnvelopeIcon, TruckIcon } from '@heroicons/react/24/outline';
 
@@ -31,7 +30,9 @@ interface Variant {
 }
 
 interface CardItemProps {
+  currency: Array<number>;
   id: number;
+  currentSize: string;
   title: string;
   description: string;
   images: Array<string>;
@@ -42,7 +43,9 @@ interface CardItemProps {
 }
 
 export default function CardItem({
+  currency,
   id,
+                                   currentSize,
   title,
   description,
   images,
@@ -54,6 +57,7 @@ export default function CardItem({
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [isOpenSizeModal, setIsOpenSizeModal] = useState(false);
   const [correctPrice, setCorrectPrice] = useState('');
+  const [selectSize, setSelectSize] = useState(currentSize);
 
   const handleClick = () => {
     setIsOpenSizeModal(true);
@@ -63,14 +67,13 @@ export default function CardItem({
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       const priceInKG = 640;
       const servicePrice = 1000;
-      const course = await getCNYRate();
       const currentPrice = parseInt(price.replace(/ /g, ''));
       let priceOfDeliveryInRussia = weight * priceInKG;
       let multiplied = parseInt(
-        String(currentPrice + currentPrice * course[0] + priceOfDeliveryInRussia + servicePrice)
+        String(currentPrice + currentPrice * currency[0] + priceOfDeliveryInRussia + servicePrice)
       );
       let result = multiplied.toLocaleString(); // цена товара в рублях по курсу ЦБ
       setCorrectPrice(result);
@@ -101,7 +104,7 @@ export default function CardItem({
             {variants?.map((item, index) => {
               const { label, values } = item;
               return (
-                <RadioGroup key={index} label={label} orientation="horizontal" className="mb-2">
+                <RadioGroup value={selectSize} onValueChange={setSelectSize} key={index} label={label} orientation="horizontal" className="mb-2">
                   {values.map((item, index) => (
                     <Radio key={index} value={item}>
                       {item}
@@ -168,6 +171,8 @@ export default function CardItem({
                         label={label}
                         orientation="horizontal"
                         className="w-[800px] mb-2"
+                        value={selectSize}
+                        onValueChange={setSelectSize}
                       >
                         {values.map((item, index) => (
                           <CustomRadio className="p-2" key={index} value={item}>
@@ -228,22 +233,6 @@ export default function CardItem({
                   </div>
                 </div>
                 <SizeModal isOpen={isOpenSizeModal} onChangeHandle={onChangeHandle} />
-                <RadioGroup label="Доставка" defaultValue="free" description="">
-                  <CustomRadio description="В пункт выдачи" value="free">
-                    Бесплатно
-                  </CustomRadio>
-                  <CustomRadio description="Курьером" value="pro">
-                    От 350₽
-                  </CustomRadio>
-                </RadioGroup>
-                {/*<div className="flex gap-4">*/}
-                {/*  <Tooltip placement= "bottom-end" color="primary" content="Boundary гарантирует 100% оригинальность товаров" delay={1000}>*/}
-                {/*    <CheckCircleIcon  className="cursor-pointer" width={28}/>*/}
-                {/*  </Tooltip>*/}
-                {/*  <Tooltip placement= "bottom-end" color="primary" content="Подробную информацию о доставка уточняйте у менеджера или в личном кабинете" delay={1000}>*/}
-                {/*      <InformationCircleIcon className="cursor-pointer" width={28}/>*/}
-                {/*  </Tooltip>*/}
-                {/*</div>*/}
                 <ModalFooter className="mt-auto px-0">
                   <Link isExternal href={siteConfig.links.telegram} aria-label="Telegram">
                     <Button color="primary" variant="light">
@@ -256,7 +245,7 @@ export default function CardItem({
                     color="primary"
                     onClick={() => {
                       onClose();
-                      addItem(id);
+                      addItem(id, selectSize);
                     }}
                   >
                     В корзину

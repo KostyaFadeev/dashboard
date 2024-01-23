@@ -1,50 +1,35 @@
 'use client';
-import React, { useState } from 'react';
+import React  from 'react';
 
-import { Avatar, CheckboxGroup, Select, SelectItem } from '@nextui-org/react';
-import { CustomCheckbox } from '@/app/ui/CustomCheckbox';
+import {Select, SelectItem} from '@nextui-org/react';
 
-export default function Filters() {
-  const [groupSelected, setGroupSelected] = useState<string[]>([]);
+export default function Filters({onChangeValue}) {
+ const categories = [
+    {label: "Все", value: "all"},
+    {label: "Одежда", value: "wear"},
+    {label: "Обувь", value: "shoes"},
+    {label: "Электроника", value: "electronic"},
+  ];
+
+  const handleSelectionChange = (e) => {
+    onChangeValue(e.target.value)
+  };
 
   return (
     <div className="mt-4 flex flex-col md:flex-row items-center justify-between md:mt-8">
-      <div className="flex flex-col gap-1 w-full md:w-5/12">
-        <CheckboxGroup
-          className="gap-1"
-          label="Фильтры:"
-          orientation="horizontal"
-          value={groupSelected}
-          onChange={(value) => {
-            if (typeof value === 'string') {
-              setGroupSelected(value);
-            }
-          }}
+      <div className="flex w-full max-w-xs flex-col gap-2">
+        <Select
+            label="Выберите категорию"
+            placeholder="Все"
+            defaultSelectedKeys={["all"]}
+            className="max-w-xs"
+            onChange={handleSelectionChange}
         >
-          <CustomCheckbox value="Nike">Nike</CustomCheckbox>
-          <CustomCheckbox value="New Balance">New Balance</CustomCheckbox>
-          <CustomCheckbox value="Adidas">Adidas</CustomCheckbox>
-          <CustomCheckbox value="Reebok">Reebok</CustomCheckbox>
-        </CheckboxGroup>
-        <p className="mt-4 ml-1 text-default-500">{groupSelected.join(', ')}</p>
-      </div>
-      <div className="w-full md:w-3/12">
-        <Select className="max-w-full md:max-w-sm" label="Выберите категорию">
-          <SelectItem
-            key="shoes"
-          >
-            Обувь
-          </SelectItem>
-          <SelectItem
-            key="wear"
-          >
-            Одежда
-          </SelectItem>
-          <SelectItem
-            key="electronic"
-          >
-            Электроника
-          </SelectItem>
+          {categories.map((animal) => (
+              <SelectItem key={animal.value} value={animal.value}>
+                {animal.label}
+              </SelectItem>
+          ))}
         </Select>
       </div>
     </div>

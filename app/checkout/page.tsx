@@ -1,30 +1,32 @@
-import { invariant } from "ts-invariant";
-import { RootWrapper } from "./pageWrapper";
+import {FaceSmileIcon, ShoppingBagIcon} from "@heroicons/react/24/outline";
+import {Button} from "@nextui-org/react";
+import NextLink from "next/link";
+import React from "react";
 
 export const metadata = {
-	title: "Оплата",
+    title: "Оплата",
 };
 
-export default function CheckoutPage({
-	searchParams,
-}: {
-	searchParams: { checkout?: string; order?: string };
-}) {
-	invariant(process.env.NEXT_PUBLIC_SALEOR_API_URL, "Missing NEXT_PUBLIC_SALEOR_API_URL env variable");
+export default async function Page() {
 
-	if (!searchParams.checkout && !searchParams.order) {
-		return null;
-	}
-
-	return (
-		<div className="min-h-[100dvh] bg-white">
-			<section className="mx-auto flex min-h-[100dvh] max-w-7xl flex-col p-8">
-				<h1 className="mt-8 text-3xl font-bold text-neutral-900">Оплата</h1>
-
-				<section className="mb-12 mt-6 flex-1">
-					<RootWrapper saleorApiUrl={process.env.NEXT_PUBLIC_SALEOR_API_URL} />
-				</section>
-			</section>
-		</div>
-	);
+    return (
+        <section className="mx-auto max-w-7xl p-8">
+            <div className="mt-8 flex items-center gap-4"><h1 className="text-3xl font-bold text-neutral-900">Ваш
+                заказ успешно создан!</h1>
+                <FaceSmileIcon width={34} height={34}/></div>
+            <p className="my-12 text-lg text-neutral-500">
+                Мы уже начали его оформление, ожидайте ответа менеджера.
+            </p>
+            <NextLink href="../catalog" className="mx-auto">
+                <Button
+                    color="primary"
+                    variant="shadow"
+                    radius="full"
+                    className="text-white shadow-lg w-60"
+                >
+                    Продолжить покупки
+                </Button>
+            </NextLink>
+        </section>
+    );
 }

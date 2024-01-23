@@ -107,7 +107,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 size={'sm'}
                 color="primary"
                 variant="shadow"
-                radius="rounded-small"
+                radius="sm"
                 className="text-white text-sm shadow-lg h-full w-32"
               >
                 Подписаться

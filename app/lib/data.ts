@@ -1,5 +1,5 @@
-import { sql } from '@vercel/postgres';
-import { unstable_noStore as noStore } from 'next/cache';
+import {sql} from '@vercel/postgres';
+import {unstable_noStore as noStore} from 'next/cache';
 import {
   CustomerField,
   CustomersTable,
@@ -9,7 +9,7 @@ import {
   Revenue,
   User,
 } from './definitions';
-import { formatCurrency } from './utils';
+import {formatCurrency} from './utils';
 
 export async function fetchRevenue() {
   // Add noStore() here prevent the response from being cached.
@@ -229,6 +229,38 @@ export async function getUser(email: string) {
   }
 }
 
+export async function getCurrency() {
+  try {
+    const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
+    const data = await response.json();
+    const cny = data.Valute.CNY.Value * 1.085;
+    const usd = data.Valute.USD.Value * 1.05;
+    const eur = data.Valute.EUR.Value * 1.05;
+    return [cny, usd, eur];
+
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error to fetch currency');
+  }
+}
+
+export function getCorrectPriceRUB(course, price, weight) {
+  try {
+    const priceInKG = 640;
+    const servicePrice = 1000;
+    const currentPrice = parseInt(price.replace(/ /g, ''));
+    let priceOfDeliveryInRussia = weight * priceInKG;
+    // цена товара в рублях по курсу ЦБ
+    return parseInt(
+        String(currentPrice + currentPrice * course + priceOfDeliveryInRussia + servicePrice)
+    );
+
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error');
+  }
+}
+
 export async function fetchDataCards() {
   noStore();
 
@@ -236,12 +268,15 @@ export async function fetchDataCards() {
     return [
       {
         id: 1,
+        category: 'shoes',
+        currentSize: '36 RUS',
         images: ['/nb550_1.jpg', '/nb550_2.jpg', '/nb550_3.jpg', '/nb550_4.jpg', '/nb550_5.jpg'],
         title: 'New Balance 550',
         tableSize: '1',
         description:
           'Стильные и комфортные кроссовки, идеальный выбор для активного образа жизни. Они объединяют в себе классический дизайн и высокую функциональность. Верхняя часть кроссовок выполнена из прочных материалов, которые обеспечивают хорошую вентиляцию и комфорт при носке.\n',
         price: '349',
+        currency: 'CNY',
         weight: '1.8',
         variants: [
           {
@@ -270,11 +305,14 @@ export async function fetchDataCards() {
       },
       {
         id: 2,
+        category: 'electronic',
+        currentSize: '128 ГБ',
         images: ['/iphone15.jpg'],
         title: 'Iphone 15 ',
         description:
           'Iphone 15 - это новейшая модель смартфона от компании Apple. Он обладает мощным процессором, высококачественным дисплеем и продвинутой камерой, которая позволяет делать невероятные фотографии и видео. Кроме того, Iphone 15 имеет большой объем внутренней памяти, что позволяет хранить большое количество данных и приложений. Этот смартфон станет надежным и стильным спутником в повседневной жизни.',
         price: '6000',
+        currency: 'CNY',
         weight: '1.1',
         variants: [
           {
@@ -285,6 +323,8 @@ export async function fetchDataCards() {
       },
       {
         id: 3,
+        category: 'shoes',
+        currentSize: '36 RUS',
         images: [
           '/Nike Air Max Verona Sail_1.jpg',
           '/Nike Air Max Verona Sail_2.jpg',
@@ -292,11 +332,12 @@ export async function fetchDataCards() {
           '/Nike Air Max Verona Sail_4.jpg',
           '/Nike Air Max Verona Sail_5.jpg',
         ],
-        title: 'Nike Air Max Verona Sail Ghost Green',
+        title: 'Nike Air Max Verona',
         tableSize: '1',
         description:
           'Кроссовки Nike Air Max Verona Sail Ghost Green — это элегантные и стильные женские кроссовки, сочетающие в себе комфорт и модный дизайн. Их ультрасовременный дизайн, вдохновленный классическими моделями Air Max, предлагает высокий комфорт и исключительную поддержку, делая их отличным выбором для повседневной носки.\n',
         price: '400',
+        currency: 'CNY',
         weight: '1.6',
         variants: [
           {
@@ -319,17 +360,20 @@ export async function fetchDataCards() {
       },
       {
         id: 4,
+        category: 'shoes',
+        currentSize: '36 RUS',
         images: [
           '/nb550white_1.jpg',
           '/nb550white_2.jpg',
           '/nb550white_3.jpg',
           '/nb550white_4.jpg',
         ],
-        title: 'New Balance NB 550 Vintage',
+        title: 'New Balance NB 550',
         tableSize: '1',
         description:
           'Стильные и комфортные кроссовки, идеальный выбор для активного образа жизни. Они объединяют в себе классический дизайн и высокую функциональность. Верхняя часть кроссовок выполнена из прочных материалов, которые обеспечивают хорошую вентиляцию и комфорт при носке.\n',
         price: '349',
+        currency: 'CNY',
         weight: '1.8',
         variants: [
           {
@@ -356,6 +400,55 @@ export async function fetchDataCards() {
           },
         ],
       },
+      {
+        id: 5,
+        category: 'wear',
+        currentSize: 'S',
+        images: [
+          '/polo-wear.jpg',
+        ],
+        title: 'Polo Ralph Lauren FW22',
+        description: 'Зип худи Polo Ralph Lauren FW22 в черном цвете - идеальный выбор для тех, кто ценит стиль и комфорт. Это универсальное худи с молнией, которое подойдет как для спортивного образа, так и для повседневной носки. Черный цвет придает ему элегантный вид, а логотип Polo Ralph Lauren на груди добавляет нотку роскоши. Изготовлено из высококачественного материала, худи обеспечивает тепло и уют в любое время года. Это отличный выбор для тех, кто ценит стиль, качество и комфорт.',
+        price: '999',
+        currency: 'CNY',
+        weight: '0.8',
+        variants: [
+          {
+            label: 'Выберите размер',
+            values: [
+              'S',
+              'M',
+              'L',
+              'XL',
+              'XXL',
+            ],
+          },
+        ],
+      },
+      {
+        id: 6,
+        category: 'wear',
+        currentSize: 'M',
+        images: [
+          '/gap-1.jpg',
+        ],
+        title: 'Худи GAP',
+        description: 'Плюшевое худи GAP в черничном цвете - уютное и стильное дополнение к вашему гардеробу. Это мягкое и теплое худи с капюшоном, которое подойдет для повседневной носки. Черничный оттенок придает ему элегантный вид, а мягкий материал обеспечивает комфорт и уют. Оно отлично сочетается с джинсами или спортивными брюками, создавая модный и удобный образ',
+        price: '329',
+        currency: 'CNY',
+        weight: '0.7',
+        variants: [
+          {
+            label: 'Выберите размер',
+            values: [
+              'S',
+              'M',
+              'L',
+              'XL',
+            ],
+          },
+        ],
+      }
     ];
   } catch (error) {
     throw new Error('Failed to fetch revenue data.');
