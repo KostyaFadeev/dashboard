@@ -4,9 +4,9 @@ import {cookies} from "next/headers";
 const shouldUseHttps =
     process.env.NEXT_PUBLIC_STOREFRONT_URL?.startsWith("https") || !!process.env.NEXT_PUBLIC_VERCEL_URL;
 
-export async function addItem(id, selectSize: { toString: () => string }) {
+export async function addItem(id: any, selectSize: { toString: () => string }) {
     const tempValue = await getItems();
-    let cookiesArray = [];
+    let cookiesArray: string[] = [];
 
     if (tempValue) {
         cookiesArray = tempValue.split('|');
@@ -30,10 +30,10 @@ export async function getItems() {
     )
 }
 
-export async function deleteItem(id, size) {
+export async function deleteItem(id:any, size:any) {
     const findValue = id + '?' + size;
     const tempValue = await getItems();
-    let cookiesArray = [];
+    let cookiesArray: string[] = [];
 
     if (tempValue) {
         cookiesArray = tempValue.split('|');

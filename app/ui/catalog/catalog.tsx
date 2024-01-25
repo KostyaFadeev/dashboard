@@ -4,9 +4,28 @@ import React, {useState} from 'react';
 import Filters from "@/app/ui/filters/filters";
 import CardItem from "@/app/ui/card-item";
 
-export default function Catalog({data, currency}) {
+interface Object {
+    id: number;
+    category: string;
+    currentSize: string;
+    images: string[];
+    title: string;
+    tableSize: any;
+    description: string;
+    price: string;
+    currency: string;
+    weight: string;
+    variants: any;
+}
+
+interface CatalogProps {
+    data: any[];
+    currency: any;
+}
+
+export default function Catalog({data, currency}: CatalogProps) {
     const [filterValue, setFilterValue] = useState('all');
-    const onChangeFilter = (val) => {
+    const onChangeFilter = (val:string) => {
         setFilterValue(val);
     }
 

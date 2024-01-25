@@ -244,7 +244,7 @@ export async function getCurrency() {
   }
 }
 
-export function getCorrectPriceRUB(course, price, weight) {
+export function getCorrectPriceRUB(course:any, price:any, weight:any) {
   try {
     const priceInKG = 640;
     const servicePrice = 1000;

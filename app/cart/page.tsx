@@ -1,10 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
 import {ShoppingBagIcon, ShieldCheckIcon} from "@heroicons/react/24/outline";
 import {Button} from "@nextui-org/react";
 import NextLink from "next/link";
 import React from "react";
-import {cookies} from "next/headers";
 import {getItems} from "@/app/lib/cookies";
 import {fetchDataCards, getCurrency} from "@/app/lib/data";
 import Cart from "@/app/ui/cart/cart";
@@ -12,6 +9,11 @@ import Cart from "@/app/ui/cart/cart";
 export const metadata = {
     title: "Корзина",
 };
+
+interface UpdatedItem {
+    countOrders: number;
+}
+
 
 export default async function Page() {
     const dataCardList = await fetchDataCards();
@@ -25,25 +27,25 @@ export default async function Page() {
         }
     });
 
-    let newArray: any[] = [];
-    cartDataArray.map((cartItem => {
-        dataCardList.map((item => {
+    let newArray: UpdatedItem[] = [];
+    cartDataArray.map(cartItem => {
+        dataCardList.map(item => {
             let countOrders = 0;
-            if(item.id === cartItem.id) {
+            if (item.id === cartItem.id) {
                 item.currentSize = cartItem.currentSize
                 item.variants[0].values.map(itemSize => {
-                    if(itemSize === cartItem.currentSize){
+                    if (itemSize === cartItem.currentSize) {
                         countOrders++;
                     }
                 })
 
-                // Добавляем поле countOrders в объект item
-                item.countOrders = countOrders;
-
-                newArray.push(item);
+                // Изменяем объект item на тип UpdatedItem
+                let updatedItem: UpdatedItem = { ...item, countOrders: countOrders };
+                newArray.push(updatedItem);
             }
-        }))
-    }))
+        })
+    })
+
 
     if (!newArray || newArray.length < 1) {
         return (

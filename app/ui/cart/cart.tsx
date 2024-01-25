@@ -6,34 +6,29 @@ import Link from "next/link";
 import {HomeIcon, PhoneIcon, UserIcon, XCircleIcon} from "@heroicons/react/24/outline";
 import {deleteAll, deleteItem} from "@/app/lib/cookies";
 import {CheckoutLink} from "@/app/cart/CheckoutLink";
-import {AtSymbolIcon, LinkIcon} from "@heroicons/react/24/solid";
+import {AtSymbolIcon} from "@heroicons/react/24/solid";
 import {RadioGroup} from "@nextui-org/radio";
 import {CustomRadio} from "@/app/ui/card-item";
 
-interface Data {
-    src: string;
-    alt: string;
-    link: string;
-}
 
 interface CartProps {
-    cartData: Array<Data>;
+    cartData: any;
     [key: string]: any;
 }
 
 const Cart: React.FC<CartProps> = ({ cartData, currency }: CartProps) => {
-    const [selectDeliveryType, setSelectDeliveryType] = useState(0);
-    const [selectCurrancy, setSelectCurrancy] = useState(0);
+    const [selectDeliveryType, setSelectDeliveryType] = useState('0');
+    const [selectCurrancy, setSelectCurrancy] = useState('0');
     let totalPrice = 0;
 
     return (
-        <form className="mt-12">
+        <div className="mt-12">
             <ul
                 data-testid="CartProductList"
                 role="list"
                 className="divide-y divide-neutral-200 border-b border-t border-neutral-200"
             >
-                {cartData?.map((item, index) => {
+                {cartData?.map((item:any, index:any) => {
                     const price = getCorrectPriceRUB(currency[0], item.price, item.weight);
                     totalPrice = totalPrice + price;
 
@@ -254,7 +249,7 @@ const Cart: React.FC<CartProps> = ({ cartData, currency }: CartProps) => {
                             </div>
                         </div>
                         <div className="w-full flex-wrap  gap-8 flex">
-                            <RadioGroup value={selectDeliveryType} onValueChange={setSelectDeliveryType} label="Доставка" defaultValue="free" description="">
+                            <RadioGroup value={selectDeliveryType} onValueChange={(value: string) => setSelectDeliveryType(value)}   label="Доставка" defaultValue="free" description="">
                                 <CustomRadio description="В пункт выдачи Почта России" value={0}>
                                     Бесплатно
                                 </CustomRadio>
@@ -262,7 +257,7 @@ const Cart: React.FC<CartProps> = ({ cartData, currency }: CartProps) => {
                                     + 550₽
                                 </CustomRadio>
                             </RadioGroup>
-                            <RadioGroup value={selectCurrancy} onValueChange={setSelectCurrancy} label="Дополнительная страховка" defaultValue="free" description="">
+                            <RadioGroup value={selectCurrancy} onValueChange={(value: string) => setSelectCurrancy(value)}  label="Дополнительная страховка" defaultValue="free" description="">
                                 <CustomRadio description="Не требуется" value={0}>
                                     Бесплатно
                                 </CustomRadio>
@@ -279,7 +274,7 @@ const Cart: React.FC<CartProps> = ({ cartData, currency }: CartProps) => {
                             <p className="font-semibold text-xl text-neutral-900">Общая сумма заказа:</p>
                         </div>
                         <div className="font-medium text-xl text-neutral-900 flex gap-1">
-                            <div>{totalPrice + selectDeliveryType + selectCurrancy}</div>
+                            <div>{totalPrice + parseInt(selectDeliveryType) + parseInt(selectCurrancy)}</div>
                             <div>RUB</div>
                         </div>
                     </div>
@@ -291,7 +286,7 @@ const Cart: React.FC<CartProps> = ({ cartData, currency }: CartProps) => {
                     />
                 </div>
             </div>
-        </form>
+        </div>
     );
 };
 

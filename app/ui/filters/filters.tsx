@@ -3,7 +3,14 @@ import React  from 'react';
 
 import {Select, SelectItem} from '@nextui-org/react';
 
-export default function Filters({onChangeValue}) {
+
+type ChangeValueFunction = (value: string) => void;
+
+interface FiltersProps {
+    onChangeValue: ChangeValueFunction;
+}
+
+export default function Filters({onChangeValue}:FiltersProps) {
  const categories = [
     {label: "Все", value: "all"},
     {label: "Одежда", value: "wear"},
@@ -11,7 +18,7 @@ export default function Filters({onChangeValue}) {
     {label: "Электроника", value: "electronic"},
   ];
 
-  const handleSelectionChange = (e) => {
+  const handleSelectionChange = (e:any) => {
     onChangeValue(e.target.value)
   };
 

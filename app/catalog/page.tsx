@@ -1,13 +1,10 @@
 import React, { Suspense } from 'react';
 import { Metadata } from 'next';
-import { lusitana } from '@/app/ui/fonts';
 
 import Search from '@/app/ui/search';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import Pagination from '@/app/ui/invoices/pagination';
 import {fetchDataCards, fetchInvoicesPages, getCurrency} from '@/app/lib/data';
-import CardItem from '@/app/ui/card-item';
-import Filters from '@/app/ui/filters/filters';
 import Catalog from "@/app/ui/catalog/catalog";
 
 export const metadata: Metadata = {

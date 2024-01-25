@@ -6,7 +6,7 @@ import {getItems} from "@/app/lib/cookies";
 
 export const CartNavItem = async () => {
     const products =  await getItems();
-    const countProducts = products.length !== 0 && products.split('|').length;
+    const countProducts = products.length !== 0 ? products.split('|').length : 0;
 
     return (
         <Link href="/cart" className="relative flex items-center" data-testid="CartNavItem">

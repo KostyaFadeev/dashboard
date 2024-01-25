@@ -1,4 +1,4 @@
-import {FaceSmileIcon, ShoppingBagIcon} from "@heroicons/react/24/outline";
+import {FaceSmileIcon} from "@heroicons/react/24/outline";
 import {Button} from "@nextui-org/react";
 import NextLink from "next/link";
 import React from "react";
