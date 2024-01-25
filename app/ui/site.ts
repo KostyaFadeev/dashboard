@@ -23,7 +23,11 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
-      label: 'Войти',
+      label: 'Корзина',
+      href: '/cart',
+    },
+    {
+      label: 'Личный кабинет',
       href: '/login',
     },
     {
@@ -45,10 +49,6 @@ export const siteConfig = {
     {
       label: 'Рассчитать стоимость',
       href: '/calculator',
-    },
-    {
-      label: 'Как заказать ?',
-      href: '/info',
     },
   ],
   links: {
@@ -100,11 +100,6 @@ export const siteConfig = {
       },
       {
         src: '/test6.jpg',
-        alt: 'Описание фото',
-        link: '/catalog',
-      },
-      {
-        src: '/test7.jpg',
         alt: 'Описание фото',
         link: '/catalog',
       },
