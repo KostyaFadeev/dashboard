@@ -17,7 +17,7 @@ import {siteConfig} from '@/app/ui/site';
 import React, {Suspense} from 'react';
 import {CartNavItem} from "@/app/ui/CardNavItem";
 import {MobileMenu} from "@/app/ui/MobileMenu";
-// import {CurrencyMenu} from "@/app/ui/CurrencyMenu";
+import {CurrencyMenu} from "@/app/ui/CurrencyMenu";
 import {Button} from "@nextui-org/react";
 
 export const Navbar = () => {
@@ -60,7 +60,7 @@ export const Navbar = () => {
                     ))}
                 </ul>
             </NavbarContent>
-            {/*<CurrencyMenu />*/}
+            <CurrencyMenu />
             <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
                 <Suspense fallback={<div className="w-6"/>}>
                     <Button variant="light" className="px-0 hidden lg:flex">
