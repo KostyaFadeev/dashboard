@@ -23,7 +23,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="text-3xl uppercase mb-2 text-blue-500-gradient-to from-indigo-500">
               Boundary
             </div>
-            <div className="text-sm mb-2">Твой помощник в мире шопинга</div>
+            <div className="text-sm mb-2">Твой помощник в мире шопинга!!!</div>
             <div className="flex gap-4">
               <NextLink
                 target="_blank"
