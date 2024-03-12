@@ -14,38 +14,21 @@ import {
   useDisclosure,
   cn,
   ScrollShadow,
-  Link, Tooltip,
+  Link,
 } from '@nextui-org/react';
 import { Carousel } from '@mantine/carousel';
 
 import { siteConfig } from '@/app/ui/site';
 import { TelegramIcon } from '@/public/icons';
 import SizeModal from '@/app/ui/size-modal/size-modal';
-import { addItem } from '../lib/cookies';
 import { EnvelopeIcon, TruckIcon } from '@heroicons/react/24/outline';
+import { observer } from 'mobx-react-lite';
+import { cartStore } from '@/app/stores/CartStore';
 
-interface Variant {
-  label: string;
-  values: string[];
-}
-
-interface CardItemProps {
-  currency: Array<number>;
-  id: number;
-  currentSize: string;
-  title: string;
-  description: string;
-  images: Array<string>;
-  variants: Array<Variant>;
-  price: string;
-  weight: any;
-  tableSize: string | undefined;
-}
-
-export default function CardItem({
+const CardItem = ({
   currency,
   id,
-                                   currentSize,
+  currentSize,
   title,
   description,
   images,
@@ -53,7 +36,8 @@ export default function CardItem({
   weight,
   variants,
   tableSize,
-}: CardItemProps) {
+}) => {
+  const { setProductsSelect, priceInKG, servicePrice } = cartStore;
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [isOpenSizeModal, setIsOpenSizeModal] = useState(false);
   const [correctPrice, setCorrectPrice] = useState('');
@@ -68,8 +52,6 @@ export default function CardItem({
 
   useEffect(() => {
     const fetchData = () => {
-      const priceInKG = 640;
-      const servicePrice = 1000;
       const currentPrice = parseInt(price.replace(/ /g, ''));
       let priceOfDeliveryInRussia = weight * priceInKG;
       let multiplied = parseInt(
@@ -104,7 +86,14 @@ export default function CardItem({
             {variants?.map((item, index) => {
               const { label, values } = item;
               return (
-                <RadioGroup value={selectSize} onValueChange={setSelectSize} key={index} label={label} orientation="horizontal" className="mb-2">
+                <RadioGroup
+                  value={selectSize}
+                  onValueChange={setSelectSize}
+                  key={index}
+                  label={label}
+                  orientation="horizontal"
+                  className="mb-2"
+                >
                   {values.map((item, index) => (
                     <Radio key={index} value={item}>
                       {item}
@@ -245,7 +234,15 @@ export default function CardItem({
                     color="primary"
                     onClick={() => {
                       onClose();
-                      addItem(id, selectSize);
+                      setProductsSelect({
+                        id,
+                        title,
+                        selectSize,
+                        variants,
+                        images,
+                        correctPrice,
+                        weight,
+                      });
                     }}
                   >
                     В корзину
@@ -258,7 +255,7 @@ export default function CardItem({
       </Modal>
     </>
   );
-}
+};
 
 export const CustomRadio = (props: any) => {
   const { children, ...otherProps } = props;
@@ -278,3 +275,5 @@ export const CustomRadio = (props: any) => {
     </Radio>
   );
 };
+
+export default observer(CardItem);

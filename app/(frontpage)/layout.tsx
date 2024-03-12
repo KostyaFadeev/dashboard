@@ -1,14 +1,15 @@
 import React from 'react';
-import '@mantine/carousel/styles.css';
 import { MantineProvider } from '@mantine/core';
+import Link from 'next/link';
+import NextLink from 'next/link';
+import { Button } from '@nextui-org/react';
+
+import '@mantine/carousel/styles.css';
 import '@/app/ui/global.css';
 
 import { Navbar } from '@/app/ui/navbar';
-import Link from 'next/link';
-import NextLink from 'next/link';
 import { TelegramIcon } from '@/public/icons';
 import { AtSymbolIcon } from '@heroicons/react/24/solid';
-import { Button } from '@nextui-org/react';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

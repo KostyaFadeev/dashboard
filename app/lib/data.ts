@@ -1,5 +1,5 @@
-import {sql} from '@vercel/postgres';
-import {unstable_noStore as noStore} from 'next/cache';
+import { sql } from '@vercel/postgres';
+import { unstable_noStore as noStore } from 'next/cache';
 import {
   CustomerField,
   CustomersTable,
@@ -9,7 +9,7 @@ import {
   Revenue,
   User,
 } from './definitions';
-import {formatCurrency} from './utils';
+import { formatCurrency } from './utils';
 
 export async function fetchRevenue() {
   // Add noStore() here prevent the response from being cached.
@@ -229,22 +229,25 @@ export async function getUser(email: string) {
   }
 }
 
-export async function getCurrency() {
-  try {
-    const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
-    const data = await response.json();
-    const cny = data.Valute.CNY.Value * 1.085;
-    const usd = data.Valute.USD.Value * 1.05;
-    const eur = data.Valute.EUR.Value * 1.05;
-    return [cny, usd, eur];
+export async function getCurrencyRates() {
+  const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
 
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    // Извлечение значений курсов валют
+    const cnyRate = data.Valute.CNY.Value;
+    const usdRate = data.Valute.USD.Value;
+    const eurRate = data.Valute.EUR.Value;
+    return [cnyRate, usdRate, eurRate];
   } catch (error) {
-    console.error(error);
-    throw new Error('Error to fetch currency');
+    console.error('Error fetching currency rates:', error);
+    throw new Error('Error fetching currency rates');
   }
 }
 
-export function getCorrectPriceRUB(course:any, price:any, weight:any) {
+export function getCorrectPriceRUB(course: any, price: any, weight: any) {
   try {
     const priceInKG = 640;
     const servicePrice = 1000;
@@ -252,9 +255,8 @@ export function getCorrectPriceRUB(course:any, price:any, weight:any) {
     let priceOfDeliveryInRussia = weight * priceInKG;
     // цена товара в рублях по курсу ЦБ
     return parseInt(
-        String(currentPrice + currentPrice * course + priceOfDeliveryInRussia + servicePrice)
+      String(currentPrice + currentPrice * course + priceOfDeliveryInRussia + servicePrice)
     );
-
   } catch (error) {
     console.error(error);
     throw new Error('Error');
@@ -404,24 +406,17 @@ export async function fetchDataCards() {
         id: 5,
         category: 'wear',
         currentSize: 'S',
-        images: [
-          '/polo-wear.jpg',
-        ],
+        images: ['/polo-wear.jpg'],
         title: 'Polo Ralph Lauren FW22',
-        description: 'Зип худи Polo Ralph Lauren FW22 в черном цвете - идеальный выбор для тех, кто ценит стиль и комфорт. Это универсальное худи с молнией, которое подойдет как для спортивного образа, так и для повседневной носки. Черный цвет придает ему элегантный вид, а логотип Polo Ralph Lauren на груди добавляет нотку роскоши. Изготовлено из высококачественного материала, худи обеспечивает тепло и уют в любое время года. Это отличный выбор для тех, кто ценит стиль, качество и комфорт.',
+        description:
+          'Зип худи Polo Ralph Lauren FW22 в черном цвете - идеальный выбор для тех, кто ценит стиль и комфорт. Это универсальное худи с молнией, которое подойдет как для спортивного образа, так и для повседневной носки. Черный цвет придает ему элегантный вид, а логотип Polo Ralph Lauren на груди добавляет нотку роскоши. Изготовлено из высококачественного материала, худи обеспечивает тепло и уют в любое время года. Это отличный выбор для тех, кто ценит стиль, качество и комфорт.',
         price: '999',
         currency: 'CNY',
         weight: '0.8',
         variants: [
           {
             label: 'Выберите размер',
-            values: [
-              'S',
-              'M',
-              'L',
-              'XL',
-              'XXL',
-            ],
+            values: ['S', 'M', 'L', 'XL', 'XXL'],
           },
         ],
       },
@@ -429,26 +424,20 @@ export async function fetchDataCards() {
         id: 6,
         category: 'wear',
         currentSize: 'M',
-        images: [
-          '/gap-1.jpg',
-        ],
+        images: ['/gap-1.jpg'],
         title: 'Худи GAP',
-        description: 'Плюшевое худи GAP в черничном цвете - уютное и стильное дополнение к вашему гардеробу. Это мягкое и теплое худи с капюшоном, которое подойдет для повседневной носки. Черничный оттенок придает ему элегантный вид, а мягкий материал обеспечивает комфорт и уют. Оно отлично сочетается с джинсами или спортивными брюками, создавая модный и удобный образ',
+        description:
+          'Плюшевое худи GAP в черничном цвете - уютное и стильное дополнение к вашему гардеробу. Это мягкое и теплое худи с капюшоном, которое подойдет для повседневной носки. Черничный оттенок придает ему элегантный вид, а мягкий материал обеспечивает комфорт и уют. Оно отлично сочетается с джинсами или спортивными брюками, создавая модный и удобный образ',
         price: '329',
         currency: 'CNY',
         weight: '0.7',
         variants: [
           {
             label: 'Выберите размер',
-            values: [
-              'S',
-              'M',
-              'L',
-              'XL',
-            ],
+            values: ['S', 'M', 'L', 'XL'],
           },
         ],
-      }
+      },
     ];
   } catch (error) {
     throw new Error('Failed to fetch revenue data.');

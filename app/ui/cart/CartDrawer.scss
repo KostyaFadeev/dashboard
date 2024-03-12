@@ -1,0 +1,36 @@
+@use 'app/scss/grid.scss';
+
+$bg: #f4f5f9;
+$mainColor: #282828;
+
+.ant-drawer-title {
+  font-size: 24px!important;
+  font-weight: bold;
+  color: $mainColor!important;
+
+  @include grid.media-up(md){
+    font-size: 36px!important;
+  }
+}
+
+.ant-drawer-header {
+  border:none!important;
+
+  padding: 18px!important;
+
+  @include grid.media-up(md) {
+    padding: 24px!important;
+  }
+}
+
+.ant-drawer-header-title {
+  flex-direction: row-reverse!important;
+}
+
+.ant-drawer-body {
+  padding: 0 18px 18px 18px!important;
+
+  @include grid.media-up(md) {
+    padding: 0 24px 24px 24px!important;
+  }
+}

@@ -1,0 +1,73 @@
+@use 'app/scss/grid.scss';
+
+$bg: #f4f5f9;
+$mainColor: #282828;
+
+.cart-product-card {
+  display: flex;
+  padding: 5px 0;
+  gap: 5px;
+
+  &__image-block {
+    aspect-ratio: 1/1;
+    display: flex;
+    height: 6rem;
+    width: 6rem;
+    flex-shrink: 0;
+    overflow: hidden;
+    background-color: white;
+
+    @include grid.media-up(md) {
+      height: 8rem;
+      width: 8rem;
+    }
+  }
+
+  &__container {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: normal;
+
+    @include grid.media-up(md) {
+      font-size: 16px;
+    }
+  }
+
+  &__elements {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  &__selects {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  &__prices {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 18px;
+  }
+
+  &__prices-last {
+    text-decoration: line-through
+  }
+
+  &__prices-current {
+    color: red;
+  }
+}

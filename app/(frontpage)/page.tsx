@@ -18,6 +18,8 @@ import CustomTabs from '@/app/ui/custom-tabs';
 import { AtSymbolIcon, LinkIcon } from '@heroicons/react/24/solid';
 import NextLink from 'next/link';
 import AdvantagesBlock from '@/app/ui/AdvantagesBlock';
+import AboutComponent from '@/app/ui/frontpage/AboutComponent';
+import { fetchDataCards, getCurrencyRates } from '@/app/lib/data';
 
 export const metadata: Metadata = {
   title: 'Boundary',
@@ -33,6 +35,9 @@ export default async function Page() {
     shieldCheck: ShieldCheckIcon,
     shoppingBag: ShoppingBagIcon,
   };
+  const currency = await getCurrencyRates();
+
+  const dataCards = await fetchDataCards();
 
   return (
     <main>
@@ -43,24 +48,13 @@ export default async function Page() {
           height={400}
         />
       </div>
-      <div className="rounded-xl py-2 md:py-8 px-4 shadow-md flex flex-nowrap flex-col md:flex-row justify-between items-center my-4 md:my-8 md:my-12">
-        <span className="text-3xl mr-4 md:text-5xl font-bold text-indigo-800 uppercase items-center text-center">
-          Boundary
-        </span>
-        <div className="text-lg text-start">
-          Это сервис доставки товаров от известных зарубежных брендов по честным и прозрачным ценам.
-          <p>
-            Наша задача - упростить и улучшить вашу жизнь, ведь всю основную волокиту с оформлением,
-            оплатой, отгрузкой и доставкой товаров мы берем на себя!
-          </p>
-        </div>
-      </div>
+      <AboutComponent />
       <AdvantagesBlock />
       <div className="flex flex-col justify-center w-auto mb-20">
         <h2 className="text-center text-2xl font-bold lg:text-5xl lg:font-extrabold mb-4">
           Подборка популярных товаров
         </h2>
-        <CarouselCard />
+        <CarouselCard currency={currency} data={dataCards} />
       </div>
       <div className="flex flex-wrap md:flex-nowrap gap-4 md:gap-0 flex-row justify-start items-start my-10 md:my-20">
         <div className="font-medium w-full md:w-2/3">

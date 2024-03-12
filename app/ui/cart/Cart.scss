@@ -1,0 +1,99 @@
+@use 'app/scss/grid.scss';
+
+$bg: #f4f5f9;
+$mainColor: #282828;
+
+
+.cart {
+  &__block {
+    width: 100%;
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+    border-top: 1px solid #525252;
+    border-bottom: 1px solid #525252;
+
+    @include grid.media-up(md) {
+      gap: 8px;
+    }
+  }
+
+  &__block-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+
+    @include grid.media-up(md) {
+      font-size: 16px;
+    }
+  }
+
+  &__total {
+    width: 100%;
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include grid.media-up(md) {
+      gap: 8px;
+    }
+  }
+
+  &__container {
+    padding: 12px 0;
+
+    @include grid.media-up(md) {
+      padding: 18px 0;
+    }
+  }
+
+  &__promo-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+  }
+
+  &__promo-input {
+    border: none;
+    border-bottom: 1px solid #525252;
+    text-align: center!important;
+    text-transform: uppercase!important;
+
+  }
+
+  &__promo-block-button {
+    color: #1D4ED8;
+    font-size: 14px;
+
+    @include grid.media-up(md) {
+      font-size: 16px;
+    }
+  }
+
+  &__button {
+    font-size: 16px;
+    color: white;
+    margin-top: 12px;
+    background: #1D4ED8;
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+
+    @include grid.media-up(md) {
+      font-size: 18px;
+      margin-top: 18px;
+    }
+  }
+
+  &__address {
+    border: none;
+    border-bottom: 1px solid #525252;
+    text-align: center!important;
+
+  }
+
+}
