@@ -16,7 +16,7 @@ const LoginPage = () => {
             <BoundaryLogo />
           </div>
         </div>
-        <LoginForm />
+        {/*<LoginForm />*/}
       </div>
     </main>
   );
